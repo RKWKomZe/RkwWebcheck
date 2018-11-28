@@ -1,0 +1,23 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+    <div class="careercheck-footer careercheck-footer--pagination">
+        <f:if condition="{checkResult.feUser.txRkwregistrationIsAnonymous} == 0">
+            <f:then>
+                <f:if condition="{settings.myChecksPid}">
+                    <f:link.action action="showMyCheckResults" pageUid="{settings.myChecksPid}" class="button button--back">{f:translate(key: 'partials_webcheck_showCheckResult_benchmark.toMyChecks')}</f:link.action>
+                </f:if>
+                <f:if condition="{settings.benchmarkPid}">
+                    <f:link.action action="showBenchmark" arguments="{mainCheckResult :checkResult}" pageUid="{settings.benchmarkPid}" class="button button--submit">{f:translate(key: 'partials_webcheck_showCheckResult_benchmark.toBenchmark')}</f:link.action>
+                </f:if>
+            </f:then>
+            <f:else>
+                <f:if condition="{settings.myChecksPid}">
+                    <f:link.action action="showMyCheckResults" pageUid="{settings.myChecksPid}" class="button button--submit">{f:translate(key: 'partials_webcheck_showCheckResult_benchmark.toMyChecks')}</f:link.action>
+                </f:if>
+            </f:else>
+        </f:if>
+
+    </div>
+
+
+</html>

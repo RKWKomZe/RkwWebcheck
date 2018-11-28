@@ -1,0 +1,38 @@
+{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
+<page>
+	<table>
+
+		<!-- standard data -->
+		<tr>
+			<td>
+				Webcheck name: {webcheck.name}
+			</td>
+		</tr>
+
+		<f:if condition="{checkResult}">
+			<f:then>
+				<!-- single result view with frontendUser information -->
+				<tr>
+					<td>
+						Ein einzelner Check
+					</td>
+				</tr>
+				<tr>
+					<td>
+						FrontendUser Uid: {frontendUser.uid}
+					</td>
+				</tr>
+
+			</f:then>
+			<f:else>
+				<!-- complete webcheck overview -->
+				<tr>
+					<td>
+						Hier kommt der komplette webcheck rein
+					</td>
+				</tr>
+			</f:else>
+		</f:if>
+
+	</table>
+</page>

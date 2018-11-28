@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2017-08-14T11:35:09Z" product-name="webcheck">
+		<header/>
+		<body>
+            <!-- tx_rkwwebcheck_domain_model_webcheck -->
+            <trans-unit id="tx_rkwwebcheck_domain_model_webcheck">
+                <source>RKW Webcheck: Check</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_webcheck.name">
+                <source>Name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_webcheck.description">
+                <source>Description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_webcheck.check_pid">
+                <source>Page Containing the Check-Plugin of this Check</source>
+                <target>Inhaltsseite, die das Check-Plugin dieses Checks enthält</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_webcheck.result_a">
+                <source>Result-Text „good“</source>
+                <target>Ergebnistext „gut“</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_webcheck.result_b">
+                <source>Result-Text „ok“</source>
+                <target>Ergebnistext „mittel“</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_webcheck.result_c">
+                <source>Result-Text „bad“</source>
+                <target>Ergebnistext „schlecht“</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_webcheck.topics">
+                <source>Topics</source>
+                <target>Themenkomplexe</target>
+            </trans-unit>
+
+
+            <!-- tx_rkwwebcheck_domain_model_topic -->
+            <trans-unit id="tx_rkwwebcheck_domain_model_topic">
+                <source>RKW Webcheck: Topic</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_topic.name">
+                <source>Name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_topic.description">
+                <source>Description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_topic.weight">
+                <source>Weight</source>
+                <target>Gewichtung</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_topic.result_a">
+                <source>Result-Text „good“</source>
+                <target>Ergebnistext „gut“</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_topic.result_b">
+                <source>Result-Text „ok“</source>
+                <target>Ergebnistext „mittel“</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_topic.result_c">
+                <source>Result-Text „bad“</source>
+                <target>Ergebnistext „schlecht“</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_topic.questions">
+                <source>Questions</source>
+                <target>Fragen</target>
+            </trans-unit>
+
+
+            <!-- tx_rkwwebcheck_domain_model_question -->
+            <trans-unit id="tx_rkwwebcheck_domain_model_question">
+                <source>RKW Webcheck: Question</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_question.question">
+                <source>Question</source>
+                <target>Frage</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_question.description">
+                <source>Description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_question.answer_1">
+                <source>Answer 1</source>
+                <target>Antwort 1</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_question.result_1">
+                <source>Rating Answer 1</source>
+                <target>Bewertungstext für Antwort 1</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_question.value_1">
+                <source>Value Answer 1</source>
+                <target>Wert für Antwort 1</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_question.answer_2">
+                <source>Answer 2</source>
+                <target>Antwort 2</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_question.result_2">
+                <source>Rating Answer 2</source>
+                <target>Bewertungstext für Antwort 2</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_question.value_2">
+                <source>Value Answer 2</source>
+                <target>Wert für Antwort 2</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_question.answer_3">
+                <source>Answer 3</source>
+                <target>Antwort 3</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_question.result_3">
+                <source>Rating Answer 3</source>
+                <target>Bewertungstext für Antwort 3</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_question.value_3">
+                <source>Value Answer 3</source>
+                <target>Wert für Antwort 3</target>
+            </trans-unit>
+
+            <!-- tx_rkwwebcheck_domain_model_glossary -->
+            <trans-unit id="tx_rkwwebcheck_domain_model_glossary">
+                <source>RKW Webcheck: Glossary</source>
+                <target>RKW Webcheck: Glossar</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_glossary.name">
+                <source>Name</source>
+                <target>Begriff</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_glossary.description">
+                <source>Description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_glossary.webcheck">
+                <source>Webcheck</source>
+                <target>Webcheck</target>
+            </trans-unit>
+
+
+            <!-- For Plugins -->
+            <trans-unit id="tx_rkwwebcheck_domain_model_check">
+                <source>Check</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_check.description">
+                <source>Show all Checks</source>
+                <target>Zeigt alle Checks an</target>
+            </trans-unit>
+
+            <trans-unit id="tx_rkwwebcheck_domain_model_benchmark">
+                <source>Benchmark</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_benchmark.description">
+                <source>Show Benchmarks for a Check</source>
+                <target>Zeigt den Benchmark für einen Check</target>
+            </trans-unit>
+
+            <trans-unit id="tx_rkwwebcheck_domain_model_share">
+                <source>Share Check</source>
+                <target>Check teilen</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_share.description">
+                <source>Share a Check</source>
+                <target>Nutzer können hiermit einen Check teilen</target>
+            </trans-unit>
+
+            <trans-unit id="tx_rkwwebcheck_domain_model_shared">
+                <source>Shared Check</source>
+                <source>Geteilte Checks</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_shared.description">
+                <source>Show Shared Checks</source>
+                <target>Zeigt dem Nutzer alle geteilte Checks an</target>
+            </trans-unit>
+
+            <trans-unit id="tx_rkwwebcheck_domain_model_mycheck">
+                <source>My Checks</source>
+                <target>Meine Checks</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_mycheck.description">
+                <source>Delete or Start over own Checks</source>
+                <target>Eigene Checks löschen oder neu starten</target>
+            </trans-unit>
+
+            <trans-unit id="tx_rkwwebcheck_domain_model_feedback">
+                <source>Feedback</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_feedback.description">
+                <source>Give Feedback for a Check</source>
+                <target>Kontaktformular für Feedback</target>
+            </trans-unit>
+
+
+            <!-- Flexform -->
+            <trans-unit id="tx_rkwwebcheck_flexform.check">
+                <source>Check to Show</source>
+                <target>Check, der angezeigt werden soll</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_flexform.terms">
+                <source>Page with Terms and Conditions</source>
+                <target>Seite mit den AGB</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_flexform.backendUser">
+                <source>Backend User for Notification on Finished Check</source>
+                <target>Backend-Nutzer für Benachrichtigung bei abgeschlossenem Check</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_flexform.feedback">
+                <source>Page with Feedback-Plugin</source>
+                <target>Seite mit Feedback-Plugin</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_flexform.share">
+                <source>Page with Share-Plugin</source>
+                <target>Seite mit Teilen-Plugin</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_flexform.benchmark">
+                <source>Page with Benchmark-Plugin</source>
+                <target>Seite mit Benchmark-Plugin</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_flexform.myChecks">
+                <source>Page with MyChecks-Plugin</source>
+                <target>Seite mit MyChecks-Plugin</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_flexform.newCheckPid">
+                <source>Page with Check-Plugin for new Check</source>
+                <target>Seite mit Check-Plugin für neuen Check</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_flexform.sharedChecksPage">
+                <source>Page with Shared-Checks-Plugin</source>
+                <target>Seite mit Geteilte-Checks-Plugin</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_flexform.linkPid">
+                <source>Page to Start Check from (e.g. Login-Page)</source>
+                <target>Seite, von der aus man den Check starten kann (z.B. Login-Seite)</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_flexform.noStartScreen">
+                <source>No start screen</source>
+                <target>Ohne Startseite starten</target>
+            </trans-unit>
+        </body>
+	</file>
+</xliff>

@@ -1,0 +1,76 @@
+{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+    <div class="table-wrap">
+
+        <table class="benchmark-table">
+
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>
+                        {f:translate(key: 'partials_webcheck_showBenchmark_topics.myCheck')}
+                    </th>
+                    <f:if condition="{compareCheckResult}">
+                        <th>
+                            {f:translate(key: 'partials_webcheck_showBenchmark_topics.compareCheck')}
+                        </th>
+                    </f:if>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>
+                        <p>
+                            <strong>
+                                {f:translate(key: 'partials_webcheck_showBenchmark_topics.completeResult')}
+                            </strong>
+                        </p>
+                    </td>
+                    <td>
+                        <span class="value {rkw:ratingCss(percentage: '{mainCheckResult.percentage}')}">
+                            <f:format.number decimals="0" decimalSeparator="." >{mainCheckResult.percentage}</f:format.number>%
+                        </span>
+                    </td>
+                    <f:if condition="{compareCheckResult}">
+                        <td>
+                            <span class="value {rkw:ratingCss(percentage: '{compareCheckResult.percentage}')}">
+                                <f:format.number decimals="0" decimalSeparator="." >{compareCheckResult.percentage}</f:format.number>%
+                            </span>
+                        </td>
+                    </f:if>
+
+                </tr>
+
+                <f:for each="{mainCheckResult.results}" as="topicResult" iteration="iteratorMain">
+                    <tr>
+                        <td>
+                            <p>{topicResult.topic.name}</p>
+                        </td>
+                        <td>
+                            <span class="value {rkw:ratingCss(percentage: '{topicResult.percentage}')}">
+                                <f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%
+                            </span>
+                        </td>
+                        <f:if condition="{compareCheckResult}">
+                            <f:for each="{compareCheckResult.results}" as="compareTopicResult" iteration="iteratorCompare">
+                                <f:if condition="{iteratorCompare.cycle} == {iteratorMain.cycle}">
+                                    <td>
+                                        <span class="value {rkw:ratingCss(percentage: '{compareTopicResult.percentage}')}">
+                                            <f:format.number decimals="0" decimalSeparator="." >{compareTopicResult.percentage}</f:format.number>%
+                                        </span>
+                                    </td>
+                                </f:if>
+                            </f:for>
+                        </f:if>
+                     </tr>
+                </f:for>
+            </tbody>
+        </table>
+    </div>
+
+
+
+</html>

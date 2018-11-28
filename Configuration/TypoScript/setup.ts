@@ -1,0 +1,64 @@
+config.tx_extbase.persistence {
+	classes {
+		RKW\RkwWebcheck\Domain\Model\FrontendUser {
+			mapping {
+				tableName = fe_users
+				recordType =
+			}
+		}
+		RKW\RkwRegistration\Domain\Model\FrontendUser {
+			subclasses {
+				Tx_RkwWebcheck_FrontendUser = RKW\RkwWebcheck\Domain\Model\FrontendUser
+			}
+		}
+		RKW\RkwWebcheck\Domain\Model\BackendUser {
+			mapping {
+				tableName = be_users
+				columns {
+					usergroup.mapOnProperty = backendUserGroups
+				}
+			}
+		}
+		RKW\RkwWebcheck\Domain\Model\CheckResult {
+			mapping {
+				# mapping to properties of class
+				columns {
+					tstamp.mapOnProperty = tstamp
+					crdate.mapOnProperty = crdate
+				}
+			}
+		}
+	}
+}
+
+plugin.tx_rkwwebcheck {
+	view {
+		templateRootPaths.0 = {$plugin.tx_rkwwebcheck.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_rkwwebcheck.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_rkwwebcheck.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_rkwwebcheck.persistence.storagePid}
+	}
+	settings{
+		benchmarkMinChecks = {$plugin.tx_rkwwebcheck.settings.benchmarkMinChecks}
+	}
+}
+
+page.includeJSFooter.txRkwQuickcheck = EXT:rkw_webcheck/Resources/Public/Scripts/Webcheck.js
+page.includeCSS.txRkwQuickcheck = EXT:rkw_webcheck/Resources/Public/Styles/Webcheck.css
+
+# Module configuration
+module.tx_rkwwebcheck {
+	persistence {
+		storagePid = {$module.tx_rkwwebcheck.persistence.storagePid}
+	}
+	view {
+		templateRootPaths.0 = EXT:rkw_webcheck/Resources/Private/Backend/Templates/
+		templateRootPaths.1 = {$module.tx_rkwwebcheck.view.templateRootPath}
+		partialRootPaths.0 = EXT:rkw_webcheck/Resources/Private/Backend/Partials/
+		partialRootPaths.1 = {$module.tx_rkwwebcheck.view.partialRootPath}
+		layoutRootPaths.0 = EXT:rkw_webcheck/Resources/Private/Backend/Layouts/
+		layoutRootPaths.1 = {$module.tx_rkwwebcheck.view.layoutRootPath}
+	}
+}

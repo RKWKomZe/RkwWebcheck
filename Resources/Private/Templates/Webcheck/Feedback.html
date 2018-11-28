@@ -1,0 +1,56 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<f:flashMessages renderMode="div" />
+
+	<f:if condition="{thankYou}">
+		<f:then>
+			<h2>{f:translate(key: 'templates_webcheck_feedback.thankYouForFeedback')}</h2>
+			<p>{f:translate(key: 'templates_webcheck_feedback.weGetTheFeedback')}</p>
+		</f:then>
+
+		<f:else>
+
+			<h2>{f:translate(key: 'templates_webcheck_feedback.rateTheCheck')}</h2>
+
+			<f:form action="feedback">
+
+				<label>1</label>
+				<f:form.radio name="tx_rkwwebcheck[note]" value="1" />
+				<br />
+
+				<label>2</label>
+				<f:form.radio name="tx_rkwwebcheck[note]" value="2" />
+				<br />
+
+				<label>3</label>
+				<f:form.radio name="tx_rkwwebcheck[note]" value="3" />
+				<br />
+
+				<label>4</label>
+				<f:form.radio name="tx_rkwwebcheck[note]" value="4" />
+				<br />
+
+				<label>5</label>
+				<f:form.radio name="tx_rkwwebcheck[note]" value="5" />
+				<br />
+
+				<label>6</label>
+				<f:form.radio name="tx_rkwwebcheck[note]" value="6" />
+				<br />
+
+				<label for="annotations">{f:translate(key: 'templates_webcheck_feedback.placeForAnnotations')}</label>
+				<f:form.textarea property="tx_rkwwebcheck_annotations" rows="5" cols="50" placeholder="{f:translate(key: 'templates_webcheck_feedback.yourAnnotations')}" name="annotations"
+				 id="annotations" />
+
+				<f:form.submit value="{f:translate(key: 'templates_webcheck_feedback.rate')}" class="button" />
+			</f:form>
+
+		</f:else>
+	</f:if>
+
+</f:section>
+
+</html>

@@ -1,0 +1,14 @@
+<f:form action="print" target="_blank">
+	<f:form.hidden name="webcheck" property="webcheck" value="{webcheck}" />
+	<f:form.hidden name="checkResult" property="checkResult" value="{checkResult}" />
+	<f:form.submit value="{f:translate(key: 'templates_backend_result.generatePrint')}" />
+</f:form>
+
+<!-- pdf version is not used because it can't display google-API virtualization -->
+<f:comment>
+	<f:form action="pdf">
+		<f:form.hidden name="webcheck" property="webcheck" value="{webcheck}" />
+		<f:form.hidden name="checkResult" property="checkResult" value="{checkResult}" />
+		<f:form.submit value="{f:translate(key: 'templates_backend_result.generatePdf')}" />
+	</f:form>
+</f:comment>

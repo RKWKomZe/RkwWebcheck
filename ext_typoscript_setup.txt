@@ -1,0 +1,32 @@
+config.tx_extbase.persistence {
+    classes {
+        RKW\RkwWebcheck\Domain\Model\FrontendUser {
+            mapping {
+                tableName = fe_users
+                recordType =
+            }
+        }
+        RKW\RkwRegistration\Domain\Model\FrontendUser {
+            subclasses {
+                Tx_RkwWebcheck_FrontendUser = RKW\RkwWebcheck\Domain\Model\FrontendUser
+            }
+        }
+        RKW\RkwWebcheck\Domain\Model\BackendUser {
+            mapping {
+                tableName = be_users
+                columns {
+                    usergroup.mapOnProperty = backendUserGroups
+                }
+            }
+        }
+        RKW\RkwWebcheck\Domain\Model\CheckResult {
+            mapping {
+                # mapping to properties of class
+                columns {
+                    tstamp.mapOnProperty = tstamp
+                    crdate.mapOnProperty = crdate
+                }
+            }
+        }
+    }
+}

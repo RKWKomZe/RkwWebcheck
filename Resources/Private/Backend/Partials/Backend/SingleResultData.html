@@ -1,0 +1,68 @@
+{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
+
+<!-- show details -->
+<div class="details">
+	<h4><b>{f:translate(key: 'templates_backend_result.userOfCheck')}</b></h4>
+	<ul>
+		<f:if condition="{frontendUser}">
+			<li>
+				{f:translate(key: 'templates_backend_result.firstName')}:
+				<b>{frontendUser.firstName}</b>
+			</li>
+			<li>
+				{f:translate(key: 'templates_backend_result.lastName')}:
+				<b>{frontendUser.lastName}</b>
+			</li>
+			<li>
+				{f:translate(key: 'templates_backend_result.email')}:
+				<b>{frontendUser.email}</b>
+			</li>
+		</f:if>
+		<li>
+			{f:translate(key: 'templates_backend_result.date')}:
+			<b><f:format.date format="d.m.Y H:i">{checkResult.tstamp}</f:format.date>
+				{f:translate(key: 'templates_backend_result.time_after')}
+			</b>
+		</li>
+		<li>
+			{f:translate(key: 'templates_backend_result.points')}:
+			<b>{checkResult.sum}
+			/
+			{benchmark.maxSum} ({rkw:percentCalc(sum: '{checkResult.sum}', maxSum: '{benchmark.maxSum}')}%)</b>
+		</li>
+		<li>
+			{f:translate(key: 'templates_backend_result.benchmark')}:
+			<b><f:format.number decimals="2" decimalSeparator=",">{benchmark.averageSum}</f:format.number>
+			/
+			{benchmark.maxSum} ({benchmark.percent}%)</b>
+		</li>
+	</ul>
+
+	<h4><b>{f:translate(key: 'templates_backend_result.pointsPerTopic')}</b></h4>
+	<ol>
+		<f:for each="{checkResult.results}" as="result">
+			<li>{result.topic.name}: <b>
+				{result.sum} /
+				<f:for each="{result.webcheck.topics}" as="singleTopic">
+					<f:if condition="{singleTopic.uid} == {result.topic.uid}">
+						{rkw:getMaxPointsOfTopic(questions: '{singleTopic.questions}')}
+					</f:if>
+				</f:for>
+				{f:translate(key: 'templates_backend_result.points')}
+				({result.percentage}%)</b></li>
+		</f:for>
+	</ol>
+
+	<br>
+	<h4>
+		<b>
+			{f:translate(key: 'templates_backend_result.conclusion')}:
+			{rkw:ratingCheckText(checkResult: '{checkResult}')}
+		</b>
+	</h4>
+
+</div>
+
+<!-- show google visualization -->
+{rkw:visualization.singleResultWithBenchmark(resultPercent: "{rkw:percentCalc(sum: '{checkResult.sum}', maxSum: '{benchmark.maxSum}')}", benchmarkPercent: "{benchmark.percent}")}
+<div id="chart_div" style="width: 900px; height: 500px;"></div>

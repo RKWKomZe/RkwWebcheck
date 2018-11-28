@@ -1,0 +1,32 @@
+/* styles from RkwWepstra begin */
+.page-wrap {
+	*zoom: 1;
+	width: auto;
+	max-width: 768px;
+	float: none;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	padding: 0;
+}
+.page-wrap:before, .container:after {
+	content: '';
+	display: table;
+}
+.page-wrap:after {
+	clear: both;
+}
+
+
+/* own styles */
+h1 {
+	text-decoration: underline;
+}
+.content {
+	text-align: center;
+}
+.details {
+	text-align: left;
+	margin: auto 15%;
+}

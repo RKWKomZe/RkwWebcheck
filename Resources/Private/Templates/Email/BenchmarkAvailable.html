@@ -1,0 +1,28 @@
+namespace vh=RKW\RkwMailer\ViewHelpers}
+<f:layout name="Email/{mailType}" />
+
+
+<!-- PLAINTEXT -->
+<!-- No intend here !!! -->
+<f:section name="Plaintext">
+	<vh:frontend.translate key="templates_email_benchmarkAvailable.headline" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" />
+
+	<vh:frontend.translate key="templates_email_benchmarkAvailable.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" />
+
+	<vh:frontend.link action="showSharedCheckResult" controller="Webcheck" extensionName="rkwWebcheck" pluginName="sharedCheck" absolute="true" pageUid="{pageUid}" additionalParams="{tx_rkwwebcheck_sharedcheck: {checkResult: checkResult, hash: hash}}"/>
+</f:section>
+
+<!-- HTML -->
+<f:section name="Html">
+
+	<h1>
+		<vh:frontend.translate key="templates_email_benchmarkAvailable.headline" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" />
+	</h1>
+	<p><vh:frontend.translate key="templates_email_benchmarkAvailable.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" /></p>
+	<p>
+		<a href="<vh:frontend.link action='showSharedCheckResult' controller='Webcheck' extensionName='rkwWebcheck' pluginName='sharedCheck' absolute='true' pageUid='{pageUid}' additionalParams='{tx_rkwwebcheck_sharedcheck: {checkResult: checkResult, hash: hash}}'/>">
+			<vh:frontend.translate key="templates_email_benchmarkAvailable.linkLabel" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" />
+		</a>
+	</p>
+
+</f:section>

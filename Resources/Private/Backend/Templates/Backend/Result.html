@@ -1,0 +1,21 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+
+	<!-- show buttons for print or creating a pdf -->
+	<f:render partial="Backend/Buttons" arguments="{_all}"/>
+
+	<f:flashMessages />
+	<h1>{webcheck.name}</h1>
+	<!-- variable "checkResult" means that the user want to see the result of a single webcheck -->
+	<f:if condition="{checkResult}">
+		<f:then>
+			<!-- show single result data -->
+			<f:render partial="Backend/SingleResultData" arguments="{_all}"/>
+		</f:then>
+		<f:else>
+			<!-- show overall result data -->
+			<f:render partial="Backend/OverallResultData" arguments="{_all}"/>
+		</f:else>
+	</f:if>
+</f:section>

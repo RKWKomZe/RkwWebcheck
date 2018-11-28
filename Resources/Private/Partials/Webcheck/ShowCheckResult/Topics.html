@@ -1,0 +1,19 @@
+{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <div class="careercheck-accordion">
+        <div class="careercheck-accordion__header">{f:translate(key: 'partials_webcheck_showCheckResult_topics.partialResults')}</div>
+
+        <f:for each="{checkResult.results}" as="topicResult">
+            <div class="careercheck-accordion__item">
+                <div class="accordion-trigger">
+                    <span class="title">{topicResult.topic.name}</span>
+                    <span class="value {rkw:ratingCss(percentage: '{topicResult.percentage}')}"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
+                </div>
+                <div class="accordion-cnt">
+                    <p>{rkw:ratingTopicText(topicResult: '{topicResult}')}</p>
+                </div>
+            </div>
+        </f:for>
+    </div>
+</html>

@@ -1,0 +1,31 @@
+{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{questionResult.question.description}">
+        <f:then>
+            <div class="question-overlay">
+                <div class="question-overlay__inner">
+                    <span class="close close-trigger careercheck-icon-cancel-circled"></span>
+                    <h2>
+                        {f:translate(key: 'partials_webcheck_showQuestionResult_question.descriptionOfQuestion')}
+                    </h2>
+                    <p>{questionResult.question.description -> f:format.raw()}</p>
+                    <a class="button close-trigger">
+                        {f:translate(key: 'partials_webcheck_showQuestionResult_question.backToQuestion')}
+                    </a>
+                </div>
+                <div class="bg"></div>
+            </div>
+        </f:then>
+    </f:if>
+
+
+    <div class="question">
+        <h2><rkw:glossary glossaryList="{glossaryList}">{questionResult.question.question}</rkw:glossary></h2>
+        <f:if condition="{questionResult.question.description}">
+            <f:then>
+                <span class="more-info careercheck-icon-info-circled"></span>
+            </f:then>
+        </f:if>
+    </div>
+</html>

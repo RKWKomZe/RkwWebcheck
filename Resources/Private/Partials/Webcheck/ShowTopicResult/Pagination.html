@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+    <div class="careercheck-footer careercheck-footer--pagination">
+        <f:form action="showQuestionResult" name="questionResult" object="{firstQuestionResult}">
+            <f:form.submit value="{f:translate(key: 'partials_webcheck_showTopicResult_pagination.restartTopic')}"
+                class="button button--back" />
+        </f:form>
+
+        <div class="pagination"><!-- --></div>
+
+        <f:if condition="{endCheck}">
+            <f:then>
+                <f:form action="updateCheckResult" name="checkResult" object="{topicResult.checkResult}" section="check-head">
+                    <f:form.submit value="{f:translate(key: 'partials_webcheck_showTopicResult_pagination.finishCheck')}"
+                        class="button button--submit" />
+                </f:form>
+            </f:then>
+            <f:else>
+                <f:form action="showQuestionResult" name="questionResult" object="{nextQuestionResult}" section="check-head">
+                    <f:form.submit value="{f:translate(key: 'partials_webcheck_showTopicResult_pagination.nextTopic')}"
+                        class="button button--submit" />
+                </f:form>
+            </f:else>
+        </f:if>
+    </div>
+
+
+</html>

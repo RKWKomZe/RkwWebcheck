@@ -1,0 +1,94 @@
+{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:section name="Selection">
+    <div class="answer-container radio-group radio-group--single">
+
+        <f:if condition="{questionResult}">
+            <f:then>
+                <f:if condition="{questionResult.sum} == {questionResult.question.value1}">
+                    <f:then>
+                        <label class="radio radio--hidden answer">
+                            <f:form.radio property="sum" value="{questionResult.question.value1}" checked="checked" additionalAttributes="{data-id : 'answer1'}" class="no-jcf" /><rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer1 -> f:format.raw()}</rkw:glossary> <span class="check-indicator careercheck-icon-ok-circled"></span><br>
+                        </label>
+                    </f:then>
+                    <f:else>
+                        <label class="radio radio--hidden answer">
+                            <f:form.radio property="sum" value="{questionResult.question.value1}" additionalAttributes="{data-id : 'answer1'}" class="no-jcf" /><rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer1 -> f:format.raw()}</rkw:glossary> <span class="check-indicator careercheck-icon-ok-circled"></span><br>
+                        </label>
+                    </f:else>
+                </f:if>
+                <f:if condition="{questionResult.sum} == {questionResult.question.value2}">
+                    <f:then>
+                        <label class="radio radio--hidden answer">
+                            <f:form.radio property="sum" value="{questionResult.question.value2}" checked="checked" additionalAttributes="{data-id : 'answer2'}" class="no-jcf" /><rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer2 -> f:format.raw()}</rkw:glossary> <span class="check-indicator careercheck-icon-ok-circled"></span><br>
+                        </label>
+                    </f:then>
+                    <f:else>
+                        <label class="radio radio--hidden answer">
+                            <f:form.radio property="sum" value="{questionResult.question.value2}" additionalAttributes="{data-id : 'answer2'}" class="no-jcf" /><rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer2 -> f:format.raw()}</rkw:glossary> <span class="check-indicator careercheck-icon-ok-circled"></span><br>
+                        </label>
+                    </f:else>
+                </f:if>
+                <f:if condition="{questionResult.sum} == {questionResult.question.value3}">
+                    <f:then>
+                        <label class="radio radio--hidden answer">
+                            <f:form.radio property="sum" value="{questionResult.question.value3}" checked="checked" additionalAttributes="{data-id : 'answer3'}" class="no-jcf" /><rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer3 -> f:format.raw()}</rkw:glossary> <span class="check-indicator careercheck-icon-ok-circled"></span><br>
+                        </label>
+                    </f:then>
+                    <f:else>
+                        <label class="radio radio--hidden answer">
+                            <f:form.radio property="sum"  value="{questionResult.question.value3}" additionalAttributes="{data-id : 'answer3'}" class="no-jcf" /><rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer3 -> f:format.raw()}</rkw:glossary> <span class="check-indicator careercheck-icon-ok-circled"></span><br>
+                        </label>
+                    </f:else>
+                </f:if>
+            </f:then>
+
+            <f:else>
+                <div class="radio radio--hidden answer">
+                    <f:form.radio property="sum" name="sum" value="{questionResult.question.value1}" additionalAttributes="{data-id : 'answer1'}" class="no-jcf"/><rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer1 -> f:format.raw()}</rkw:glossary> <span class="check-indicator careercheck-icon-ok-circled"></span><br>
+                </div>
+                <div class="radio radio--hidden answer">
+                    <f:form.radio property="sum" name="sum" value="{questionResult.question.value2}" additionalAttributes="{data-id : 'answer2'}" class="no-jcf"/><rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer2 -> f:format.raw()}</rkw:glossary> <span class="check-indicator careercheck-icon-ok-circled"></span><br>
+                </div>
+                <div class="radio radio--hidden answer">
+                    <f:form.radio property="sum" name="sum" value="{questionResult.question.value3}" additionalAttributes="{data-id : 'answer3'}" class="no-jcf"/><rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer3 -> f:format.raw()}</rkw:glossary> <span class="check-indicator careercheck-icon-ok-circled"></span><br>
+                </div>
+            </f:else>
+        </f:if>
+    </div>
+</f:section>
+
+
+
+<f:section name="Tooltips">
+    <div class="answer-tip" style="display:none;">
+        <div class="answer-tip__header">
+            <i class="careercheck-icon-chat icon-chat"></i> {f:translate(key: 'partials_webcheck_showQuestionResult_answers.tip')}
+        </div>
+        <div class="anwer-tip__cnt">
+
+            <div class="answer" id="answer1" style="display:none">
+                <p>
+                    <rkw:glossary glossaryList="{glossaryList}"><f:format.raw>{questionResult.question.result1}</f:format.raw></rkw:glossary>
+                </p>
+            </div>
+
+            <div class="answer" id="answer2" style="display:none">
+                <p>
+                    <rkw:glossary glossaryList="{glossaryList}"><f:format.raw>{questionResult.question.result2}</f:format.raw></rkw:glossary>
+                </p>
+            </div>
+
+            <div class="answer" id="answer3" style="display:none">
+                <p>
+                    <rkw:glossary glossaryList="{glossaryList}"><f:format.raw>{questionResult.question.result3}</f:format.raw></rkw:glossary>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</f:section>
+
+</html>

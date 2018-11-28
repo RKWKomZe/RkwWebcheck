@@ -1,0 +1,34 @@
+
+plugin.tx_rkwwebcheck  {
+	view {
+		# cat=plugin.tx_rkwwebcheck/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:rkw_webcheck/Resources/Private/Templates/
+		# cat=plugin.tx_rkwwebcheck/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:rkw_webcheck/Resources/Private/Partials/
+		# cat=plugin.tx_rkwwebcheck/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:rkw_webcheck/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_rkwwebcheck//a; type=string; label=Default storage PID
+		storagePid =
+	}
+	settings {
+		# cat=plugin.tx_rkwwebcheck//a; type=integer; label=Minimum number of benchmarks before these are available in FE
+		benchmarkMinChecks = 10
+	}
+}
+
+module.tx_rkwwebcheck {
+	view {
+		# cat=module.tx_rkwwebcheck/file; type=string; label=Path to template root (BE)
+		templateRootPath = EXT:rkw_webcheck/Resources/Private/Backend/Templates/
+		# cat=module.tx_rkwwebcheck/file; type=string; label=Path to template partials (BE)
+		partialRootPath = EXT:rkw_webcheck/Resources/Private/Backend/Partials/
+		# cat=module.tx_rkwwebcheck/file; type=string; label=Path to template layouts (BE)
+		layoutRootPath = EXT:rkw_webcheck/Resources/Private/Backend/Layouts/
+	}
+	persistence {
+		# cat=module.tx_rkwwebcheck//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

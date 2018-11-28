@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2017-08-17T15:06:22Z" product-name="rkw_webcheck">
+		<header/>
+		<body>
+
+			<!--
+			=========================== MODELS ============================================
+			-->
+
+			<!-- tx_rkwwebcheck_domain_model_webcheck -->
+			<trans-unit id="tx_rkwwebcheck_domain_model_webcheck">
+				<source>RKW Webcheck: Check</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_webcheck.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_webcheck.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_webcheck.check_pid">
+				<source>Page Containing the Check</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_webcheck.result_a">
+				<source>Result-Text „good“</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_webcheck.result_b">
+				<source>Result-Text „ok“</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_webcheck.result_c">
+				<source>Result-Text „bad“</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_webcheck.topics">
+				<source>Topics</source>
+			</trans-unit>
+
+
+			<!-- tx_rkwwebcheck_domain_model_topic -->
+			<trans-unit id="tx_rkwwebcheck_domain_model_topic">
+				<source>RKW Webcheck: Topic</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_topic.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_topic.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_topic.weight">
+				<source>Weight</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_topic.result_a">
+				<source>Result-Text „good“</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_topic.result_b">
+				<source>Result-Text „ok“</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_topic.result_c">
+				<source>Result-Text „bad“</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_topic.questions">
+				<source>Questions</source>
+			</trans-unit>
+
+
+			<!-- tx_rkwwebcheck_domain_model_question -->
+			<trans-unit id="tx_rkwwebcheck_domain_model_question">
+				<source>RKW Webcheck: Question</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_question.question">
+				<source>Question</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_question.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_question.answer_1">
+				<source>Answer 1</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_question.result_1">
+				<source>Rating Answer 1</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_question.value_1">
+				<source>Value Answer 1</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_question.answer_2">
+				<source>Answer 2</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_question.result_2">
+				<source>Rating Answer 2</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_question.value_2">
+				<source>Value Answer 2</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_question.answer_3">
+				<source>Answer 3</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_question.result_3">
+				<source>Rating Answer 3</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_question.value_3">
+				<source>Value Answer 3</source>
+			</trans-unit>
+
+			<!-- tx_rkwwebcheck_domain_model_checkresult -->
+			<trans-unit id="tx_rkwwebcheck_domain_model_checkresult.points">
+				<source>Points</source>
+				<target>Punkte</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_checkresult.anonymous">
+				<source>Anonymous</source>
+				<target>Anonym</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_checkresult.userDeleted">
+				<source>User deleted</source>
+				<target>Nutzer gelöscht</target>
+			</trans-unit>
+
+
+
+			<!--
+			=========================== CONTROLLER ============================================
+			-->
+
+            <!-- Flash-Messages -->
+            <trans-unit id="webcheckController.warning.terms">
+                <source>You have to accept our terms and conditions.</source>
+                <target>Das muss leider sein: Bitte akzeptieren Sie unsere Nutzungsbedingungen, um den Check starten zu können.</target>
+            </trans-unit>
+            <trans-unit id="webcheckController.warning.noEmails">
+                <source>Please enter at least one e-mail.</source>
+                <target>Bitte geben Sie mindestens eine E-Mailadresse an.</target>
+            </trans-unit>
+            <trans-unit id="webcheckController.warning.invalidEmail">
+                <source>"%s" is not a valid address and has been ignored.</source>
+                <target>"%s" ist leider keine gültige E-Mailadresse und wurde ignoriert.</target>
+            </trans-unit>
+            <trans-unit id="webcheckController.warning.errorSendingSharingEmail">
+                <source>An error occured while trying to send your result. Please try again.</source>
+                <target>Hmm... Beim Versenden des Ergebnisses ist leider ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</target>
+            </trans-unit>
+            <trans-unit id="webcheckController.success.sentSharingEmails">
+                <source>Woohoo! Your result been sent successfully.</source>
+                <target>Woohoo! Ihr Ergebnis wurde erfolgreich versendet.</target>
+            </trans-unit>
+            <trans-unit id="webcheckController.warning.missingParamsSharing">
+                <source>The link you used seems not be valid. Please contact our support.</source>
+                <target>Hmm... Der verwendete Link scheint ungültig zu sein. Bitte kontaktieren Sie unseren Support.</target>
+            </trans-unit>
+            <trans-unit id="webcheckController.warning.invalidHash">
+                <source>The link you used seems not be valid. Please contact our support.</source>
+                <target>Hmm... Der verwendete Link scheint ungültig zu sein. Bitte kontaktieren Sie unseren Support.</target>
+            </trans-unit>
+            <trans-unit id="webcheckController.warning.invalidUser">
+                <source>An unexpected error occurred. Please try again.</source>
+                <target>Hmm... Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.</target>
+            </trans-unit>
+            <trans-unit id="webcheckController.warning.notLoggedIn">
+                <source>You have to be logged in to use this function.</source>
+                <target>Sie müssen eingeloggt sein, um diese Funktion nutzen zu können.</target>
+            </trans-unit>
+            <trans-unit id="webcheckController.warning.editError">
+                <source>Unfortunately editing the check result was not possible Please contact our support.</source>
+                <target>Hmm... Leider war das Bearbeiten des Checks nicht möglich. Bitte wenden Sie sich an unseren Support.</target>
+            </trans-unit>
+            <trans-unit id="webcheckController.success.checkDeleted">
+                <source>Woohoo! The check results have been deleted successfully.</source>
+                <target>Woohoo! Das Checkergebnis wurde erfolgreich gelöscht.</target>
+            </trans-unit>
+            <trans-unit id="webcheckController.warning.noChecks">
+                <source>Unfortunately you didn't complete a check yet. Please complete a check to be able to benchmark it.</source>
+                <target>Hmm... Leider haben Sie bislang keinen Check abgeschlossen. Bitte schließen Sie einen Check ab, um die Ergebnisse vergleichen zu können.</target>
+            </trans-unit>
+            <trans-unit id="webcheckController.warning.noAnonymous">
+                <source>Unfortunately this functionality is only available for regularly registered users.</source>
+                <target>Hmm... Leider steht diese Funktion nur regulär registrierten Nutzern zur Verfügung.</target>
+            </trans-unit>
+
+
+			<!--
+			=========================== TEMPLATES ============================================
+			-->
+
+            <!-- Templates/Webcheck/CheckInit.html -->
+            <trans-unit id="templates_webcheck_checkInit.iAcceptThe">
+                <source>I accept the</source>
+                <target>Ich akzeptiere die</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_checkInit.terms">
+                <source>terms and conditions.</source>
+                <target>Nutzungsbedingungen.</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_checkInit.startCheck">
+                <source>Start Check Now</source>
+                <target>Check jetzt starten</target>
+            </trans-unit>
+
+
+			<!-- Templates/Webcheck/Feedback.html -->
+			<trans-unit id="templates_webcheck_feedback.thankYouForFeedback">
+				<source>Thank you for the feedback</source>
+				<target>Vielen Dank für Ihre Rückmeldung</target>
+			</trans-unit>
+			<trans-unit id="templates_webcheck_feedback.weGetTheFeedback">
+				<source>We get the feedback</source>
+				<target>Nur durch Ihr Feedback sind wir in der Lage, unsere Dienstleistungen stetig zu verbessern.</target>
+			</trans-unit>
+			<trans-unit id="templates_webcheck_feedback.rateTheCheck">
+				<source>Rate the check</source>
+				<target>Beurteilen Sie unseren Webcheck-Dienst.</target>
+			</trans-unit>
+			<trans-unit id="templates_webcheck_feedback.placeForAnnotations">
+				<source>Place for Annotations</source>
+				<target>Hier haben Sie die Möglichkeit für weitere Anmerkungen</target>
+			</trans-unit>
+			<trans-unit id="templates_webcheck_feedback.yourAnnotations">
+				<source>Your annotations</source>
+				<target>Ihre Anmerkungen</target>
+			</trans-unit>
+			<trans-unit id="templates_webcheck_feedback.rate">
+				<source>Rate</source>
+				<target>Bewertung abschicken</target>
+			</trans-unit>
+
+
+			<!-- Templates/Webcheck/NoChecks.html -->
+			<trans-unit id="templates_webcheck_noChecks.errorHeadline">
+				<source>Opps!</source>
+				<target>Na sowas!</target>
+			</trans-unit>
+			<trans-unit id="templates_webcheck_noChecks.noChecksText">
+				<source>No checks available yet.</source>
+				<target>Es wurde noch kein Check von Ihnen durchgeführt.</target>
+			</trans-unit>
+			<trans-unit id="templates_webcheck_noChecks.errorButton">
+				<source>Back to start</source>
+				<target>zurück zum Start</target>
+			</trans-unit>
+
+
+			<!-- Templates/Webcheck/ShowTopicResult/Topic.html -->
+			<trans-unit id="templates_webcheck_showTopicResult.topic">
+				<source>Topic</source>
+				<target>Thema</target>
+			</trans-unit>
+			<trans-unit id="templates_webcheck_showTopicResult.finishedIntro">
+				<source>You have answered</source>
+				<target>Sie haben die Fragen des Themenkomplexes</target>
+			</trans-unit>
+			<trans-unit id="templates_webcheck_showTopicResult.finishedIntro2">
+				<source>the questions of the current topic completly. Here you see your results.</source>
+				<target>vollständig bearbeitet. Hier sehen Sie Ihr Zwischenergebnis für diesen Teilbereich.</target>
+			</trans-unit>
+			<trans-unit id="templates_webcheck_showTopicResult.partialResultTopic">
+				<source>Results for this topic</source>
+				<target>Zwischenergebnis des Themenkomplexes</target>
+			</trans-unit>
+
+
+			<!-- Templates/Webcheck/ShowQuestionResult.html -->
+			<trans-unit id="templates_webcheck_showQuestionResult.topic">
+				<source>Topic</source>
+				<target>Thema</target>
+			</trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowQuestionResult/Pagination.html -->
+            <trans-unit id="partials_webcheck_showQuestionResult_pagination.nextQuestion">
+                <source>Next question</source>
+                <target>Nächste Frage</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showQuestionResult_pagination.prevQuestion">
+                <source>Previous Question</source>
+                <target>Vorherige Frage</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showQuestionResult_pagination.topicResult">
+                <source>Finish topic</source>
+                <target>Themenkomplex abschließen</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showQuestionResult_pagination.prevTopic">
+                <source>Back to last topic</source>
+                <target>Zurück zum letzten Themenkomplex</target>
+            </trans-unit>
+             <trans-unit id="partials_webcheck_showQuestionResult_pagination.question">
+                <source>Question</source>
+                <target>Frage</target>
+            </trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowQuestionResult/QuestionDescription.html -->
+            <trans-unit id="partials_webcheck_showQuestionResult_question.descriptionOfQuestion">
+                <source>Additional Description</source>
+                <target>Weitere Informationen</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showQuestionResult_question.backToQuestion">
+                <source>BAck to Question</source>
+                <target>Zurück zur Frage</target>
+            </trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowQuestionResult/Answers.html -->
+            <trans-unit id="partials_webcheck_showQuestionResult_answers.tip">
+                <source>Tip</source>
+                <target>RKW Tipp</target>
+            </trans-unit>
+
+
+            <!-- Templates/Webcheck/ShowTopicResult/Topic.html -->
+            <trans-unit id="templates_webcheck_showTopicResult.topic">
+                <source>Topic</source>
+                <target>Thema</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showTopicResult.finishedIntro">
+                <source>You have answered</source>
+                <target>Sie haben die Fragen des Themenkomplexes</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showTopicResult.finishedIntro2">
+                <source>the questions of the current topic completly. Here you see your results.</source>
+                <target>vollständig bearbeitet. Hier sehen Sie Ihr Zwischenergebnis für diesen Teilbereich.</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showTopicResult.partialResultTopic">
+                <source>Results for this topic</source>
+                <target>Zwischenergebnis des Themenkomplexes</target>
+            </trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowTopicResult/Pagination.html -->
+            <trans-unit id="partials_webcheck_showTopicResult_pagination.finishCheck">
+                <source>Finish Check</source>
+                <target>Check abschließen</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showTopicResult_pagination.restartTopic">
+                <source>Back to first question</source>
+                <target>Zum Beginn des Themenkomplexes</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showTopicResult_pagination.nextTopic">
+                <source>Next topic</source>
+                <target>Nächster Themenkomplex</target>
+            </trans-unit>
+
+
+            <!-- Templates/Webcheck/ShowSharedCheckResult.html -->
+            <trans-unit id="templates_webcheck_showSharedCheckResult.overviewResults">
+                <source>Overview of %s %s's shared results for "%s"</source>
+                <target>Gesamtergebnis von %s %s für "%s"</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showSharedCheckResult.overviewResultsAnonymous">
+                <source>Overview of shared results for "%s"</source>
+                <target>Geteiltes Gesamtergebnis für "%s"</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showSharedCheckResult.andYou">
+                <source>And how good are you?</source>
+                <target>Und wie gut sind Sie?</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showSharedCheckResult.checkNow">
+                <source>Check now</source>
+                <target>Jetzt Check machen</target>
+            </trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowSharedCheckResult/Summary.html -->
+            <trans-unit id="partials_webcheck_showSharedCheckResult_summary.completeResult">
+                <source>Overall result</source>
+                <target>Gesamtergebnis</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showSharedCheckResult_summary.textAnonymous">
+                <source>I made the RKW Check "%s" and reached the following result.</source>
+                <target>Jemand hat den RKW Check "%s" gemacht und dieses Ergebnis erreicht.</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showSharedCheckResult_summary.text">
+                <source>%s %s made the RKW Check "%s" and reached the following result.</source>
+                <target>%s %s hat den RKW Check "%s" gemacht und dieses Ergebnis erreicht.</target>
+            </trans-unit>
+
+
+
+            <!-- Templates/Webcheck/ShowCheckResult.html -->
+            <trans-unit id="templates_webcheck_showCheckResult.overviewResults">
+                <source>Overview of your results</source>
+                <target>Gesamtergebnis</target>
+            </trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowCheckResult/Summary.html -->
+            <trans-unit id="partials_webcheck_showCheckResult_summary.completeResult1">
+                <source>Overall</source>
+                <target>Gesamt</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showCheckResult_summary.completeResult2">
+                <source>Result</source>
+                <target>ergebnis</target>
+            </trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowCheckResult/Topics.html -->
+            <trans-unit id="partials_webcheck_showCheckResult_topics.partialResults">
+                <source>Results for Topics</source>
+                <target>Zwischenergebnisse</target>
+            </trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowCheckResult/Benchmark.html -->
+            <trans-unit id="partials_webcheck_showCheckResult_benchmark.toBenchmark">
+                <source>To Benchmark</source>
+                <target>Zum Benchmark</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showCheckResult_benchmark.toMyChecks">
+                <source>To MyChecks</source>
+                <target>Zu meinen Checks</target>
+            </trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowCheckResult/Share.html -->
+            <trans-unit id="partials_webcheck_showCheckResult_share.sendResultAsMail">
+                <source>Share Result via E-Mail</source>
+                <target>Ergebnis als E-Mail versenden</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showCheckResult_share.insertEmail">
+                <source>Enter Email-Addresses (comma-separated)</source>
+                <target>E-Mailadresse(n) eingeben (kommasepariert)</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showCheckResult_share.sendMail">
+                <source>Share result now</source>
+                <target>Ergebnis jetzt teilen</target>
+            </trans-unit>
+
+
+            <!-- Templates/Webcheck/ShowMyCheckResults.html -->
+            <trans-unit id="templates_webcheck_showMyCheckResults.startNewCheck">
+                <source>Start new check</source>
+                <target>Neuen Check starten</target>
+            </trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowMyCheckResults/List.html -->
+            <trans-unit id="partials_webcheck_showMyCheckResults_list.date">
+                <source>Date</source>
+                <target>Datum</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showMyCheckResults_list.checks">
+                <source>Check</source>
+                <target>Check</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showMyCheckResults_list.state">
+                <source>Status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showMyCheckResults_list.action">
+                <source>Action</source>
+                <target>Aktion</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showMyCheckResults_list.erase">
+                <source>Delete</source>
+                <target>Löschen</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showMyCheckResults_list.completed">
+                <source>Finished</source>
+                <target>Abgeschlossen</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showMyCheckResults_list.edit">
+                <source>Edit</source>
+                <target>Bearbeiten</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showMyCheckResults_list.open">
+                <source>Open</source>
+                <target>Offen</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showMyCheckResults_list.continue">
+                <source>Continue</source>
+                <target>Fortsetzen</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showMyCheckResults_list.result">
+                <source>Show result</source>
+                <target>Ergebnis anzeigen</target>
+            </trans-unit>
+
+
+
+            <!-- Templates/Webcheck/ShowBenchmark.html -->
+            <trans-unit id="templates_webcheck_showBenchmark.benchmark">
+                <source>Benchmarks</source>
+                <target>Benchmarks</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showBenchmark.text">
+                <source>Here you can compare your results with another of your results - or with the average result of all check-participants.</source>
+                <target>Hier können Sie Ihre Ergebnisse mit eigenen Ergebnissen aus der Vergangenheit vergleichen und sehen, ob Sie sich verbessert haben. Sie können hier aber auch sehen, wie Sie im Vergleich zum Durchschnitt der Ergebnisse aller Check-Teilnehmer abschneiden.</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showBenchmark.chooseMyCheck">
+                <source>Select a check</source>
+                <target>Meinen Check auswählen</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showBenchmark.chooseCompareCheck">
+                <source>Select own check to compare (optional)</source>
+                <target>Eigenen Vergleichscheck auswählen (optional)</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showBenchmark.nothingToCompare">
+                <source>No check to compare</source>
+                <target>kein Vergleichscheck</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showBenchmark.notEnoughResults">
+                <source>Not enough results</source>
+                <target>Nicht genügend Ergebnisse</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showBenchmark.notEnoughResultsDescription">
+                <source>Unfortunately there aren't enough check results yet to display the benchmark.</source>
+                <target>Leider liegen uns noch nicht genügend Ergebnisse vor, um einen zuverlässigen Vergleichswert über die Ergebnisse aller Check-Teilnehmer berechnen zu können. Bitte schauen Sie in einigen Tagen erneut vorbei.</target>
+            </trans-unit>
+            <trans-unit id="templates_webcheck_showBenchmark.toMyChecks">
+                <source>To MyChecks</source>
+                <target>Zu meinen Checks</target>
+            </trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowBenchmark/Topics.html -->
+            <trans-unit id="partials_webcheck_showBenchmark_topics.myCheck">
+                <source>My Check</source>
+                <target>Mein Check</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showBenchmark_topics.compareCheck">
+                <source>Compare Check</source>
+                <target>Vergleichscheck</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showBenchmark_topics.completeResult">
+                <source>Complete Result</source>
+                <target>Gesamtergebnis</target>
+            </trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowBenchmark/AverageAllChecks.html -->
+            <trans-unit id="partials_webcheck_showBenchmark_averageAllChecks.allResultsAverage">
+                <source>Ø of all results</source>
+                <target>Durchschnitt aller Ergebnisse</target>
+            </trans-unit>
+
+
+            <!-- Partials/Webcheck/ShowBenchmark/GoogleGraph.html -->
+            <trans-unit id="partials_webcheck_showBenchmark_googleGraph.reached">
+                <source>Reached</source>
+                <target>Erreichte</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showBenchmark_googleGraph.myCheck">
+                <source>My Check</source>
+                <target>Mein Check</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showBenchmark_googleGraph.compareCheck">
+                <source>Compare Check</source>
+                <target>Vergleichscheck</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showBenchmark_googleGraph.benchmark">
+                <source>Benchmark</source>
+                <target>Benchmark</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showBenchmark_googleGraph.headline">
+                <source>Your result in comparision</source>
+                <target>Ihr Ergebnis im Vergleich</target>
+            </trans-unit>
+
+
+
+            <!--
+            =========================== E-MAIL ============================================
+            -->
+            <!-- Subjects -->
+            <trans-unit id="rkwMailService.adminCheckFinished.subject">
+                <source>The check "%s" has been completed</source>
+                <target>Der RKW Check "%s" wurde erfolgreich durchgeführt</target>
+            </trans-unit>
+            <trans-unit id="rkwMailService.shareCheck.subjectAnonymous">
+                <source>Someone shared the results of RKW check "%s" with you</source>
+                <target>Jemand hat die Ergebnisse des RKW Checks "%s" mit Ihnen geteilt</target>
+            </trans-unit>
+            <trans-unit id="rkwMailService.shareCheck.subject">
+                <source>%s %s shared the results of RKW check "%s" with you</source>
+                <target>%s %s hat die Ergebnisse des RKW Checks "%s" mit Ihnen geteilt</target>
+            </trans-unit>
+
+
+
+            <!-- Templates/Email/AdminCheckFinished.html -->
+            <trans-unit id="templates_email_adminCheckFinished.headline">
+                <source>Hello %s,</source>
+                <target>Hallo %s,</target>
+            </trans-unit>
+            <trans-unit id="templates_email_adminCheckFinished.text1">
+                <source>a new result for the following check has been submitted:</source>
+                <target>für den folgenden Check wurde ein neues Ergebnis übermittelt:</target>
+            </trans-unit>
+            <trans-unit id="templates_email_adminCheckFinished.text2">
+                <source>You can see the results in TYPO3-Backend.</source>
+                <target>Sie können die Ergebnisse im TYPO3-Backend einsehen.</target>
+            </trans-unit>
+
+
+            <!-- Templates/Email/SharedCheck.html -->
+            <trans-unit id="templates_email_shareCheck.headline">
+                <source>Hello,</source>
+                <target>Hallo,</target>
+            </trans-unit>
+            <trans-unit id="templates_email_shareCheck.text1Anonymous">
+                <source>someone wants to share his results of RKW check "%s" with you.</source>
+                <target>jemand möchte die Ergebnisse des RKW Checks "%s" mit Ihnen teilen.</target>
+            </trans-unit>
+            <trans-unit id="templates_email_shareCheck.text1">
+                <source>%s %s wants to share the results of RKW check "%s" with you.</source>
+                <target>%s %s möchte die Ergebnisse des RKW Checks "%s" mit Ihnen teilen.</target>
+            </trans-unit>
+            <trans-unit id="templates_email_shareCheck.text2">
+                <source>Please click on the link below to see the results.</source>
+                <target>Klicken Sie bitte auf den untenstehenden Link, um die Ergebnisse sehen zu können.</target>
+            </trans-unit>
+            <trans-unit id="templates_email_shareCheck.linkLabel">
+                <source>To the results</source>
+                <target>Zu den Ergebnissen des Checks</target>
+            </trans-unit>
+
+
+			<!-- Templates/Email/ShareCheck.html -->
+			<trans-unit id="templates_email_benchmarkAvailable.headline">
+				<source>Hello,</source>
+				<target>Hallo,</target>
+			</trans-unit>
+			<trans-unit id="templates_email_benchmarkAvailable.text1">
+				<source>benchmarks for RKW check "%s" are now available.</source>
+				<target>für den RKW Checks "%s" stehen nun Benchmarks zur Verfügung.</target>
+			</trans-unit>
+			<trans-unit id="templates_email_benchmarkAvailable.text2">
+				<source>Please click on the link below to see the benchmarks.</source>
+				<target>Klicken Sie bitte auf den untenstehenden Link, um die Benchmarks einsehen zu können.</target>
+			</trans-unit>
+			<trans-unit id="templates_email_benchmarkAvailable.linkLabel">
+				<source>To the benchmarks</source>
+				<target>Zu den Benchmarks des Checks</target>
+			</trans-unit>
+
+
+			<!-- Templates/Email/AdminFeedback.html -->
+			<trans-unit id="templates_email_adminFeedback.headline">
+				<source>Hello %s,</source>
+				<target>Hallo %s,</target>
+			</trans-unit>
+			<trans-unit id="templates_email_adminFeedback.text1">
+				<source>a new feedback for the following check has been submitted:</source>
+				<target>für den folgenden Check wurde ein neues Feedback übermittelt:</target>
+			</trans-unit>
+			<trans-unit id="templates_email_adminFeedback.grade">
+				<source>Grade:</source>
+				<target>Bewertung:</target>
+			</trans-unit>
+			<trans-unit id="templates_email_adminFeedback.remarks">
+				<source>Remarks:</source>
+				<target>Anmerkung:</target>
+			</trans-unit>
+
+
+			<!--
+			=========================== Backend Module ============================================
+			-->
+
+
+			<!-- Backend/Layouts/Default.html -->
+			<trans-unit id="backend_layouts_default.backToStart">
+				<source>Back to Start</source>
+				<target>Zurück zum Anfang</target>
+			</trans-unit>
+
+
+			<!-- Templates/Backend/List.html -->
+			<trans-unit id="templates_backend_list.headline">
+				<source>Show results</source>
+				<target>Anzeigen der Checkergebnisse</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_list.intro1">
+				<source>Show results</source>
+				<target>Bitte wählen Sie den Check aus, von dem sie weitere Details betrachten wollen.</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_list.intro2">
+				<source>Existing checks:</source>
+				<target>Vorhandene Checks:</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_list.intro10">
+				<source>Show optional check results.</source>
+				<target>Hier können Sie optional ein spezifisches Checkergebnis betrachten.</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_list.intro11">
+				<source>Result benchmark comparison.</source>
+				<target>Dieses Ergebnis wird mit dem Benchmark aller anderen Ergebnisse verglichen.</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_list.intro12">
+				<source>Show user data</source>
+				<target>Weiterhin werden die Benutzerdaten der Person angezeigt, welcher dieses Ergebnis zugeordnet ist.</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_list.check_results">
+				<source>Check results:</source>
+				<target>Checkergebnisse:</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_list.no_checks">
+				<source>No checks available.</source>
+				<target>Keine Checks vorhanden.</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_list.proceed">
+				<source>Proceed</source>
+				<target>Fortfahren</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_list.total_data">
+				<source>Total data</source>
+				<target>Gesamtdaten</target>
+			</trans-unit>
+
+
+			<!-- Templates/Backend/Result.html -->
+
+			<trans-unit id="templates_backend_result.userOfCheck">
+				<source>User which have conduct the check</source>
+				<target>Durchgeführt von</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.benchmarkHeadline">
+				<source>Checks benchmark</source>
+				<target>Benchmark des Checks</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.countCompletedChecks">
+				<source>Count of completed checks</source>
+				<target>Anzahl abgeschlossener Checks</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.userName">
+				<source>Username</source>
+				<target>Nutzername</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.firstName">
+				<source>First name</source>
+				<target>Vorname</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.lastName">
+				<source>Last name</source>
+				<target>Nachname</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.email">
+				<source>Email</source>
+				<target>Email</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.generatePdf">
+				<source>Generate PDF</source>
+				<target>PDF-Datei generieren</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.generatePrint">
+				<source>Print version</source>
+				<target>Drucken</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.points">
+				<source>Points</source>
+				<target>Punkte</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.benchmark">
+				<source>Benchmark</source>
+				<target>Benchmark</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.of">
+				<source>of</source>
+				<target>von</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.date">
+				<source>Date</source>
+				<target>Datum</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.time_after">
+				<source>o'clock</source>
+				<target>Uhr</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.pointsPerTopic">
+				<source>Points per topic</source>
+				<target>Punkteanzahl nach Thema</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.averagePointsPerTopic">
+				<source>Average points per topic</source>
+				<target>Durchschnittliche Punkteanzahl nach Thema</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.conclusion">
+				<source>Conclusion</source>
+				<target>Fazit</target>
+			</trans-unit>
+			<trans-unit id="templates_backend_result.topics">
+				<source>Topics</source>
+				<target>Anzahl Themenkomplexe</target>
+			</trans-unit>
+
+
+
+			<!-- Partials/Backend/Visualization-Folder -->
+			<trans-unit id="partials_backend_visualization.resultOfCheck">
+				<source>Result of selected check</source>
+				<target>Ergebnis des gewählten Checks</target>
+			</trans-unit>
+			<trans-unit id="partials_backend_visualization.averageCheck">
+				<source>Average overall check</source>
+				<target>Durchschnitt Gesamtcheck</target>
+			</trans-unit>
+			<trans-unit id="partials_backend_visualization.benchmarkCheck">
+				<source>Checks benchmark</source>
+				<target>Benchmark des Checks</target>
+			</trans-unit>
+			<trans-unit id="partials_backend_visualization.check">
+				<source>Check</source>
+				<target>Check</target>
+			</trans-unit>
+			<trans-unit id="partials_backend_visualization.benchmark">
+				<source>Benchmark</source>
+				<target>Benchmark</target>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

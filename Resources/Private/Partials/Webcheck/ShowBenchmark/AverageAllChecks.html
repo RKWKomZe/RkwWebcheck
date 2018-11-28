@@ -1,0 +1,23 @@
+{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{percentageAllChecks}">
+        <f:then>
+            <div class="value-box">
+                <h2>{f:translate(key: 'partials_webcheck_showBenchmark_averageAllChecks.allResultsAverage')}</h2>
+                <span class="value {rkw:ratingCss(percentage: '{percentageAllChecks}')}">
+                <f:format.number decimals="0">{percentageAllChecks}</f:format.number>%
+            </span>
+            </div>
+        </f:then>
+        <f:else>
+            <div class="value-box">
+                <h2>{f:translate(key: 'partials_webcheck_showBenchmark_averageAllChecks.allResultsAverage')}</h2>
+                <span class="value ">
+                    &ndash; %
+                </span>
+            </div>
+        </f:else>
+    </f:if>
+
+</html>

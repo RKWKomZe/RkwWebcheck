@@ -1,0 +1,50 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        function drawVisualization() {
+
+            // basic data
+            var data = google.visualization.arrayToDataTable([
+                 ['Check', '<f:translate key="partials_webcheck_showBenchmark_googleGraph.reached" /> %', { role: 'style' }],
+                 ['<f:translate key="partials_webcheck_showBenchmark_googleGraph.myCheck" />',  <f:format.number decimals="1" decimalSeparator="." >{mainCheckResult.percentage}</f:format.number>, '#e64415'],
+            ]);
+
+            // compare result
+            <f:if condition="{compareCheckResult}">
+                   data.addRow(['<f:translate key="partials_webcheck_showBenchmark_googleGraph.compareCheck" />', <f:format.number decimals="1" decimalSeparator="." >{compareCheckResult.percentage}</f:format.number>, '#e64415']);
+            </f:if>
+
+            // row for benchmark
+            <f:if condition="{percentageAllChecks}">
+                data.addRow(['<f:translate key="partials_webcheck_showBenchmark_googleGraph.benchmark" />', <f:format.number decimals="1" decimalSeparator="." >{percentageAllChecks}</f:format.number>, '#666']);
+            </f:if>
+
+            var options = {
+                title : '',
+                legend: {
+                    position: 'none'
+                },
+                vAxis: {
+                    title: '%',
+                    minValue: 0,
+                    maxValue: 100
+                },
+                hAxis: {title: ''},
+                seriesType: 'bars'
+            };
+
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+        google.charts.setOnLoadCallback(drawVisualization);
+
+    </script>
+
+    <h2><f:translate key="partials_webcheck_showBenchmark_googleGraph.headline" /></h2>
+    <div class="chart-wrapper">
+        <div id="chart_div" ></div>
+    </div>
+
+</html>

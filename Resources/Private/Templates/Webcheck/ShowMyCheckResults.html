@@ -1,0 +1,18 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="main">
+
+    <f:flashMessages renderMode="div" />
+
+    <f:render partial="Webcheck/ShowMyCheckResults/List" arguments="{_all}"/>
+
+    <f:if condition="{settings.newCheckPid}">
+        <p class="text-right no-marg">
+            <f:link.page class="button button--submit" pageUid="{settings.newCheckPid}">{f:translate(key: 'templates_webcheck_showMyCheckResults.startNewCheck')}</f:link.page>
+        </p>
+    </f:if>
+
+</f:section>
+
+</html>

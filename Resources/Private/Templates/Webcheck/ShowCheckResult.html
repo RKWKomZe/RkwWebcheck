@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="main">
+    <h1 id="check-head">{f:translate(key: 'templates_webcheck_showCheckResult.overviewResults')}</h1>
+    <p><em>{checkResult.webcheck.name} ({f:format.date(date: checkResult.crdate, format: 'd.m.Y - H:i')} Uhr)</em></p>
+    <div class="careercheck__content">
+
+        <!-- Summary -->
+        <f:render partial="Webcheck/ShowCheckResult/Summary" arguments="{_all}"/>
+
+        <div class="clear"><!-- --></div>
+
+        <!-- Partial results -->
+        <f:render partial="Webcheck/ShowCheckResult/Topics" arguments="{_all}"/>
+
+    </div>
+
+    <!-- Benchmarks -->
+    <f:render partial="Webcheck/ShowCheckResult/Benchmark" arguments="{_all}"/>
+
+    <div class="clear"><!-- --></div>
+
+    <!-- Sharing -->
+    <f:render partial="Webcheck/ShowCheckResult/Share" arguments="{_all}"/>
+
+    <f:comment>
+        <div class="share-box feedback-box">
+            <div class="share-box__cnt">
+                <h4>{f:translate(key: 'templates_webcheck_showCheckResult.sendFeedback')}</h4>
+            </div>
+            <form class="share-box__form">
+                <f:link.action action="feedback" pageUid="{settings.feedback}" class="button">{f:translate(key: 'templates_webcheck_showCheckResult.toFeedback')}</f:link.action>
+            </form>
+        </div>
+    </f:comment>
+</f:section>
+
+</html>

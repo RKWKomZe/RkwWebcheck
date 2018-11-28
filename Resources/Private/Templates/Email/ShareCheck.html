@@ -1,0 +1,41 @@
+{namespace vh=RKW\RkwMailer\ViewHelpers}
+<f:layout name="Email/{mailType}" />
+
+
+<!-- PLAINTEXT -->
+<!-- No intend here !!! -->
+<f:section name="Plaintext">
+<vh:frontend.translate key="templates_email_shareCheck.headline" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" />
+
+<f:if condition="{anonymous}"><f:then><vh:frontend.translate key="templates_email_shareCheck.text1Anonymous" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" arguments="{0 : checkResult.webcheck.name}" /></f:then><f:else><vh:frontend.translate key="templates_email_shareCheck.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" arguments="{0 : frontendUser.firstName, 1: frontendUser.lastName, 2 : checkResult.webcheck.name}" /></f:else></f:if>
+<vh:frontend.translate key="templates_email_shareCheck.text2" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" />
+
+<vh:frontend.link action="showSharedCheckResult" controller="Webcheck" extensionName="rkwWebcheck" pluginName="sharedCheck" absolute="true" pageUid="{pageUid}" additionalParams="{tx_rkwwebcheck_sharedcheck: {checkResult: checkResult, hash: hash}}"/>
+</f:section>
+
+<!-- HTML -->
+<f:section name="Html">
+
+    <h1>
+        <vh:frontend.translate key="templates_email_shareCheck.headline" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" />
+    </h1>
+
+    <p>
+        <f:if condition="{anonymous}">
+            <f:then>
+                <vh:frontend.translate key="templates_email_shareCheck.text1Anonymous" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" arguments="{0 : checkResult.webcheck.name}" />
+            </f:then>
+            <f:else>
+                <vh:frontend.translate key="templates_email_shareCheck.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" arguments="{0 : frontendUser.firstName, 1: frontendUser.lastName, 2 : checkResult.webcheck.name}" />
+            </f:else>
+        </f:if>
+
+    </p>
+    <p><vh:frontend.translate key="templates_email_shareCheck.text2" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" /></p>
+    <p>
+        <a href="<vh:frontend.link action='showSharedCheckResult' controller='Webcheck' extensionName='rkwWebcheck' pluginName='sharedCheck' absolute='true' pageUid='{pageUid}' additionalParams='{tx_rkwwebcheck_sharedcheck: {checkResult: checkResult, hash: hash}}'/>">
+            <vh:frontend.translate key="templates_email_shareCheck.linkLabel" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwWebcheck" />
+        </a>
+    </p>
+
+</f:section>

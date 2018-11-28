@@ -1,0 +1,49 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <div class="careercheck-footer careercheck-footer--pagination">
+
+        <f:if condition="{firstQuestionAndTopic}">
+            <f:then>
+                <div><!-- --></div>
+            </f:then>
+            <f:else>
+                <f:if condition="{firstQuestionNotTopic}">
+                    <f:then>
+                        <f:if condition="{lastTopicFirstQuestionResult}">
+                            <f:link.action action="showQuestionResult" arguments="{questionResult : lastTopicFirstQuestionResult}" section="check-head" class="button button--back">
+                                {f:translate(key: 'partials_webcheck_showQuestionResult_pagination.prevTopic')}
+                            </f:link.action>
+                        </f:if>
+                    </f:then>
+                    <f:else>
+                        <f:if condition="{lastQuestionResult}">
+                            <f:link.action action="showQuestionResult" arguments="{questionResult : lastQuestionResult}" section="check-head" class="button button--back">
+                                {f:translate(key: 'partials_webcheck_showQuestionResult_pagination.prevQuestion')}
+                            </f:link.action>
+                        </f:if>
+                    </f:else>
+                </f:if>
+            </f:else>
+        </f:if>
+
+        <div class="pagination">
+            <span>
+                {f:translate(key: 'partials_webcheck_showQuestionResult_pagination.question')}
+                <span class="active">{questionPosition -> f:format.raw()}</span> /
+                <span class="pages">{maxQuestions -> f:format.raw()}</span>
+            </span>
+        </div>
+
+        <f:if condition="{lastQuestion}">
+            <f:then>
+                <f:form.submit value="{f:translate(key: 'partials_webcheck_showQuestionResult_pagination.topicResult')}"
+                    class="button button--submit" />
+            </f:then>
+            <f:else>
+                <f:form.submit value="{f:translate(key: 'partials_webcheck_showQuestionResult_pagination.nextQuestion')}"
+                    class="button button--submit" />
+            </f:else>
+            <div class="clearfix"><!-- --></div>
+        </f:if>
+    </div>
+
+</html>

@@ -1,0 +1,41 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<f:comment><h1>{check.name -> f:format.raw()}</h1></f:comment>
+    <div class="careercheck__introduction">
+	    {check.description -> f:format.html()}
+    </div>
+
+    <f:flashMessages renderMode="div" />
+
+    <f:form action="checkStart" enctype="multipart/form-data">
+
+        <f:if condition="{frontendUser.txRkwregistrationIsAnonymous}">
+            <f:then>
+                <br />
+                <span class="checkbox">
+                    <label>
+                        <f:form.checkbox name="terms" value="1"/>
+                        <span class="text-smaller">{f:translate(key: 'templates_webcheck_checkInit.iAcceptThe')} <f:link.page pageUid="{settings.termsPid}" target="_blank">{f:translate(key: 'templates_webcheck_checkInit.terms')}</f:link.page></span>
+                    </label>
+                </span>
+            </f:then>
+            <f:else>
+                <f:form.hidden name="terms" value="1" />
+            </f:else>
+        </f:if>
+
+		<p>
+            <button type="submit" class="button button--xl">
+                <span>{f:translate(key: 'templates_webcheck_checkInit.startCheck')}</span>
+            </button>
+        </p>
+
+	</f:form>
+
+
+</f:section>
+
+</html>

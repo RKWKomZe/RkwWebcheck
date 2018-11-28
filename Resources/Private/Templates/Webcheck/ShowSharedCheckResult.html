@@ -1,0 +1,19 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="main">
+
+    <!-- Summary -->
+    <f:render partial="Webcheck/ShowSharedCheckResult/Summary" arguments="{_all}"/>
+
+    <!-- And you? -->
+    <h2>{f:translate(key: 'templates_webcheck_showSharedCheckResult.andYou')}</h2>
+
+    <f:if condition="{settings.linkPid}">
+        <f:link.page class="button button--xl" pageUid="{settings.linkPid}"><span>{f:translate(key: 'templates_webcheck_showSharedCheckResult.checkNow')}</span></f:link.page>
+    </f:if>
+
+
+</f:section>
+
+</html>

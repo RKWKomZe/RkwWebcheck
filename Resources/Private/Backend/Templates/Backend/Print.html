@@ -1,0 +1,36 @@
+<!-- we need both for html view and print view -->
+<link rel="stylesheet" href="{f:uri.resource(path:'Styles/print.css')}" type="text/css" media="print" />
+<link rel="stylesheet" href="{f:uri.resource(path:'Styles/print.css')}" type="text/css" />
+<title>{webcheck.name}</title>
+
+<div class="page-wrap">
+
+	<header class="page-header">
+		<div class="container">
+			<p class="header-logo">
+				<a href="./">
+					<!-- @toDo: DO NOT USE THE WEPSTRA LOGO HERE -->
+					<f:image width="195" height="35" src="fileadmin/templates/wepstra/images/logo-black.svg" />
+				</a>
+			</p>
+		</div>
+	</header>
+
+	<div class="content">
+		<h1>{webcheck.name}</h1>
+
+		<!-- variable "checkResult" means that the user want to see the result of a single webcheck -->
+		<f:if condition="{checkResult}">
+			<f:then>
+				<!-- show single result data -->
+				<f:render partial="Backend/SingleResultData" arguments="{_all}"/>
+			</f:then>
+			<f:else>
+				<!-- show overall result data -->
+				<f:render partial="Backend/OverallResultData" arguments="{_all}"/>
+			</f:else>
+		</f:if>
+
+	</div>
+
+</div>
