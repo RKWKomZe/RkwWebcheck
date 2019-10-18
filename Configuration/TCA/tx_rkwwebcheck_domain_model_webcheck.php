@@ -136,12 +136,9 @@ return [
                     'link' => array(
                         'type'         => 'popup',
                         'title'        => 'Seite',
-                        'icon'         => 'link_popup.gif',
+                        'icon'         => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
                         'module'       => array(
-                            'name'          => 'wizard_element_browser',
-                            'urlParameters' => array(
-                                'mode' => 'wizard',
-                            ),
+                            'name'          => 'wizard_link',
                         ),
                         'JSopenParams' => 'height=600,width=600,status=0,menubar=0,scrollbars=1',
                         'params'       => array(
