@@ -40,6 +40,7 @@
             <!-- tx_rkwwebcheck_domain_model_topic -->
             <trans-unit id="tx_rkwwebcheck_domain_model_topic">
                 <source>RKW Webcheck: Topic</source>
+                <target>RKW Webcheck: Thema</target>
             </trans-unit>
             <trans-unit id="tx_rkwwebcheck_domain_model_topic.name">
                 <source>Name</source>
@@ -74,6 +75,7 @@
             <!-- tx_rkwwebcheck_domain_model_question -->
             <trans-unit id="tx_rkwwebcheck_domain_model_question">
                 <source>RKW Webcheck: Question</source>
+                <target>RKW Webcheck: Frage</target>
             </trans-unit>
             <trans-unit id="tx_rkwwebcheck_domain_model_question.question">
                 <source>Question</source>
@@ -137,6 +139,28 @@
                 <source>Webcheck</source>
                 <target>Webcheck</target>
             </trans-unit>
+
+            <!-- tx_rkwwebcheck_domain_model_checkresult -->
+			<trans-unit id="tx_rkwwebcheck_domain_model_checkresult">
+				<source>RKW Webcheck: Check Result</source>
+				<target>RKW Webcheck: Check-Ergebnis</target>
+			</trans-unit>
+
+
+            <!-- tx_rkwwebcheck_domain_model_topicresult -->
+			<trans-unit id="tx_rkwwebcheck_domain_model_topicresult">
+				<source>RKW Webcheck: Topic Result</source>
+				<target>RKW Webcheck: Themen-Ergebnis</target>
+			</trans-unit>
+
+
+            <!-- tx_rkwwebcheck_domain_model_questionresult -->
+			<trans-unit id="tx_rkwwebcheck_domain_model_questionresult">
+				<source>RKW Webcheck: Question Result</source>
+				<target>RKW Webcheck: Fragen-Ergebnis</target>
+			</trans-unit>
+
+
 
 
             <!-- For Plugins -->
