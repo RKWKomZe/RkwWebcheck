@@ -3,7 +3,7 @@
 
 <f:section name="main">
 
-    <f:flashMessages renderMode="div" />
+    <f:render partial="FlashMessages" arguments="{_all}" />
 
     <f:render partial="Webcheck/ShowMyCheckResults/List" arguments="{_all}"/>
 

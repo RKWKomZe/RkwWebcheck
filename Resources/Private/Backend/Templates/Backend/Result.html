@@ -5,7 +5,8 @@
 	<!-- show buttons for print or creating a pdf -->
 	<f:render partial="Backend/Buttons" arguments="{_all}"/>
 
-	<f:flashMessages />
+	<f:render partial="FlashMessages" arguments="{_all}" />
+
 	<h1>{webcheck.name}</h1>
 	<!-- variable "checkResult" means that the user want to see the result of a single webcheck -->
 	<f:if condition="{checkResult}">
