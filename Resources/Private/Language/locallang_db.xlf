@@ -113,7 +113,7 @@
 
             <!-- tx_rkwwebcheck_domain_model_checkresult -->
 			<trans-unit id="tx_rkwwebcheck_domain_model_checkresult">
-				<source>RKW Webcheck: CheckResult</source>
+				<source>RKW Webcheck: Check Result</source>
 			</trans-unit>
 			<trans-unit id="tx_rkwwebcheck_domain_model_checkresult.feuser">
 				<source>FeUser</source>
@@ -146,7 +146,7 @@
 
             <!-- tx_rkwwebcheck_domain_model_topicresult -->
 			<trans-unit id="tx_rkwwebcheck_domain_model_topicresult">
-				<source>RKW Webcheck: TopicResult</source>
+				<source>RKW Webcheck: Topic Result</source>
 			</trans-unit>
 			<trans-unit id="tx_rkwwebcheck_domain_model_topicresult.feuser">
 				<source>FeUser</source>
