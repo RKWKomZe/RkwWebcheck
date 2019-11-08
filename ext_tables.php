@@ -103,7 +103,7 @@ call_user_func(
         $pluginName1 = strtolower('Check');
         $pluginSignature1 = $extensionName.'_'.$pluginName1;
 
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature1] = 'pi_flexform';
+        $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature1] = 'pi_flexform';
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
             $pluginSignature1,
@@ -113,7 +113,7 @@ call_user_func(
         $pluginName2 = strtolower('Benchmark');
         $pluginSignature2 = $extensionName.'_'.$pluginName2;
 
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature2] = 'pi_flexform';
+        $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature2] = 'pi_flexform';
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
             $pluginSignature2,
@@ -124,7 +124,7 @@ call_user_func(
         $pluginName3 = strtolower('ShareCheck');
         $pluginSignature3 = $extensionName.'_'.$pluginName3;
 
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature3] = 'pi_flexform';
+        $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature3] = 'pi_flexform';
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
             $pluginSignature3,
@@ -135,7 +135,7 @@ call_user_func(
         $pluginName5 = strtolower('SharedCheck');
         $pluginSignature5 = $extensionName.'_'.$pluginName5;
 
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature5] = 'pi_flexform';
+        $GLOBALS['TCA']['types']['list']['subtypes_addlist'][$pluginSignature5] = 'pi_flexform';
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
             $pluginSignature5,
@@ -146,7 +146,7 @@ call_user_func(
         $pluginName4 = strtolower('MyChecks');
         $pluginSignature4 = $extensionName.'_'.$pluginName4;
 
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature4] = 'pi_flexform';
+        $GLOBALS['TCA']['types']['list']['subtypes_addlist'][$pluginSignature4] = 'pi_flexform';
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
             $pluginSignature4,
@@ -156,7 +156,7 @@ call_user_func(
         $pluginName5 = strtolower('Feedback');
         $pluginSignature5 = $extensionName.'_'.$pluginName5;
 
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature5] = 'pi_flexform';
+        $GLOBALS['TCA']['types']['list']['subtypes_addlist'][$pluginSignature5] = 'pi_flexform';
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
             $pluginSignature5,
