@@ -26,6 +26,7 @@ return [
             'label'   => 'LLL:EXT:rkw_webcheck/Resources/Private/Language/locallang_db.xlf:tx_rkwwebcheck_domain_model_checkresult.fe_user',
             'config'  => [
                 'type'          => 'select',
+                'renderType'    => 'selectSingle',
                 'foreign_table' => 'fe_users',
                 'readOnly'      => 1,
                 'maxitems'      => 1,
