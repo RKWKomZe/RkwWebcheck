@@ -8,7 +8,7 @@
 	    {check.description -> f:format.html()}
     </div>
 
-    <f:flashMessages renderMode="div" />
+    <f:render partial="FlashMessages" arguments="{_all}" />
 
     <f:form action="checkStart" enctype="multipart/form-data">
 

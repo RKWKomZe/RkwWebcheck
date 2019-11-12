@@ -19,7 +19,7 @@
 
 		<div id="typo3-docbody">
 			<div id="typo3-inner-docbody">
-				<f:flashMessages />
+				<f:render partial="FlashMessages" arguments="{_all}" />
 				<f:render section="content" />
 			</div>
 		</div>
