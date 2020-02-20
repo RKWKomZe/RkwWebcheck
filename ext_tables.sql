@@ -257,7 +257,7 @@ CREATE TABLE tx_rkwwebcheck_domain_model_questionresult (
 #
 # Table structure for table 'tx_webcheck_check_topic_mm'
 #
-CREATE TABLE tx_rkwwebcheck_check_topic_mm 
+CREATE TABLE tx_rkwwebcheck_check_topic_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
