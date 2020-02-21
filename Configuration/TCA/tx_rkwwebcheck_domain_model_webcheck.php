@@ -59,14 +59,6 @@ return [
                 'type' => 'passthrough',
             ],
         ],
-        't3ver_label'      => [
-            'label'  => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'max'  => 255,
-            ],
-        ],
         'hidden'           => [
             'exclude' => true,
             'label'   => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
