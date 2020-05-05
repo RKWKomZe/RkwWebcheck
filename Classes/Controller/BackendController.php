@@ -139,7 +139,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @param \RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult
      * @return void
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
-     * @throws \TYPO3\CMS\Fluid\View\Exception\InvalidTemplateResourceException
+     * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
      */
     public function pdfAction
     (
