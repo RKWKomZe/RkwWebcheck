@@ -46,7 +46,8 @@ plugin.tx_rkwwebcheck {
 }
 
 page.includeJSFooter.txRkwQuickcheck = EXT:rkw_webcheck/Resources/Public/Scripts/Webcheck.js
-page.includeCSS.txRkwQuickcheck = EXT:rkw_webcheck/Resources/Public/Styles/Webcheck.css
+// not needed
+// page.includeCSS.txRkwQuickcheck = EXT:rkw_webcheck/Resources/Public/Styles/frontend.css
 
 # Module configuration
 module.tx_rkwwebcheck {
