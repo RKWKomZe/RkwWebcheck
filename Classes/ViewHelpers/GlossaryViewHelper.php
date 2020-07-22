@@ -100,6 +100,15 @@ if ($currentVersion < 8000000) {
      */
     class GlossaryViewHelper extends AbstractViewHelper
     {
+
+        /**
+         * The output must not be escaped.
+         *
+         * @var bool
+         */
+        protected $escapeOutput = false;
+
+        
         /**
          * Format the numeric value as a number with grouped thousands, decimal point and
          * precision.
