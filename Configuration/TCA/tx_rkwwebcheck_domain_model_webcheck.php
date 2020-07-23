@@ -73,27 +73,35 @@ return [
         ],
         'starttime'        => [
             'exclude'   => true,
-            'l10n_mode' => 'mergeIfNotBlank',
+            //'l10n_mode' => 'mergeIfNotBlank',
             'label'     => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
             'config'    => [
                 'type'    => 'input',
+                'renderType' => 'inputDateTime',
                 'size'    => 13,
                 'eval'    => 'datetime',
                 'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true
+                ]
             ],
         ],
         'endtime'          => [
             'exclude'   => true,
-            'l10n_mode' => 'mergeIfNotBlank',
+            //'l10n_mode' => 'mergeIfNotBlank',
             'label'     => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
             'config'    => [
                 'type'    => 'input',
+                'renderType' => 'inputDateTime',
                 'size'    => 13,
                 'eval'    => 'datetime',
                 'default' => 0,
                 'range'   => [
                     'upper' => mktime(0, 0, 0, 1, 1, 2038),
                 ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true
+                ]
             ],
         ],
         'name'             => [
@@ -113,9 +121,22 @@ return [
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim',
+                'enableRichtext' => true,
             ],
-            'defaultExtras' => 'richtext:rte_transform[mode=ts_css]',
         ],
+        /*
+         * @toDo
+        In TYPO3 8.7 the following "check_pid" config should simply be:
+        ---
+        'config'  => array(
+            'type' => 'input',
+            'renderType' => 'inputLink',
+        ),
+        ---
+        -> But this inputLink need in SQL a varchar instead an integer and does not only persist a UID
+        -> Effect: Several links which are using the (int) PID are not longer functional
+        (search for "$checkResult->getWebcheck()->getCheckPid()" and {checkResult.webcheck.checkPid})
+         */
         'check_pid'        => array(
             'label'   => 'LLL:EXT:rkw_webcheck/Resources/Private/Language/locallang_db.xlf:tx_rkwwebcheck_domain_model_webcheck.check_pid',
             'exclude' => 1,
@@ -128,7 +149,7 @@ return [
                     'link' => array(
                         'type'         => 'popup',
                         'title'        => 'Seite',
-                        'icon'         => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
+                        'icon'         => 'actions-wizard-link',
                         'module'       => array(
                             'name'          => 'wizard_link',
                         ),

@@ -28,6 +28,12 @@ use \TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  */
 class OverallResultOfWebcheckViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+    /**
+     * As this ViewHelper renders HTML, the output must not be escaped.
+     *
+     * @var bool
+     */
+    protected $escapeOutput = false;
 
     /**
      * google virtualization webcheck overall result

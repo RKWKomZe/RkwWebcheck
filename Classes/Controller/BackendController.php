@@ -10,6 +10,7 @@ use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 use \RKW\RkwBasics\Helper\Common;
 use RKW\RkwWebcheck\Domain\Model\Webcheck;
 use RKW\RkwWebcheck\Domain\Model\CheckResult;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /*
  * This file is part of the TYPO3 CMS project.

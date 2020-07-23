@@ -28,7 +28,7 @@
 			{f:translate(key: 'templates_backend_result.points')}:
 			<b>{checkResult.sum}
 			/
-			{benchmark.maxSum} ({rkw:percentCalc(sum: '{checkResult.sum}', maxSum: '{benchmark.maxSum}')}%)</b>
+			{benchmark.maxSum} (<rkw:percentCalc sum="{checkResult.sum}" maxSum="{benchmark.maxSum}" />%)</b>
 		</li>
 		<li>
 			{f:translate(key: 'templates_backend_result.benchmark')}:
@@ -45,7 +45,7 @@
 				{result.sum} /
 				<f:for each="{result.webcheck.topics}" as="singleTopic">
 					<f:if condition="{singleTopic.uid} == {result.topic.uid}">
-						{rkw:getMaxPointsOfTopic(questions: '{singleTopic.questions}')}
+                        <rkw:getMaxPointsOfTopic questions="{singleTopic.questions}" />
 					</f:if>
 				</f:for>
 				{f:translate(key: 'templates_backend_result.points')}
@@ -57,12 +57,12 @@
 	<h4>
 		<b>
 			{f:translate(key: 'templates_backend_result.conclusion')}:
-			{rkw:ratingCheckText(checkResult: '{checkResult}')}
+            <rkw:ratingCheckText checkResult="{checkResult}" />
 		</b>
 	</h4>
 
 </div>
 
 <!-- show google visualization -->
-{rkw:visualization.singleResultWithBenchmark(resultPercent: "{rkw:percentCalc(sum: '{checkResult.sum}', maxSum: '{benchmark.maxSum}')}", benchmarkPercent: "{benchmark.percent}")}
+<rkw:visualization.singleResultWithBenchmark resultPercent="<rkw:percentCalc sum='{checkResult.sum}' maxSum='{benchmark.maxSum}' />" benchmarkPercent="{benchmark.percent}" />
 <div id="chart_div" style="width: 900px; height: 500px;"></div>

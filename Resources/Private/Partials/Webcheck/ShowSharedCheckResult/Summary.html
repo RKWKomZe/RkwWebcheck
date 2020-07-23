@@ -6,7 +6,7 @@
         <div class="value-box-wrapper">
             <div class="value-box">
                 <h2>{f:translate(key: 'partials_webcheck_showSharedCheckResult_summary.completeResult')}</h2>
-                <span class="value {rkw:ratingCss(percentage: '{checkResult.percentage}')}"><f:format.number decimals="0" decimalSeparator="." >{checkResult.percentage}</f:format.number>%</span>
+                <span class="value <rkw:ratingCss percentage='{checkResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{checkResult.percentage}</f:format.number>%</span>
             </div>
             <div class="value-text">
                 <p>
