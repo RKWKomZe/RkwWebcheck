@@ -14,11 +14,11 @@
 
     <div class="careercheck__content">
         <div class="value-box">
-            <span class="value {rkw:ratingCss(percentage: '{topicResult.percentage}')}"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
+            <span class="value <rkw:ratingCss percentage='{topicResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
         </div>
-        <f:if condition="{rkw:ratingTopicText(topicResult: '{topicResult}')}">
+        <f:if condition="<rkw:ratingTopicText topicResult='{topicResult}' />">
             <div class="value-text">
-                <p>{rkw:ratingTopicText(topicResult: '{topicResult}')}</p>
+                <p><rkw:ratingTopicText topicResult='{topicResult}' /></p>
             </div>
         </f:if>
         <div class="clear"></div>

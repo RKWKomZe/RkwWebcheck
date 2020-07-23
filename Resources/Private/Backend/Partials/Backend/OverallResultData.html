@@ -24,15 +24,19 @@
 	<h4><b>{f:translate(key: 'templates_backend_result.averagePointsPerTopic')}</b></h4>
 	<ol>
 		<f:for each="{webcheck.topics}" as="topic">
-			<li>{topic.name}: <b>
-				{rkw:averageSumOfWebcheckResults(resultList: '{webcheckResultList}' topic: '{topic}')} / {rkw:getMaxPointsOfTopic(questions: '{topic.questions}')}
+			<li>{topic.name}:
+                <b>
 
-				{f:translate(key: 'templates_backend_result.points')}
-				({rkw:averagePercentageOfWebcheckResults(averagePoints: "{rkw:averageSumOfWebcheckResults(resultList: '{webcheckResultList}' topic: '{topic}')}" maxPoints: "{rkw:getMaxPointsOfTopic(questions: '{topic.questions}')}")}%)</b></li>
+                    <rkw:averageSumOfWebcheckResults resultList="{webcheckResultList}" topic="{topic}" /> / <rkw:getMaxPointsOfTopic questions="{topic.questions}" />
+
+                    {f:translate(key: 'templates_backend_result.points')}
+                    (<rkw:averagePercentageOfWebcheckResults averagePoints="<rkw:averageSumOfWebcheckResults resultList='{webcheckResultList}' topic='{topic}' />" maxPoints="<rkw:getMaxPointsOfTopic questions='{topic.questions}' />" />%)
+                </b>
+            </li>
 		</f:for>
 	</ol>
 </div>
 
 <!-- show google visualization -->
-{rkw:visualization.overallResultOfWebcheck(benchmarkPercent: "{benchmark.percent}")}
+<rkw:visualization.overallResultOfWebcheck benchmarkPercent="{benchmark.percent}" />
 <div id="chart_div" style="width: 900px; height: 500px;"></div>

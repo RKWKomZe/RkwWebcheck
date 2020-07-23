@@ -5,7 +5,8 @@
         <f:then>
             <div class="value-box">
                 <h2>{f:translate(key: 'partials_webcheck_showBenchmark_averageAllChecks.allResultsAverage')}</h2>
-                <span class="value {rkw:ratingCss(percentage: '{percentageAllChecks}')}">
+                <span class="value <rkw:ratingCss percentage='{percentageAllChecks}' />">
+
                 <f:format.number decimals="0">{percentageAllChecks}</f:format.number>%
             </span>
             </div>
