@@ -5,6 +5,7 @@ namespace RKW\RkwWebcheck\Controller;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use \RKW\RkwBasics\Helper\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -1053,7 +1054,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function editCheckResultAction(\RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult)
     {
-
         // 1. check if given checkResult belongs to logged in user
         if ($checkResult->getFeUser()->getUid() != $this->getFrontendUser()->getUid()) {
             $this->addFlashMessage(
@@ -1101,7 +1101,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             }
 
         } else {
-
             if (
                 ($lastTopic = $checkResult->getLastTopic())
                 && ($lastQuestion = $checkResult->getLastQuestion())

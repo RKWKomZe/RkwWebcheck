@@ -30,13 +30,13 @@
                         </p>
                     </td>
                     <td>
-                        <span class="value {rkw:ratingCss(percentage: '{mainCheckResult.percentage}')}">
+                        <span class="value <rkw:ratingCss percentage='{mainCheckResult.percentage}' />">
                             <f:format.number decimals="0" decimalSeparator="." >{mainCheckResult.percentage}</f:format.number>%
                         </span>
                     </td>
                     <f:if condition="{compareCheckResult}">
                         <td>
-                            <span class="value {rkw:ratingCss(percentage: '{compareCheckResult.percentage}')}">
+                            <span class="value <rkw:ratingCss percentage='{compareCheckResult.percentage}' />">
                                 <f:format.number decimals="0" decimalSeparator="." >{compareCheckResult.percentage}</f:format.number>%
                             </span>
                         </td>
@@ -50,7 +50,7 @@
                             <p>{topicResult.topic.name}</p>
                         </td>
                         <td>
-                            <span class="value {rkw:ratingCss(percentage: '{topicResult.percentage}')}">
+                            <span class="value <rkw:ratingCss percentage='{topicResult.percentage}' />">
                                 <f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%
                             </span>
                         </td>
@@ -58,7 +58,7 @@
                             <f:for each="{compareCheckResult.results}" as="compareTopicResult" iteration="iteratorCompare">
                                 <f:if condition="{iteratorCompare.cycle} == {iteratorMain.cycle}">
                                     <td>
-                                        <span class="value {rkw:ratingCss(percentage: '{compareTopicResult.percentage}')}">
+                                        <span class="value <rkw:ratingCss percentage='{compareTopicResult.percentage}' />">
                                             <f:format.number decimals="0" decimalSeparator="." >{compareTopicResult.percentage}</f:format.number>%
                                         </span>
                                     </td>

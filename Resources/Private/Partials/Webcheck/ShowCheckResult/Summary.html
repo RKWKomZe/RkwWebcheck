@@ -4,10 +4,10 @@
 
     <div class="value-box">
         <h2>{f:translate(key: 'partials_webcheck_showCheckResult_summary.completeResult1')}&shy;{f:translate(key: 'partials_webcheck_showCheckResult_summary.completeResult2')}</h2>
-        <span class="value {rkw:ratingCss(percentage: '{checkResult.percentage}')}"><f:format.number decimals="0" decimalSeparator="." >{checkResult.percentage}</f:format.number>%</span>
+        <span class="value <rkw:ratingCss percentage='{checkResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{checkResult.percentage}</f:format.number>%</span>
     </div>
     <div class="value-text">
-        <p>{rkw:ratingCheckText(checkResult: '{checkResult}')}</p>
+        <p><rkw:ratingCheckText checkResult='{checkResult}' /></p>
     </div>
 
 </html>

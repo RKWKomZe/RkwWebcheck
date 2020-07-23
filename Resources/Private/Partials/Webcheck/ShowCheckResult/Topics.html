@@ -8,10 +8,10 @@
             <div class="careercheck-accordion__item">
                 <div class="accordion-trigger">
                     <span class="title">{topicResult.topic.name}</span>
-                    <span class="value {rkw:ratingCss(percentage: '{topicResult.percentage}')}"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
+                    <span class="value <rkw:ratingCss percentage='{topicResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
                 </div>
                 <div class="accordion-cnt">
-                    <p>{rkw:ratingTopicText(topicResult: '{topicResult}')}</p>
+                    <p><rkw:ratingTopicText topicResult='{topicResult}' /></p>
                 </div>
             </div>
         </f:for>
