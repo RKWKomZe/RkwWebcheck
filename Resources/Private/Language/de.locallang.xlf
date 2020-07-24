@@ -138,8 +138,8 @@
                 <target>Hmm... Beim Versenden des Ergebnisses ist leider ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</target>
             </trans-unit>
             <trans-unit id="webcheckController.success.sentSharingEmails">
-                <source>Woohoo! Your result been sent successfully.</source>
-                <target>Woohoo! Ihr Ergebnis wurde erfolgreich versendet.</target>
+                <source>Wohoo! Your result been sent successfully.</source>
+                <target>Wohoo! Ihr Ergebnis wurde erfolgreich versendet.</target>
             </trans-unit>
             <trans-unit id="webcheckController.warning.missingParamsSharing">
                 <source>The link you used seems not be valid. Please contact our support.</source>
@@ -162,8 +162,8 @@
                 <target>Hmm... Leider war das Bearbeiten des Checks nicht möglich. Bitte wenden Sie sich an unseren Support.</target>
             </trans-unit>
             <trans-unit id="webcheckController.success.checkDeleted">
-                <source>Woohoo! The check results have been deleted successfully.</source>
-                <target>Woohoo! Das Checkergebnis wurde erfolgreich gelöscht.</target>
+                <source>Wohoo! The check results have been deleted successfully.</source>
+                <target>Wohoo! Das Checkergebnis wurde erfolgreich gelöscht.</target>
             </trans-unit>
             <trans-unit id="webcheckController.warning.noChecks">
                 <source>Unfortunately you didn't complete a check yet. Please complete a check to be able to benchmark it.</source>
