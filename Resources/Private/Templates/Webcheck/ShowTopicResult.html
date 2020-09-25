@@ -5,8 +5,15 @@
 
 <f:section name="main">
 
-    <div class="careercheck__task" id="check-head"><span>{f:translate(key: 'templates_webcheck_showTopicResult.topic')} {topicPosition}/{maxTopics}</span></div>
-    <h1>{topicResult.topic.name}</h1>
+    <div class="contentbox__career-header flex career-info" id="check-head">
+
+        <h2 class="h2 h2--small flex-basis-9 h2--infoflag-space">{topicResult.topic.name}</h2>
+
+        <div class="info-flag info-flag--right flex-basis-3">
+            <span class="info-flag__progress">{f:translate(key: 'templates_webcheck_showTopicResult.topic')} {topicPosition}/{maxTopics}</span>
+        </div>
+    </div>
+
     <p>{f:translate(key: 'templates_webcheck_showTopicResult.finishedIntro')} <em>"{topicResult.topic.name}"</em> {f:translate(key: 'templates_webcheck_showTopicResult.finishedIntro2')}
     </p>
 

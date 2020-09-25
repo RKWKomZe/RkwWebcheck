@@ -164,7 +164,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     protected function getFrontendUser()
     {
 
-
         if (!$this->getFrontendUserId()) {
             $this->addFlashMessage(
                 \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
@@ -195,6 +194,10 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     {
         /** @var \RKW\RkwWebcheck\Domain\Model\Webcheck $check */
         $check = $this->webcheckRepository->findByUid(intval($this->settings['check']));
+
+        DebuggerUtility::var_dump(); exit;
+
+
         $this->view->assign('check', $check);
         $this->view->assign('frontendUser', $this->getFrontendUser());
 
@@ -1012,7 +1015,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function showMyCheckResultsAction()
     {
-
         // 1. Check if user is logged in
         if (!$this->getFrontendUser()) {
             $this->addFlashMessage(

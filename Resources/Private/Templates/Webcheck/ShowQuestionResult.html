@@ -2,25 +2,36 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-    <div class="careercheck__task" id="check-head">
-        <span>
-            {f:translate(key: 'templates_webcheck_showQuestionResult.topic')}
-            {topicPosition -> f:format.raw()} / {maxTopics -> f:format.raw()}
-        </span>
+
+    <div class="contentbox__career-header flex career-info" id="check-head">
+        <!-- @toDo: Empty h2 only for development. Remove! Has to fixed via CSS -->
+        <h2></h2>
+        <h2 class="h2 h2--small flex-basis-9 h2--infoflag-space">{questionResult.topic.name -> f:format.raw()}</h2>
+
+        <div class="info-flag info-flag--right flex-basis-3">
+            <span class="info-flag__progress">
+                {f:translate(key: 'templates_webcheck_showQuestionResult.topic')}
+                {topicPosition -> f:format.raw()} / {maxTopics -> f:format.raw()}
+            </span>
+        </div>
     </div>
-    <h1>{questionResult.topic.name -> f:format.raw()}</h1>
-    {questionResult.topic.description -> f:format.html()}
 
-    <f:form action="updateQuestionResult" enctype="multipart/form-data" name="questionResult" object="{questionResult}" class="careercheck__form" section="check-head">
+    <p>{questionResult.topic.description -> f:format.html()}</p>
 
-        <f:render partial="Webcheck/ShowQuestionResult/Question" arguments="{_all}"/>
+    <div class="contentbox contentbox--gray careercheck">
 
-        <f:render partial="Webcheck/ShowQuestionResult/Answers" section="Selection" arguments="{_all}"/>
-        <f:render partial="Webcheck/ShowQuestionResult/Answers" section="Tooltips" arguments="{_all}"/>
+        <f:form action="updateQuestionResult" enctype="multipart/form-data" name="questionResult" object="{questionResult}" class="careercheck__form" section="check-head">
 
-        <f:render partial="Webcheck/ShowQuestionResult/Pagination" arguments="{_all}"/>
+            <f:render partial="Webcheck/ShowQuestionResult/Question" arguments="{_all}"/>
 
-    </f:form>
+            <f:render partial="Webcheck/ShowQuestionResult/Answers" section="Selection" arguments="{_all}"/>
+            <f:render partial="Webcheck/ShowQuestionResult/Answers" section="Tooltips" arguments="{_all}"/>
+
+            <f:render partial="Webcheck/ShowQuestionResult/Pagination" arguments="{_all}"/>
+
+        </f:form>
+    </div>
+
 </f:section>
 
 </html>

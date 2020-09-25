@@ -63,3 +63,7 @@ module.tx_rkwwebcheck {
 		layoutRootPaths.1 = {$module.tx_rkwwebcheck.view.layoutRootPath}
 	}
 }
+
+
+// @toDO: REMOVE! JUST FOR DEVELOPMENT! Comes later with the standard template
+page.includeCSS.txRkwWebcheck = EXT:rkw_webcheck/Resources/Public/Styles/careercheck.css
