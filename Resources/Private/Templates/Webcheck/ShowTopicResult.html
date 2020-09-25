@@ -6,26 +6,27 @@
 
 <f:section name="main">
 
-    <div class="contentbox__career-header flex career-info" id="check-head">
+    <div class="flex career-intro" id="check-head">
+        <h2></h2>
+        <h2 class="h2 h2--infoflag-space">{topicResult.topic.name}</h2>
 
-        <h2 class="h2 h2--small flex-basis-9 h2--infoflag-space">{topicResult.topic.name}</h2>
-
-        <div class="info-flag info-flag--right flex-basis-3">
+        <div class="info-flag info-flag--right flex-basis-2">
             <span class="info-flag__progress">{f:translate(key: 'templates_webcheck_showTopicResult.topic')} {topicPosition}/{maxTopics}</span>
         </div>
     </div>
 
-    <p>{f:translate(key: 'templates_webcheck_showTopicResult.finishedIntro')} <em>"{topicResult.topic.name}"</em> {f:translate(key: 'templates_webcheck_showTopicResult.finishedIntro2')}
+    <p>
+        {f:translate(key: 'templates_webcheck_showTopicResult.finishedIntro')} <em>"{topicResult.topic.name}"</em> {f:translate(key: 'templates_webcheck_showTopicResult.finishedIntro2')}
     </p>
 
-    <h2>{f:translate(key: 'templates_webcheck_showTopicResult.partialResultTopic')}</h2>
+    <h3>{f:translate(key: 'templates_webcheck_showTopicResult.partialResultTopic')}</h3>
 
-    <div class="careercheck__content">
-        <div class="value-box">
-            <span class="value <rkw:ratingCss percentage='{topicResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
+    <div class="career-description flex space-between">
+        <div class="info-flag info-flag--small-height info-flag--left flex-basis-2">
+            <span class="info-flag__text info-flag__text--<rkw:ratingCss percentage='{topicResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
         </div>
         <f:if condition="<rkw:ratingTopicText topicResult='{topicResult}' />">
-            <div class="value-text">
+            <div class="description-text flex-basis-10">
                 <p><rkw:ratingTopicText topicResult='{topicResult}' /></p>
             </div>
         </f:if>

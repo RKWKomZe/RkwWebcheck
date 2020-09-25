@@ -2,19 +2,23 @@
     xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-    <div class="careercheck-accordion">
-        <div class="careercheck-accordion__header">{f:translate(key: 'partials_webcheck_showCheckResult_topics.partialResults')}</div>
+    <div class="career-accordion flex-container contentbox contentbox--gray no-padding">
+        <div class="career-accordion__header flex-basis-12">{f:translate(key: 'partials_webcheck_showCheckResult_topics.partialResults')}</div>
 
-        <f:for each="{checkResult.results}" as="topicResult">
-            <div class="careercheck-accordion__item">
-                <div class="accordion-trigger">
-                    <span class="title">{topicResult.topic.name}</span>
-                    <span class="value <rkw:ratingCss percentage='{topicResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
+        <div class="accordion accordion-controls flex-basis-12">
+            <f:for each="{checkResult.results}" as="topicResult" iteration="iter">
+                <div class="career-accordion__item flex-basis-12">
+                    <button id="accordion-item-{iter.cycle}" class="career-accordion__button accordion__button">
+                        <span class="career-accordion__title">{topicResult.topic.name}</span>
+                        <span class="career-accordion__result value--<rkw:ratingCss percentage='{topicResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
+                    </button>
+                    <div id="accordion-content-{iter.cycle}" class="career-accordion__item-content">
+                        <div class="career-accordion__item-inner">
+                            <p><rkw:ratingTopicText topicResult='{topicResult}' /></p>
+                        </div>
+                    </div>
                 </div>
-                <div class="accordion-cnt">
-                    <p><rkw:ratingTopicText topicResult='{topicResult}' /></p>
-                </div>
-            </div>
-        </f:for>
+            </f:for>
+        </div>
     </div>
 </html>

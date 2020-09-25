@@ -10,8 +10,8 @@
     <f:render partial="Webcheck/ShowMyCheckResults/List" arguments="{_all}"/>
 
     <f:if condition="{settings.newCheckPid}">
-        <p class="text-right no-marg">
-            <f:link.page class="button button--submit" pageUid="{settings.newCheckPid}">{f:translate(key: 'templates_webcheck_showMyCheckResults.startNewCheck')}</f:link.page>
+        <p class="button-footer flex-container flex-end">
+            <f:link.page class="btn btn--primary btn--small" pageUid="{settings.newCheckPid}">{f:translate(key: 'templates_webcheck_showMyCheckResults.startNewCheck')}</f:link.page>
         </p>
     </f:if>
 

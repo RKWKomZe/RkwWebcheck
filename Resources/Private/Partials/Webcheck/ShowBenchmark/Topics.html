@@ -2,9 +2,9 @@
     xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-    <div class="table-wrap">
+    <div class="table-wrapper flex-container my-1">
 
-        <table class="benchmark-table">
+        <table class="table flex-basis-12 responsive-table">
 
             <thead>
                 <tr>
@@ -46,21 +46,17 @@
 
                 <f:for each="{mainCheckResult.results}" as="topicResult" iteration="iteratorMain">
                     <tr>
-                        <td>
-                            <p>{topicResult.topic.name}</p>
-                        </td>
-                        <td>
-                            <span class="value <rkw:ratingCss percentage='{topicResult.percentage}' />">
-                                <f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%
-                            </span>
+                        <th class="table__topic">
+                            {topicResult.topic.name}
+                        </th>
+                        <td class="table__score value--<rkw:ratingCss percentage='{topicResult.percentage}' />">
+                            <f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%
                         </td>
                         <f:if condition="{compareCheckResult}">
                             <f:for each="{compareCheckResult.results}" as="compareTopicResult" iteration="iteratorCompare">
                                 <f:if condition="{iteratorCompare.cycle} == {iteratorMain.cycle}">
-                                    <td>
-                                        <span class="value <rkw:ratingCss percentage='{compareTopicResult.percentage}' />">
-                                            <f:format.number decimals="0" decimalSeparator="." >{compareTopicResult.percentage}</f:format.number>%
-                                        </span>
+                                    <td class="table__score value--<rkw:ratingCss percentage='{topicResult.percentage}' />">
+                                        <f:format.number decimals="0" decimalSeparator="." >{compareTopicResult.percentage}</f:format.number>%
                                     </td>
                                 </f:if>
                             </f:for>
