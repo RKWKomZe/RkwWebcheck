@@ -195,9 +195,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         /** @var \RKW\RkwWebcheck\Domain\Model\Webcheck $check */
         $check = $this->webcheckRepository->findByUid(intval($this->settings['check']));
 
-        DebuggerUtility::var_dump(); exit;
-
-
         $this->view->assign('check', $check);
         $this->view->assign('frontendUser', $this->getFrontendUser());
 

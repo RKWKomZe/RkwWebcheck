@@ -1,4 +1,6 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
 <f:layout name="Default" />
 
 <f:section name="main">
@@ -20,7 +22,14 @@
 
     <div class="contentbox contentbox--gray careercheck">
 
-        <f:form action="updateQuestionResult" enctype="multipart/form-data" name="questionResult" object="{questionResult}" class="careercheck__form" section="check-head">
+        <f:form
+            class="careercheck__form"
+            action="updateQuestionResult"
+            enctype="multipart/form-data"
+            name="questionResult"
+            object="{questionResult}"
+            section="check-head"
+        >
 
             <f:render partial="Webcheck/ShowQuestionResult/Question" arguments="{_all}"/>
 

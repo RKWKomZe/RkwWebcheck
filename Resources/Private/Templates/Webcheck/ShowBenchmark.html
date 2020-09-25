@@ -1,6 +1,7 @@
-{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
+    data-namespace-typo3-fluid="true">
 
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
 
     <f:section name="main">
@@ -14,7 +15,15 @@
                 <div class="choose-benchmark__left">
                     <div class="input-group">
                         <label for="mainCheckResult" class="form-label">{f:translate(key: 'templates_webcheck_showBenchmark.chooseMyCheck')}</label>
-                        <f:form.select name="mainCheckResult" id="mainCheckResult" property="mainCheckResult" options="{checkResults}" optionLabelField="crdateFormated" value="{mainCheckResult}" class="secondary"/>
+                        <f:form.select
+                            name="mainCheckResult"
+                            id="mainCheckResult"
+                            property="mainCheckResult"
+                            options="{checkResults}"
+                            optionLabelField="crdateFormated"
+                            value="{mainCheckResult}"
+                            class="secondary"
+                        />
                     </div>
                 </div>
 
@@ -23,7 +32,17 @@
                      <div class="choose-benchmark__right">
                         <div class="input-group">
                             <label for="compareCheckResult" class="form-label">{f:translate(key: 'templates_webcheck_showBenchmark.chooseCompareCheck')}</label>
-                            <f:form.select name="compareCheckResult" id="compareCheckResult" prependOptionLabel="{f:translate(key: 'templates_webcheck_showBenchmark.nothingToCompare')}" prependOptionValue="0"  property="compareCheckResult" options="{checkResultsWithoutSelected}" optionLabelField="crdateFormated" class="secondary" value="{compareCheckResult}"/>
+                            <f:form.select
+                                name="compareCheckResult"
+                                id="compareCheckResult"
+                                prependOptionLabel="{f:translate(key: 'templates_webcheck_showBenchmark.nothingToCompare')}"
+                                prependOptionValue="0"
+                                property="compareCheckResult"
+                                options="{checkResultsWithoutSelected}"
+                                optionLabelField="crdateFormated"
+                                class="secondary"
+                                value="{compareCheckResult}"
+                            />
                         </div>
                     </div>
                 </f:if>
