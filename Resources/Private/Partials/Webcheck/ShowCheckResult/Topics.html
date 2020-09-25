@@ -8,7 +8,7 @@
         <div class="accordion accordion-controls flex-basis-12">
             <f:for each="{checkResult.results}" as="topicResult" iteration="iter">
                 <div class="career-accordion__item flex-basis-12">
-                    <button id="accordion-item-{iter.cycle}" class="career-accordion__button accordion__button">
+                    <button id="accordion-item-{iter.cycle}" class="career-accordion__button accordion__button" aria-expanded="false" aria-controls="accordion-content-{iter.cycle}">
                         <span class="career-accordion__title">{topicResult.topic.name}</span>
                         <span class="career-accordion__result value--<rkw:ratingCss percentage='{topicResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
                     </button>
