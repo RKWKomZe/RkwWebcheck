@@ -1,5 +1,6 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-    <div class="careercheck-footer careercheck-footer--pagination">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+    <div class="button-footer flex space-between flex-basis-12 mt-2">
 
         <f:if condition="{firstQuestionAndTopic}">
             <f:then>
@@ -9,14 +10,24 @@
                 <f:if condition="{firstQuestionNotTopic}">
                     <f:then>
                         <f:if condition="{lastTopicFirstQuestionResult}">
-                            <f:link.action action="showQuestionResult" arguments="{questionResult : lastTopicFirstQuestionResult}" section="check-head" class="button button--back">
+                            <f:link.action
+                                class="btn btn--secondary"
+                                action="showQuestionResult"
+                                arguments="{questionResult : lastTopicFirstQuestionResult}"
+                                section="tx-rkwwebcheck-main"
+                            >
                                 {f:translate(key: 'partials_webcheck_showQuestionResult_pagination.prevTopic')}
                             </f:link.action>
                         </f:if>
                     </f:then>
                     <f:else>
                         <f:if condition="{lastQuestionResult}">
-                            <f:link.action action="showQuestionResult" arguments="{questionResult : lastQuestionResult}" section="check-head" class="button button--back">
+                            <f:link.action
+                                class="btn btn--secondary"
+                                action="showQuestionResult"
+                                arguments="{questionResult : lastQuestionResult}"
+                                section="tx-rkwwebcheck-main"
+                            >
                                 {f:translate(key: 'partials_webcheck_showQuestionResult_pagination.prevQuestion')}
                             </f:link.action>
                         </f:if>
@@ -25,24 +36,26 @@
             </f:else>
         </f:if>
 
-        <div class="pagination">
+        <div class="steps">
             <span>
-                {f:translate(key: 'partials_webcheck_showQuestionResult_pagination.question')}
-                <span class="active">{questionPosition -> f:format.raw()}</span> /
-                <span class="pages">{maxQuestions -> f:format.raw()}</span>
+                {f:translate(key: 'partials_webcheck_showQuestionResult_pagination.question')} {questionPosition -> f:format.raw()} / {maxQuestions -> f:format.raw()}
             </span>
         </div>
 
         <f:if condition="{lastQuestion}">
             <f:then>
-                <f:form.submit value="{f:translate(key: 'partials_webcheck_showQuestionResult_pagination.topicResult')}"
-                    class="button button--submit" />
+                <f:form.submit
+                    class="btn btn--primary"
+                    value="{f:translate(key: 'partials_webcheck_showQuestionResult_pagination.topicResult')}"
+                />
             </f:then>
             <f:else>
-                <f:form.submit value="{f:translate(key: 'partials_webcheck_showQuestionResult_pagination.nextQuestion')}"
-                    class="button button--submit" />
+                <f:form.submit
+                    class="btn btn--primary"
+                    value="{f:translate(key: 'partials_webcheck_showQuestionResult_pagination.nextQuestion')}"
+                />
             </f:else>
-            <div class="clearfix"><!-- --></div>
+
         </f:if>
     </div>
 

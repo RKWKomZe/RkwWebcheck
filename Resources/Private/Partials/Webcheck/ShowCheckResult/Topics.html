@@ -1,19 +1,27 @@
-{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
+    data-namespace-typo3-fluid="true">
 
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-    <div class="careercheck-accordion">
-        <div class="careercheck-accordion__header">{f:translate(key: 'partials_webcheck_showCheckResult_topics.partialResults')}</div>
+    <div class="webcheck-accordion flex-container contentbox contentbox--gray no-padding">
+        <div class="webcheck-accordion__header flex-basis-12">{f:translate(key: 'partials_webcheck_showCheckResult_topics.partialResults')}</div>
 
-        <f:for each="{checkResult.results}" as="topicResult">
-            <div class="careercheck-accordion__item">
-                <div class="accordion-trigger">
-                    <span class="title">{topicResult.topic.name}</span>
-                    <span class="value {rkw:ratingCss(percentage: '{topicResult.percentage}')}"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
+        <div class="accordion accordion-controls flex-basis-12">
+            <f:for each="{checkResult.results}" as="topicResult" iteration="iter">
+                <div class="webcheck-accordion__item flex-basis-12">
+                    <button {f:if(condition:'{rkw:ratingTopicText(topicResult:topicResult)}', then: 'id="accordion-item-{iter.cycle}"')} class="webcheck-accordion__button accordion__button" {f:if(condition:'{rkw:ratingTopicText(topicResult:topicResult)}', then: 'aria-expanded="false" aria-controls="accordion-content-{iter.cycle}"')}>
+                        <span class="webcheck-accordion__title">{topicResult.topic.name}</span>
+                        <span class="webcheck-accordion__result value--<rkw:ratingCss percentage='{topicResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
+                    </button>
+
+                    <f:if condition="{rkw:ratingTopicText(topicResult:'{topicResult}')}">
+                        <div id="accordion-content-{iter.cycle}" class="webcheck-accordion__item-content">
+                            <div class="webcheck-accordion__item-inner">
+                                <p><rkw:ratingTopicText topicResult='{topicResult}' /></p>
+                            </div>
+                        </div>
+                    </f:if>
                 </div>
-                <div class="accordion-cnt">
-                    <p>{rkw:ratingTopicText(topicResult: '{topicResult}')}</p>
-                </div>
-            </div>
-        </f:for>
+            </f:for>
+        </div>
     </div>
 </html>

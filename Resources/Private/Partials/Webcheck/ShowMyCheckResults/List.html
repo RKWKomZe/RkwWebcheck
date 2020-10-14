@@ -1,6 +1,8 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-    <div class="table-wrap">
-        <table class="benchmark-table">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+    <div class="table-wrapper flex-container my-1 webcheck">
+        <table class="table flex-basis-12 medium-breakpoint">
             <thead>
             <tr>
                 <th>{f:translate(key: 'partials_webcheck_showMyCheckResults_list.date')}</th>
@@ -13,34 +15,54 @@
             <tbody>
             <f:for each="{checkResults}" as="checkResult">
                 <tr>
-                    <td>
-                        <p>{f:format.date(date: checkResult.crdate, format: 'd.m.Y - H:i')} Uhr</p>
+                    <td class="table__topic">
+                        {f:format.date(date: checkResult.crdate, format: 'd.m.Y - H:i')} Uhr
                     </td>
-                    <td>
-                        <p>{checkResult.webcheck.name}</p>
+                    <td class="table__content">
+                        {checkResult.webcheck.name}
                     </td>
                     <f:if condition="{checkResult.completed}">
                         <f:then>
-                            <td>
-                                <span class="value good">{f:translate(key: 'partials_webcheck_showMyCheckResults_list.completed')}</span>
+                            <td class="table__content value--good">
+                                {f:translate(key: 'partials_webcheck_showMyCheckResults_list.completed')}
                             </td>
-                            <td>
-                                <f:link.action action="showCheckResult" arguments="{checkResult :checkResult}" pageUid="{checkResult.webcheck.checkPid}" section="check-head"
-                                    class="button secondary">{f:translate(key: 'partials_webcheck_showMyCheckResults_list.result')}</f:link.action>
+                            <td class="table__content">
+                                <f:link.action
+                                    class="btn btn--secondary btn--small"
+                                    action="showCheckResult"
+                                    arguments="{checkResult :checkResult}"
+                                    pageUid="{checkResult.webcheck.checkPid}"
+                                    section="tx-rkwwebcheck-main"
+                                    >
+                                    {f:translate(key: 'partials_webcheck_showMyCheckResults_list.result')}
+                                </f:link.action>
                             </td>
                         </f:then>
                         <f:else>
-                            <td>
-                                <span class="value bad">{f:translate(key: 'partials_webcheck_showMyCheckResults_list.open')}</span>
+                            <td class="table__content value--bad">
+                                {f:translate(key: 'partials_webcheck_showMyCheckResults_list.open')}
                             </td>
-                            <td>
-                                <f:link.action action="editCheckResult" arguments="{checkResult :checkResult}" section="check-head"
-                                    class="button">{f:translate(key: 'partials_webcheck_showMyCheckResults_list.continue')}</f:link.action>
+                            <td class="table__content">
+                                <f:link.action
+                                    class="btn btn--primary btn--small"
+                                    action="editCheckResult"
+                                    arguments="{checkResult :checkResult}"
+                                    section="tx-rkwwebcheck-main"
+                                >
+                                    {f:translate(key: 'partials_webcheck_showMyCheckResults_list.continue')}
+                                </f:link.action>
                             </td>
                         </f:else>
                     </f:if>
-                    <td>
-                        <f:link.action action="deleteCheckResult" arguments="{checkResult : checkResult}" class="delete">{f:translate(key: 'partials_webcheck_showMyCheckResults_list.erase')}<i class="icon-delete careercheck-icon-trash-empty"></i> </f:link.action>
+                    <td class="table__content">
+                        <f:link.action
+                            class="table-link webcheck-small-headline"
+                            action="deleteCheckResult"
+                            arguments="{checkResult : checkResult}"
+                        >
+                            <svg class="icon icon--16"><use xlink:href="#ic-trash"></use></svg>
+                            {f:translate(key: 'partials_webcheck_showMyCheckResults_list.erase')}
+                        </f:link.action>
                     </td>
                 </tr>
             </f:for>

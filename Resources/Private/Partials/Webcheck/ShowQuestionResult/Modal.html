@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+
+    <f:if condition="{questionResult.question.description}">
+        <f:then>
+            <button class="btn btn--secondary js-open-mdl mb-1" data-modal="mdl-1">{f:translate(key: 'partials_webcheck_showQuestionResult_modal.descriptionOfQuestion')}</button>
+            <div id="mdl-1" class="mdl">
+                <div class="mdl__inner">
+                    <header class="mdl__header">
+                        <span class="h4 mdl__headline">
+                            {f:translate(key: 'partials_webcheck_showQuestionResult_modal.descriptionOfQuestion')}
+                        </span>
+                    </header>
+                    <div class="mdl__content">
+                        <p>{questionResult.question.description -> f:format.raw()}</p>
+                        <button class="btn btn--primary js-close-mdl">{f:translate(key: 'partials_webcheck_showQuestionResult_modal.backToQuestion')}</button>
+                    </div>
+                </div>
+                <button class="mdl-close js-close-mdl"><svg class="icon icon--48">
+                    <use xlink:href="#ic-mobile-menu-close" /></svg></button>
+            </div>
+            <div class="mdl-layer js-mdl-layer"></div>
+        </f:then>
+    </f:if>
+
+</html>

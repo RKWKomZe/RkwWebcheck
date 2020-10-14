@@ -16,6 +16,13 @@ plugin.tx_rkwwebcheck  {
 		# cat=plugin.tx_rkwwebcheck//a; type=integer; label=Minimum number of benchmarks before these are available in FE
 		benchmarkMinChecks = 10
 	}
+    settings {
+        # cat=plugin.tx_rkwwebcheck//f; type=integer; label=Version to use
+        version = 2
+
+        # cat=plugin.tx_rkwwebcheck//a; type=boolean; label=Include jQuery?
+        includeJQuery = 0
+    }
 }
 
 module.tx_rkwwebcheck {
@@ -31,4 +38,5 @@ module.tx_rkwwebcheck {
 		# cat=module.tx_rkwwebcheck//a; type=string; label=Default storage PID
 		storagePid =
 	}
+
 }
