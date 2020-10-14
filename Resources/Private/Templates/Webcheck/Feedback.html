@@ -1,4 +1,5 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
 
 <f:section name="main">
@@ -42,8 +43,14 @@
 				<br />
 
 				<label for="annotations">{f:translate(key: 'templates_webcheck_feedback.placeForAnnotations')}</label>
-				<f:form.textarea property="tx_rkwwebcheck_annotations" rows="5" cols="50" placeholder="{f:translate(key: 'templates_webcheck_feedback.yourAnnotations')}" name="annotations"
-				 id="annotations" />
+				<f:form.textarea
+                    id="annotations"
+                    property="tx_rkwwebcheck_annotations"
+                    rows="5"
+                    cols="50"
+                    placeholder="{f:translate(key: 'templates_webcheck_feedback.yourAnnotations')}"
+                    name="annotations"
+                />
 
 				<f:form.submit value="{f:translate(key: 'templates_webcheck_feedback.rate')}" class="button" />
 			</f:form>

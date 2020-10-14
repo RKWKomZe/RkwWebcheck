@@ -5,6 +5,7 @@ namespace RKW\RkwWebcheck\Controller;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use \RKW\RkwBasics\Helper\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -163,7 +164,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     protected function getFrontendUser()
     {
 
-
         if (!$this->getFrontendUserId()) {
             $this->addFlashMessage(
                 \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
@@ -194,6 +194,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     {
         /** @var \RKW\RkwWebcheck\Domain\Model\Webcheck $check */
         $check = $this->webcheckRepository->findByUid(intval($this->settings['check']));
+
         $this->view->assign('check', $check);
         $this->view->assign('frontendUser', $this->getFrontendUser());
 
@@ -1011,7 +1012,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function showMyCheckResultsAction()
     {
-
         // 1. Check if user is logged in
         if (!$this->getFrontendUser()) {
             $this->addFlashMessage(
@@ -1053,7 +1053,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function editCheckResultAction(\RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult)
     {
-
         // 1. check if given checkResult belongs to logged in user
         if ($checkResult->getFeUser()->getUid() != $this->getFrontendUser()->getUid()) {
             $this->addFlashMessage(
@@ -1101,7 +1100,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             }
 
         } else {
-
             if (
                 ($lastTopic = $checkResult->getLastTopic())
                 && ($lastQuestion = $checkResult->getLastQuestion())

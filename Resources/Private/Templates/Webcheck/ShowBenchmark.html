@@ -1,65 +1,83 @@
-{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
+    data-namespace-typo3-fluid="true">
 
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
 
     <f:section name="main">
 
         <p>{f:translate(key: 'templates_webcheck_showBenchmark.text')}</p>
 
-        <div class="careercheck--benchmark">
-
-            <!-- Selects -->
-            <f:form action="showBenchmark" class="choose-benchmark" id="choose-benchmark">
-                <div class="choose-benchmark__left">
-                    <div class="input-group">
-                        <label for="mainCheckResult" class="form-label">{f:translate(key: 'templates_webcheck_showBenchmark.chooseMyCheck')}</label>
-                        <f:form.select name="mainCheckResult" id="mainCheckResult" property="mainCheckResult" options="{checkResults}" optionLabelField="crdateFormated" value="{mainCheckResult}" class="secondary"/>
-                    </div>
-                </div>
-
-                <!-- Compare -->
-                <f:if condition="{checkResults -> f:count()} > 1">
-                     <div class="choose-benchmark__right">
-                        <div class="input-group">
-                            <label for="compareCheckResult" class="form-label">{f:translate(key: 'templates_webcheck_showBenchmark.chooseCompareCheck')}</label>
-                            <f:form.select name="compareCheckResult" id="compareCheckResult" prependOptionLabel="{f:translate(key: 'templates_webcheck_showBenchmark.nothingToCompare')}" prependOptionValue="0"  property="compareCheckResult" options="{checkResultsWithoutSelected}" optionLabelField="crdateFormated" class="secondary" value="{compareCheckResult}"/>
-                        </div>
-                    </div>
-                </f:if>
-            </f:form>
-
-
-            <div class="careercheck__content">
-
-                <!-- Average results -->
-                <f:render partial="Webcheck/ShowBenchmark/AverageAllChecks" arguments="{_all}"/>
-
-                <div class="value-text">
-                    <!-- Chart here -->
-                    <f:render partial="Webcheck/ShowBenchmark/GoogleGraph" arguments="{_all}"/>
-
-                    <!-- Optional Hint -->
-                    <f:if condition="{percentageAllChecks}">
-                        <f:else>
-                            <div class="no-benchmark-available">
-                                <p>{f:translate(key: 'templates_webcheck_showBenchmark.notEnoughResultsDescription')}</p>
-                            </div>
-                        </f:else>
-                    </f:if>
-                </div>
+         <!-- Selects -->
+        <f:form action="showBenchmark" id="tx-rkwwebcheck-main" class="select-section btn-list flex-container" section="tx-rkwwebcheck-main">
+            <div class="select-section__field flex-basis-6 full-width-narrow">
+                <label for="mainCheckResult" class="select-section__headline webcheck-small-headline">{f:translate(key: 'templates_webcheck_showBenchmark.chooseMyCheck')}</label>
+                <f:form.select
+                    id="mainCheckResult"
+                    class="select-field select-field--outline"
+                    name="mainCheckResult"
+                    property="mainCheckResult"
+                    options="{checkResults}"
+                    optionLabelField="crdateFormated"
+                    value="{mainCheckResult}"
+                    additionalAttributes="{onchange : 'this.form.submit();'}"
+                />
             </div>
 
-            <!-- Show topic table -->
-            <f:render partial="Webcheck/ShowBenchmark/Topics" arguments="{_all}"/>
+            <!-- Compare -->
+            <f:if condition="{checkResults -> f:count()} > 1">
+                 <div class="select-section__field flex-basis-6 full-width-narrow">
+                    <label for="compareCheckResult" class="select-section__headline webcheck-small-headline">{f:translate(key: 'templates_webcheck_showBenchmark.chooseCompareCheck')}</label>
+                    <f:form.select
+                        id="compareCheckResult"
+                        class="select-field select-field--outline"
+                        name="compareCheckResult"
+                        prependOptionLabel="{f:translate(key: 'templates_webcheck_showBenchmark.nothingToCompare')}"
+                        prependOptionValue="0"
+                        property="compareCheckResult"
+                        options="{checkResultsWithoutSelected}"
+                        optionLabelField="crdateFormated"
+                        value="{compareCheckResult}"
+                        additionalAttributes="{onchange : 'this.form.submit();'}"
+                    />
+                </div>
+            </f:if>
+        </f:form>
 
+        <div class="webcheck-description webcheck-description--graph flex space-between mt-1">
+
+            <!-- Average results -->
+            <f:render partial="Webcheck/ShowBenchmark/AverageAllChecks" arguments="{_all}"/>
+
+            <div class="description-text flex-basis-8 full-width-medium">
+                <!-- Chart here -->
+                <f:render partial="Webcheck/ShowBenchmark/GoogleGraph" arguments="{_all}"/>
+
+                <!-- Optional Hint -->
+                <f:if condition="{percentageAllChecks}">
+                    <f:else>
+                        <div class="webcheck-graph contentbox contentbox--yellow mt-1">
+                            <p>{f:translate(key: 'templates_webcheck_showBenchmark.notEnoughResultsDescription')}</p>
+                        </div>
+                    </f:else>
+                </f:if>
+            </div>
         </div>
+
+        <!-- Show topic table -->
+        <f:render partial="Webcheck/ShowBenchmark/Topics" arguments="{_all}"/>
 
         <!-- Link to list -->
         <f:if condition="{settings.myChecksPid}">
-            <p class="text-right no-marg">
-                <f:link.action action="showMyCheckResults" pageUid="{settings.myChecksPid}" class="button button--submit">{f:translate(key: 'templates_webcheck_showBenchmark.toMyChecks')}</f:link.action>
-            </p>
+            <div class="btn-list btn-list--footer flex flex-end">
+                <f:link.action
+                    action="showMyCheckResults"
+                    pageUid="{settings.myChecksPid}"
+                    class="btn btn--primary"
+                >
+                    {f:translate(key: 'templates_webcheck_showBenchmark.toMyChecks')}
+                </f:link.action>
+            </div>
         </f:if>
 
     </f:section>

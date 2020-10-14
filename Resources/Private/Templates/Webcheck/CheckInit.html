@@ -1,41 +1,43 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:layout name="Default" />
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+    <f:layout name="Default" />
 
-<f:section name="main">
+    <f:section name="main">
+        <f:comment><h1>{check.name -> f:format.raw()}</h1></f:comment>
+        {check.description -> f:format.html()}
 
-	<f:comment><h1>{check.name -> f:format.raw()}</h1></f:comment>
-    <div class="careercheck__introduction">
-	    {check.description -> f:format.html()}
-    </div>
+        <f:render partial="FlashMessages" arguments="{_all}" />
 
-    <f:render partial="FlashMessages" arguments="{_all}" />
+        <f:form action="checkStart" enctype="multipart/form-data" section="tx-rkwwebcheck-main">
 
-    <f:form action="checkStart" enctype="multipart/form-data">
+            <f:if condition="{frontendUser.txRkwregistrationIsAnonymous}">
+                <f:then>
+                    <div class="form__field">
+                        <f:form.checkbox
+                            class="checkbox"
+                            id="terms"
+                            name="terms"
+                            value="1"
+                        />
+                        <label for="terms" class="checkbox-label">
+                            {f:translate(key: 'templates_webcheck_checkInit.iAcceptThe')} <f:link.page pageUid="{settings.termsPid}" target="_blank">{f:translate(key: 'templates_webcheck_checkInit.terms')}</f:link.page>
+                        </label>
+                    </div>
+                </f:then>
+                <f:else>
+                    <f:form.hidden name="terms" value="1" />
+                </f:else>
+            </f:if>
 
-        <f:if condition="{frontendUser.txRkwregistrationIsAnonymous}">
-            <f:then>
-                <br />
-                <span class="checkbox">
-                    <label>
-                        <f:form.checkbox name="terms" value="1"/>
-                        <span class="text-smaller">{f:translate(key: 'templates_webcheck_checkInit.iAcceptThe')} <f:link.page pageUid="{settings.termsPid}" target="_blank">{f:translate(key: 'templates_webcheck_checkInit.terms')}</f:link.page></span>
-                    </label>
-                </span>
-            </f:then>
-            <f:else>
-                <f:form.hidden name="terms" value="1" />
-            </f:else>
-        </f:if>
+            <div class="flex-container flex-basis-12 btn-list">
+                <button type="submit" class="btn btn--primary">
+                    <span>{f:translate(key: 'templates_webcheck_checkInit.startCheck')}</span>
+                </button>
+            </div>
 
-		<p>
-            <button type="submit" class="button button--xl">
-                <span>{f:translate(key: 'templates_webcheck_checkInit.startCheck')}</span>
-            </button>
-        </p>
-
-	</f:form>
+        </f:form>
 
 
-</f:section>
+    </f:section>
 
 </html>

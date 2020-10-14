@@ -1,25 +1,34 @@
-{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
+    data-namespace-typo3-fluid="true">
 
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <div class="webcheck-description flex space-between">
+        <div class="info-flag info-flag--results info-flag--left flex-basis-4">
+            <h3 class="info-flag__headline">{f:translate(key: 'partials_webcheck_showSharedCheckResult_summary.completeResult')}</h3>
+            <span class="info-flag__text info-flag__text--<rkw:ratingCss percentage='{checkResult.percentage}' />">
+                <f:format.number decimals="0" decimalSeparator="." >{checkResult.percentage}</f:format.number>%
+            </span>
+        </div>
+        <div class="description-text flex-basis-8">
+            <h4>
+                <f:if condition="{anonymous} == 0">
+                    <f:then>
+                        {f:translate(key: 'partials_webcheck_showSharedCheckResult_summary.text', arguments:{0: checkResult.feUser.firstName, 1: checkResult.feUser.lastName, 2: checkResult.webcheck.name})}
+                    </f:then>
+                    <f:else>
+                        {f:translate(key: 'partials_webcheck_showSharedCheckResult_summary.textAnonymous', arguments:{0: checkResult.webcheck.name})}
+                    </f:else>
+                </f:if>
+            </h4>
 
-    <div class="careercheck__content">
-        <div class="value-box-wrapper">
-            <div class="value-box">
-                <h2>{f:translate(key: 'partials_webcheck_showSharedCheckResult_summary.completeResult')}</h2>
-                <span class="value {rkw:ratingCss(percentage: '{checkResult.percentage}')}"><f:format.number decimals="0" decimalSeparator="." >{checkResult.percentage}</f:format.number>%</span>
-            </div>
-            <div class="value-text">
-                <p>
-                    <f:if condition="{anonymous} == 0">
-                        <f:then>
-                            {f:translate(key: 'partials_webcheck_showSharedCheckResult_summary.text' arguments:{0: checkResult.feUser.firstName, 1: checkResult.feUser.lastName, 2: checkResult.webcheck.name})}
-                        </f:then>
-                        <f:else>
-                            {f:translate(key: 'partials_webcheck_showSharedCheckResult_summary.textAnonymous' arguments:{0: checkResult.webcheck.name})}
-                        </f:else>
-                    </f:if>
-                </p>
-            </div>
+            <p>{f:translate(key: 'partials_webcheck_showSharedCheckResult_summary.andYou')}</p>
+
+            <f:if condition="{settings.linkPid}">
+                <f:link.page class="btn btn--primary mt-2" pageUid="{settings.linkPid}">
+                    {f:translate(key: 'partials_webcheck_showSharedCheckResult_summary.checkNow')}
+                </f:link.page>
+            </f:if>
+
         </div>
     </div>
 

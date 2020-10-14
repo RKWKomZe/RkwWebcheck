@@ -1,13 +1,15 @@
-{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
+    data-namespace-typo3-fluid="true">
 
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-
-    <div class="value-box">
-        <h2>{f:translate(key: 'partials_webcheck_showCheckResult_summary.completeResult1')}&shy;{f:translate(key: 'partials_webcheck_showCheckResult_summary.completeResult2')}</h2>
-        <span class="value {rkw:ratingCss(percentage: '{checkResult.percentage}')}"><f:format.number decimals="0" decimalSeparator="." >{checkResult.percentage}</f:format.number>%</span>
-    </div>
-    <div class="value-text">
-        <p>{rkw:ratingCheckText(checkResult: '{checkResult}')}</p>
+    <div class="webcheck-description flex space-between">
+        <div class="info-flag info-flag--results info-flag--left flex-basis-4">
+            <h3 class="info-flag__headline">{f:translate(key: 'partials_webcheck_showCheckResult_summary.completeResult1')}&shy;{f:translate(key: 'partials_webcheck_showCheckResult_summary.completeResult2')}</h3>
+            <span class="info-flag__text info-flag__text--<rkw:ratingCss percentage='{checkResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{checkResult.percentage}</f:format.number>%</span>
+        </div>
+        <div class="description-text flex-basis-8">
+            <p><rkw:ratingCheckText checkResult='{checkResult}' /></p>
+        </div>
     </div>
 
 </html>

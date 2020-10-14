@@ -30,6 +30,13 @@ class SingleResultWithBenchmarkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelp
 {
 
     /**
+     * As this ViewHelper renders HTML, the output must not be escaped.
+     *
+     * @var bool
+     */
+    protected $escapeOutput = false;
+
+    /**
      * google virtualization single result
      *
      * @param float $resultPercent
