@@ -1,31 +1,37 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-    <div class="flex space-between flex-basis-12 ">
-        <f:form action="showQuestionResult" name="questionResult" object="{firstQuestionResult}">
-            <f:form.submit
-                class="btn btn--secondary"
-                value="{f:translate(key: 'partials_webcheck_showTopicResult_pagination.restartTopic')}"
-            />
-        </f:form>
 
-        <div><!-- --></div>
+    <div class="btn-list btn-list--footer">
+        <f:form action="showQuestionResult" name="questionResult" object="{firstQuestionResult}">
+            <button type="submit" class="btn btn--secondary">
+                <f:translate key="partials_webcheck_showTopicResult_pagination.restartTopic" />
+            </button>
+        </f:form>
 
         <f:if condition="{endCheck}">
             <f:then>
-                <f:form action="updateCheckResult" name="checkResult" object="{topicResult.checkResult}" section="check-head">
-                    <f:form.submit
-                        class="btn btn--primary"
-                        value="{f:translate(key: 'partials_webcheck_showTopicResult_pagination.finishCheck')}"
-                    />
+                <f:form
+                    action="updateCheckResult"
+                    name="checkResult"
+                    object="{topicResult.checkResult}"
+                    section="tx-rkwwebcheck-main"
+                >
+                    <button type="submit" class="btn btn--primary">
+                        <f:translate key="partials_webcheck_showTopicResult_pagination.finishCheck" />
+                    </button>
                 </f:form>
             </f:then>
             <f:else>
-                <f:form action="showQuestionResult" name="questionResult" object="{nextQuestionResult}" section="check-head">
-                    <f:form.submit
-                        class="btn btn--primary"
-                        value="{f:translate(key: 'partials_webcheck_showTopicResult_pagination.nextTopic')}"
-                    />
+                <f:form
+                    action="showQuestionResult"
+                    name="questionResult"
+                    object="{nextQuestionResult}"
+                    section="tx-rkwwebcheck-main"
+                >
+                    <button type="submit" class="btn btn--primary">
+                        <f:translate key="partials_webcheck_showTopicResult_pagination.nextTopic" />
+                    </button>
                 </f:form>
             </f:else>
         </f:if>

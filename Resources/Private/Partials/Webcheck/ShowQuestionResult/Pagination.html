@@ -11,10 +11,10 @@
                     <f:then>
                         <f:if condition="{lastTopicFirstQuestionResult}">
                             <f:link.action
-                                class="btn btn--secondary btn--small"
+                                class="btn btn--secondary"
                                 action="showQuestionResult"
                                 arguments="{questionResult : lastTopicFirstQuestionResult}"
-                                section="check-head"
+                                section="tx-rkwwebcheck-main"
                             >
                                 {f:translate(key: 'partials_webcheck_showQuestionResult_pagination.prevTopic')}
                             </f:link.action>
@@ -23,10 +23,10 @@
                     <f:else>
                         <f:if condition="{lastQuestionResult}">
                             <f:link.action
-                                class="btn btn--secondary btn--small"
+                                class="btn btn--secondary"
                                 action="showQuestionResult"
                                 arguments="{questionResult : lastQuestionResult}"
-                                section="check-head"
+                                section="tx-rkwwebcheck-main"
                             >
                                 {f:translate(key: 'partials_webcheck_showQuestionResult_pagination.prevQuestion')}
                             </f:link.action>
@@ -36,33 +36,26 @@
             </f:else>
         </f:if>
 
-        <f:comment>
-            <!-- the class "pagination" produce not wanted top-bottom margin  -->
-            <div class="pagination"></div>
-        </f:comment>
-
-        <div>
+        <div class="steps">
             <span>
-                {f:translate(key: 'partials_webcheck_showQuestionResult_pagination.question')}
-                <span class="active">{questionPosition -> f:format.raw()}</span> /
-                <span class="pages">{maxQuestions -> f:format.raw()}</span>
+                {f:translate(key: 'partials_webcheck_showQuestionResult_pagination.question')} {questionPosition -> f:format.raw()} / {maxQuestions -> f:format.raw()}
             </span>
         </div>
 
         <f:if condition="{lastQuestion}">
             <f:then>
                 <f:form.submit
-                    class="btn btn--primary btn--small"
+                    class="btn btn--primary"
                     value="{f:translate(key: 'partials_webcheck_showQuestionResult_pagination.topicResult')}"
                 />
             </f:then>
             <f:else>
                 <f:form.submit
-                    class="btn btn--primary btn--small"
+                    class="btn btn--primary"
                     value="{f:translate(key: 'partials_webcheck_showQuestionResult_pagination.nextQuestion')}"
                 />
             </f:else>
-            <div class="clearfix"><!-- --></div>
+
         </f:if>
     </div>
 

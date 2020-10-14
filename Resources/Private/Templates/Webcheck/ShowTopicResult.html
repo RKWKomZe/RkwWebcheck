@@ -6,11 +6,9 @@
 
 <f:section name="main">
 
-    <div class="flex career-intro" id="check-head">
-        <h2></h2>
-        <h2 class="h2 h2--infoflag-space">{topicResult.topic.name}</h2>
-
-        <div class="info-flag info-flag--right flex-basis-2">
+    <div class="contentbox__webcheck-header flex webcheck-intro" id="tx-rkwwebcheck-main">
+        <h2 class="h2 flex-basis-9 h2--infoflag-space">{topicResult.topic.name}</h2>
+        <div class="info-flag info-flag--right flex-basis-3">
             <span class="info-flag__progress">{f:translate(key: 'templates_webcheck_showTopicResult.topic')} {topicPosition}/{maxTopics}</span>
         </div>
     </div>
@@ -21,7 +19,7 @@
 
     <h3>{f:translate(key: 'templates_webcheck_showTopicResult.partialResultTopic')}</h3>
 
-    <div class="career-description flex space-between">
+    <div class="webcheck-description flex space-between">
         <div class="info-flag info-flag--small-height info-flag--left flex-basis-2">
             <span class="info-flag__text info-flag__text--<rkw:ratingCss percentage='{topicResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
         </div>
@@ -30,7 +28,6 @@
                 <p><rkw:ratingTopicText topicResult='{topicResult}' /></p>
             </div>
         </f:if>
-        <div class="clear"></div>
     </div>
 
     <f:render partial="Webcheck/ShowTopicResult/Pagination" arguments="{_all}"/>

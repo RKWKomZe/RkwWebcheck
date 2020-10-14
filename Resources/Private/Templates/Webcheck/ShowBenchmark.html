@@ -8,44 +8,43 @@
 
         <p>{f:translate(key: 'templates_webcheck_showBenchmark.text')}</p>
 
-        <div class="select-section btn-list flex-container">
+         <!-- Selects -->
+        <f:form action="showBenchmark" id="tx-rkwwebcheck-main" class="select-section btn-list flex-container" section="tx-rkwwebcheck-main">
+            <div class="select-section__field flex-basis-6 full-width-narrow">
+                <label for="mainCheckResult" class="select-section__headline webcheck-small-headline">{f:translate(key: 'templates_webcheck_showBenchmark.chooseMyCheck')}</label>
+                <f:form.select
+                    id="mainCheckResult"
+                    class="select-field select-field--outline"
+                    name="mainCheckResult"
+                    property="mainCheckResult"
+                    options="{checkResults}"
+                    optionLabelField="crdateFormated"
+                    value="{mainCheckResult}"
+                    additionalAttributes="{onchange : 'this.form.submit();'}"
+                />
+            </div>
 
-            <!-- Selects -->
-            <f:form action="showBenchmark" class="choose-benchmark" id="choose-benchmark">
-                <div class="select-section__field flex-basis-6 full-width-narrow">
-                        <label for="mainCheckResult" class="select-section__headline career-small-headline">{f:translate(key: 'templates_webcheck_showBenchmark.chooseMyCheck')}</label>
-                        <f:form.select
-                            id="mainCheckResult"
-                            class="select-field select-field--outline"
-                            name="mainCheckResult"
-                            property="mainCheckResult"
-                            options="{checkResults}"
-                            optionLabelField="crdateFormated"
-                            value="{mainCheckResult}"
-                        />
+            <!-- Compare -->
+            <f:if condition="{checkResults -> f:count()} > 1">
+                 <div class="select-section__field flex-basis-6 full-width-narrow">
+                    <label for="compareCheckResult" class="select-section__headline webcheck-small-headline">{f:translate(key: 'templates_webcheck_showBenchmark.chooseCompareCheck')}</label>
+                    <f:form.select
+                        id="compareCheckResult"
+                        class="select-field select-field--outline"
+                        name="compareCheckResult"
+                        prependOptionLabel="{f:translate(key: 'templates_webcheck_showBenchmark.nothingToCompare')}"
+                        prependOptionValue="0"
+                        property="compareCheckResult"
+                        options="{checkResultsWithoutSelected}"
+                        optionLabelField="crdateFormated"
+                        value="{compareCheckResult}"
+                        additionalAttributes="{onchange : 'this.form.submit();'}"
+                    />
                 </div>
+            </f:if>
+        </f:form>
 
-                <!-- Compare -->
-                <f:if condition="{checkResults -> f:count()} > 1">
-                     <div class="select-section__field flex-basis-6 full-width-narrow">
-                        <label for="compareCheckResult" class="select-section__headline career-small-headline">{f:translate(key: 'templates_webcheck_showBenchmark.chooseCompareCheck')}</label>
-                        <f:form.select
-                            id="compareCheckResult"
-                            class="select-field select-field--outline"
-                            name="compareCheckResult"
-                            prependOptionLabel="{f:translate(key: 'templates_webcheck_showBenchmark.nothingToCompare')}"
-                            prependOptionValue="0"
-                            property="compareCheckResult"
-                            options="{checkResultsWithoutSelected}"
-                            optionLabelField="crdateFormated"
-                            value="{compareCheckResult}"
-                        />
-                    </div>
-                </f:if>
-            </f:form>
-        </div>
-
-        <div class="career-description flex space-between mt-1">
+        <div class="webcheck-description webcheck-description--graph flex space-between mt-1">
 
             <!-- Average results -->
             <f:render partial="Webcheck/ShowBenchmark/AverageAllChecks" arguments="{_all}"/>
@@ -57,7 +56,7 @@
                 <!-- Optional Hint -->
                 <f:if condition="{percentageAllChecks}">
                     <f:else>
-                        <div class="careercheck-graph contentbox contentbox--yellow mt-1">
+                        <div class="webcheck-graph contentbox contentbox--yellow mt-1">
                             <p>{f:translate(key: 'templates_webcheck_showBenchmark.notEnoughResultsDescription')}</p>
                         </div>
                     </f:else>
@@ -70,9 +69,15 @@
 
         <!-- Link to list -->
         <f:if condition="{settings.myChecksPid}">
-            <p class="text-right no-marg">
-                <f:link.action action="showMyCheckResults" pageUid="{settings.myChecksPid}" class="button button--submit">{f:translate(key: 'templates_webcheck_showBenchmark.toMyChecks')}</f:link.action>
-            </p>
+            <div class="btn-list btn-list--footer flex flex-end">
+                <f:link.action
+                    action="showMyCheckResults"
+                    pageUid="{settings.myChecksPid}"
+                    class="btn btn--primary"
+                >
+                    {f:translate(key: 'templates_webcheck_showBenchmark.toMyChecks')}
+                </f:link.action>
+            </div>
         </f:if>
 
     </f:section>

@@ -5,7 +5,7 @@
 
 <f:section name="main">
 
-    <div class="contentbox__career-header flex career-info" id="check-head">
+    <div class="contentbox__webcheck-header flex webcheck-info" id="tx-rkwwebcheck-main">
         <h2 class="h2 h2--small flex-basis-9 h2--infoflag-space">{questionResult.topic.name -> f:format.raw()}</h2>
 
         <div class="info-flag info-flag--right flex-basis-3">
@@ -18,15 +18,17 @@
 
     <p>{questionResult.topic.description -> f:format.html()}</p>
 
-    <div class="contentbox contentbox--gray careercheck">
+    <f:render partial="Webcheck/ShowQuestionResult/Modal" arguments="{_all}"/>
+
+    <div class="contentbox contentbox--gray contentbox--webcheck webcheck">
 
         <f:form
-            class="careercheck__form"
+            class="webcheck__form"
             action="updateQuestionResult"
             enctype="multipart/form-data"
             name="questionResult"
             object="{questionResult}"
-            section="check-head"
+            section="tx-rkwwebcheck-main"
         >
 
             <f:render partial="Webcheck/ShowQuestionResult/Question" arguments="{_all}"/>

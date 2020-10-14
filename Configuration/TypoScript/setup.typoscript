@@ -43,11 +43,10 @@ plugin.tx_rkwwebcheck {
 	settings{
 		benchmarkMinChecks = {$plugin.tx_rkwwebcheck.settings.benchmarkMinChecks}
 	}
+    settings {
+        version = {$plugin.tx_rkwwebcheck.settings.version}
+    }
 }
-
-page.includeJSFooter.txRkwQuickcheck = EXT:rkw_webcheck/Resources/Public/Scripts/Webcheck.js
-// not needed
-// page.includeCSS.txRkwQuickcheck = EXT:rkw_webcheck/Resources/Public/Styles/frontend.css
 
 # Module configuration
 module.tx_rkwwebcheck {
@@ -64,6 +63,15 @@ module.tx_rkwwebcheck {
 	}
 }
 
+[globalVar = LIT:1 = {$plugin.tx_rkwwebcheck.settings.version}]
+    page.includeJSFooter.txRkwWebcheck = EXT:rkw_webcheck/Resources/Public/Js/webcheck-1.0.js
+[global]
 
-// @toDO: REMOVE! JUST FOR DEVELOPMENT! Comes later with the standard template
-page.includeCSS.txRkwWebcheck = EXT:rkw_webcheck/Resources/Public/Styles/careercheck.css
+[globalVar = LIT:2 = {$plugin.tx_rkwwebcheck.settings.version}]
+    page.includeCSS.txRkwWebcheck = EXT:rkw_webcheck/Resources/Public/Styles/webcheck-2.0.css
+    page.includeJSFooter.txRkwWebcheck = EXT:rkw_webcheck/Resources/Public/Scripts/webcheck-2.0.js
+[global]
+
+[globalVar = LIT:1 = {$plugin.tx_rkwwebcheck.settings.includeJQuery}]
+	page.includeJSFooterlibs.txRkwWebcheck  = EXT:rkw_webcheck/Resources/Public/Scripts/jquery-3.4.1.min.js
+[global]

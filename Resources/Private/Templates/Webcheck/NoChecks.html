@@ -1,17 +1,20 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     data-namespace-typo3-fluid="true">
-<f:layout name="Default" />
+    <f:layout name="Default" />
 
-<f:section name="main">
+    <f:section name="main">
 
-    <h2>{f:translate(key: 'templates_webcheck_noChecks.errorHeadline')}</h2>
+        <h2>{f:translate(key: 'templates_webcheck_noChecks.errorHeadline')}</h2>
+        <p>{f:translate(key: 'templates_webcheck_noChecks.noChecksText')}</p>
 
-    <p>{f:translate(key: 'templates_webcheck_noChecks.noChecksText')}</p>
+        <div class="btn-list btn-list--footer flex flex-end">
+            <f:link.page
+                class="btn btn--primary"
+                pageUid="{startpage}"
+            >{f:translate(key: 'templates_webcheck_noChecks.errorButton')}
+            </f:link.page>
+        </div>
 
-    <p class="top-margin">
-        <f:link.page pageUid="{startpage}" class="button button--submit">{f:translate(key: 'templates_webcheck_noChecks.errorButton')}</f:link.page>
-    </p>
-
-</f:section>
+    </f:section>
 
 </html>

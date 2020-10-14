@@ -4,13 +4,11 @@
 
     <f:section name="main">
         <f:comment><h1>{check.name -> f:format.raw()}</h1></f:comment>
-        <div>
-            {check.description -> f:format.html()}
-        </div>
+        {check.description -> f:format.html()}
 
         <f:render partial="FlashMessages" arguments="{_all}" />
 
-        <f:form action="checkStart" enctype="multipart/form-data">
+        <f:form action="checkStart" enctype="multipart/form-data" section="tx-rkwwebcheck-main">
 
             <f:if condition="{frontendUser.txRkwregistrationIsAnonymous}">
                 <f:then>
@@ -31,11 +29,11 @@
                 </f:else>
             </f:if>
 
-            <p>
+            <div class="flex-container flex-basis-12 btn-list">
                 <button type="submit" class="btn btn--primary">
                     <span>{f:translate(key: 'templates_webcheck_checkInit.startCheck')}</span>
                 </button>
-            </p>
+            </div>
 
         </f:form>
 

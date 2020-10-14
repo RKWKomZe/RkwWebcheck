@@ -3,18 +3,13 @@
 
     <f:if condition="{settings.sharedCheckPid}">
         <f:if condition="{checkResult.feUser.txRkwregistrationIsAnonymous} == 0">
-            <p>&nbsp;</p>
-
-            <div class="share-box">
-
-                <f:render partial="FlashMessages" arguments="{_all}" />
-
-                <div class="share-box__cnt">
-                    <h4>{f:translate(key: 'partials_webcheck_showCheckResult_share.sendResultAsMail')}</h4>
-                </div>
-                <f:form action="shareCheckResult" enctype="multipart/form-data" name="checkResult" object="{checkResult}" class="share-box__form">
-                    <f:form.textfield class="input" name="emails" type="text" placeholder="{f:translate(key: 'partials_webcheck_showCheckResult_share.insertEmail')}" />
-                    <f:form.submit value="{f:translate(key: 'partials_webcheck_showCheckResult_share.sendMail')}" name="share" class="button" />
+            <div class="contentbox contentbox--gray mt-1">
+                <h3 class="webcheck-small-headline">{f:translate(key: 'partials_webcheck_showCheckResult_share.sendResultAsMail')}</h3>
+                <f:form action="shareCheckResult" enctype="multipart/form-data" name="checkResult" object="{checkResult}" class="form webcheck-form">
+                    <div class="form__field flex">
+                        <f:form.textfield class="flex-basis-7" name="emails" type="text" placeholder="{f:translate(key: 'partials_webcheck_showCheckResult_share.insertEmail')}" />
+                        <f:form.submit value="{f:translate(key: 'partials_webcheck_showCheckResult_share.sendMail')}" name="share" class="btn btn--primary btn--small" />
+                    </div>
                 </f:form>
             </div>
         </f:if>

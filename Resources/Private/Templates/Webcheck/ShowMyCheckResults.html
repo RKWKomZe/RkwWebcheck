@@ -1,20 +1,26 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-<f:layout name="Default" />
+    <f:layout name="Default" />
 
-<f:section name="main">
+    <f:section name="main">
 
-    <f:render partial="FlashMessages" arguments="{_all}" />
+        <f:render partial="FlashMessages" arguments="{_all}" />
 
-    <f:render partial="Webcheck/ShowMyCheckResults/List" arguments="{_all}"/>
+        <f:render partial="Webcheck/ShowMyCheckResults/List" arguments="{_all}"/>
 
-    <f:if condition="{settings.newCheckPid}">
-        <p class="button-footer flex-container flex-end">
-            <f:link.page class="btn btn--primary btn--small" pageUid="{settings.newCheckPid}">{f:translate(key: 'templates_webcheck_showMyCheckResults.startNewCheck')}</f:link.page>
-        </p>
-    </f:if>
+        <f:if condition="{settings.newCheckPid}">
+            <p class="btn-list btn-list--footer">
+                <f:link.page
+                    class="btn btn--primary"
+                    pageUid="{settings.newCheckPid}"
+                    section="tx-rkwwebcheck-main"
+                >
+                    {f:translate(key: 'templates_webcheck_showMyCheckResults.startNewCheck')}
+                </f:link.page>
+            </p>
+        </f:if>
 
-</f:section>
+    </f:section>
 
 </html>

@@ -3,45 +3,37 @@
     data-namespace-typo3-fluid="true">
 
     <f:section name="Selection">
-        <div class="careercheck__questions mt-1">
+        <div class="webcheck__questions mt-1">
 
             <f:if condition="{questionResult}">
                 <f:then>
                     <f:if condition="{questionResult.sum} == {questionResult.question.value1}">
                         <f:then>
-                            <div class="form__field form__field--career">
+                            <div class="form__field form__field--webcheck">
                                 <f:form.radio
                                     id="answer1"
-                                    class="radio"
+                                    class="radio js-webcheck-tip"
                                     property="sum"
                                     value="{questionResult.question.value1}"
                                     checked="checked"
-                                    additionalAttributes="{data-id : 'answer1'}"
+                                    additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-1'}"
                                 />
-                                <label class="radio-label radio-label--career answer" for="answer1">
+                                <label class="radio-label radio-label--webcheck answer" for="answer1">
                                     <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer1 -> f:format.raw()}</rkw:glossary>
-
-                                    <f:comment>
-                                        <span class="check-indicator careercheck-icon-ok-circled"></span><br>
-                                    </f:comment>
                                 </label>
                             </div>
                         </f:then>
                         <f:else>
-                            <div class="form__field form__field--career">
+                            <div class="form__field form__field--webcheck">
                                 <f:form.radio
                                     id="answer1"
-                                    class="radio"
+                                    class="radio js-webcheck-tip"
                                     property="sum"
                                     value="{questionResult.question.value1}"
-                                    additionalAttributes="{data-id : 'answer1'}"
+                                    additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-1'}"
                                 />
-                                <label class="radio-label radio-label--career answer" for="answer1">
+                                <label class="radio-label radio-label--webcheck answer" for="answer1">
                                     <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer1 -> f:format.raw()}</rkw:glossary>
-
-                                    <f:comment>
-                                        <span class="check-indicator careercheck-icon-ok-circled"></span><br>
-                                    </f:comment>
                                 </label>
                             </div>
 
@@ -49,41 +41,33 @@
                     </f:if>
                     <f:if condition="{questionResult.sum} == {questionResult.question.value2}">
                         <f:then>
-                            <div class="form__field form__field--career">
+                            <div class="form__field form__field--webcheck">
                                 <f:form.radio
                                     id="answer2"
-                                    class="radio"
+                                    class="radio js-webcheck-tip"
                                     property="sum"
                                     value="{questionResult.question.value2}"
                                     checked="checked"
-                                    additionalAttributes="{data-id : 'answer2'}"
+                                    additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-2'}"
                                 />
 
-                                <label class="radio-label radio-label--career answer" for="answer2">
+                                <label class="radio-label radio-label--webcheck answer" for="answer2">
                                     <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer2 -> f:format.raw()}</rkw:glossary>
-
-                                    <f:comment>
-                                        <span class="check-indicator careercheck-icon-ok-circled"></span><br>
-                                    </f:comment>
                                 </label>
                             </div>
 
                         </f:then>
                         <f:else>
-                            <div class="form__field form__field--career">
+                            <div class="form__field form__field--webcheck">
                                 <f:form.radio
                                     id="answer2"
-                                    class="radio"
+                                    class="radio js-webcheck-tip"
                                     property="sum"
                                     value="{questionResult.question.value2}"
-                                    additionalAttributes="{data-id : 'answer2'}"
+                                    additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-2'}"
                                 />
-                                <label class="radio-label radio-label--career answer" for="answer2">
+                                <label class="radio-label radio-label--webcheck answer" for="answer2">
                                     <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer2 -> f:format.raw()}</rkw:glossary>
-
-                                    <f:comment>
-                                        <span class="check-indicator careercheck-icon-ok-circled"></span><br>
-                                    </f:comment>
                                 </label>
                             </div>
 
@@ -91,41 +75,33 @@
                     </f:if>
                     <f:if condition="{questionResult.sum} == {questionResult.question.value3}">
                         <f:then>
-                            <div class="form__field form__field--career">
+                            <div class="form__field form__field--webcheck">
                                 <f:form.radio
                                     id="answer3"
-                                    class="radio"
+                                    class="radio js-webcheck-tip"
                                     property="sum"
                                     value="{questionResult.question.value3}"
                                     checked="checked"
-                                    additionalAttributes="{data-id : 'answer3'}"
+                                    additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-3'}"
                                 />
-                                <label class="radio-label radio-label--career answer" for="answer3">
+                                <label class="radio-label radio-label--webcheck answer" for="answer3">
                                     <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer3 -> f:format.raw()}</rkw:glossary>
-
-                                    <f:comment>
-                                        <span class="check-indicator careercheck-icon-ok-circled"></span><br>
-                                    </f:comment>
                                 </label>
                             </div>
 
                         </f:then>
                         <f:else>
-                            <div class="form__field form__field--career">
+                            <div class="form__field form__field--webcheck">
                                 <f:form.radio
                                     id="answer3"
-                                    class="radio"
+                                    class="radio js-webcheck-tip"
                                     property="sum"
                                     value="{questionResult.question.value3}"
-                                    additionalAttributes="{data-id : 'answer3'}"
+                                    additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-3'}"
                                 />
 
-                                <label class="radio-label radio-label--career answer" for="answer3">
+                                <label class="radio-label radio-label--webcheck answer" for="answer3">
                                     <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer3 -> f:format.raw()}</rkw:glossary>
-
-                                    <f:comment>
-                                        <span class="check-indicator careercheck-icon-ok-circled"></span><br>
-                                    </f:comment>
                                 </label>
                             </div>
 
@@ -135,57 +111,46 @@
 
                 <f:else>
 
-                    <div class="form__field form__field--career">
+                    <div class="form__field form__field--webcheck">
                         <f:form.radio
                             id="answer1"
-                            class="radio"
+                            class="radio js-webcheck-tip"
                             property="sum"
                             value="{questionResult.question.value1}"
                             checked="checked"
-                            additionalAttributes="{data-id : 'answer1'}"
+                            additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-1'}"
                         />
-                        <label class="radio-label radio-label--career answer" for="answer1">
+                        <label class="radio-label radio-label--webcheck answer" for="answer1">
                             <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer1 -> f:format.raw()}</rkw:glossary>
                         </label>
-
-                        <f:comment>
-                            <span class="check-indicator careercheck-icon-ok-circled"></span><br>
-                        </f:comment>
                     </div>
 
 
-                    <div class="radio-label radio-label--career answer">
+                    <div class="radio-label radio-label--webcheck answer">
                         <f:form.radio
                             id="answer2"
-                            class="radio"
+                            class="radio js-webcheck-tip"
                             property="sum"
                             name="sum"
                             value="{questionResult.question.value2}"
-                            additionalAttributes="{data-id : 'answer2'}"
+                            additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-2'}"
                         />
-                        <label class="radio-label radio-label--career answer" for="answer2">
+                        <label class="radio-label radio-label--webcheck answer" for="answer2">
                             <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer2 -> f:format.raw()}</rkw:glossary>
-                            <f:comment>
-                                <span class="check-indicator careercheck-icon-ok-circled"></span><br>
-                            </f:comment>
                         </label>
                     </div>
 
-                    <div class="radio-label radio-label--career answer">
+                    <div class="radio-label radio-label--webcheck answer">
                         <f:form.radio
                             id="answer2"
-                            class="radio"
+                            class="radio js-webcheck-tip"
                             property="sum"
                             name="sum"
                             value="{questionResult.question.value3}"
-                            additionalAttributes="{data-id : 'answer3'}"
+                            additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-3'}"
                         />
-                        <label class="radio-label radio-label--career answer" for="answer3">
+                        <label class="radio-label radio-label--webcheck answer" for="answer3">
                             <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer3 -> f:format.raw()}</rkw:glossary>
-
-                            <f:comment>
-                                <span class="check-indicator careercheck-icon-ok-circled"></span><br>
-                            </f:comment>
                         </label>
                     </div>
 
@@ -200,26 +165,18 @@
         <div class="tip-box mt-2">
             <div class="tip-box__header">
                 <span class="tip-box__icon"></span>
-                <p class="tip-box__headline text-uppercase career-small-headline">{f:translate(key: 'partials_webcheck_showQuestionResult_answers.tip')}</p>
+                <p class="tip-box__headline text-uppercase webcheck-small-headline">{f:translate(key: 'partials_webcheck_showQuestionResult_answers.tip')}</p>
             </div>
             <div class="tip-box__content">
-                <div class="answer" id="answer1" style="display:none">
-                    <p>
-                        <rkw:glossary glossaryList="{glossaryList}"><f:format.raw>{questionResult.question.result1}</f:format.raw></rkw:glossary>
-                    </p>
-                </div>
-
-                <div class="answer" id="answer2" style="display:none">
-                    <p>
-                        <rkw:glossary glossaryList="{glossaryList}"><f:format.raw>{questionResult.question.result2}</f:format.raw></rkw:glossary>
-                    </p>
-                </div>
-
-                <div class="answer" id="answer3" style="display:none">
-                    <p>
-                        <rkw:glossary glossaryList="{glossaryList}"><f:format.raw>{questionResult.question.result3}</f:format.raw></rkw:glossary>
-                    </p>
-                </div>
+                <p class="tip-box__text" id="tx-rkwwebcheck-tip-1">
+                    <rkw:glossary glossaryList="{glossaryList}"><f:format.raw>{questionResult.question.result1}</f:format.raw></rkw:glossary>
+                </p>
+                <p class="tip-box__text" id="tx-rkwwebcheck-tip-2">
+                    <rkw:glossary glossaryList="{glossaryList}"><f:format.raw>{questionResult.question.result2}</f:format.raw></rkw:glossary>
+                </p>
+                <p class="tip-box__text" id="tx-rkwwebcheck-tip-3">
+                    <rkw:glossary glossaryList="{glossaryList}"><f:format.raw>{questionResult.question.result3}</f:format.raw></rkw:glossary>
+                </p>
             </div>
         </div>
 

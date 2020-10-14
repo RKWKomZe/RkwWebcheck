@@ -5,16 +5,16 @@
 
 <f:section name="main">
 
-    <div class="flex" id="check-head">
-        <h2></h2>
+    <div class="contentbox__webcheck-header flex webcheck-intro" id="tx-rkwwebcheck-main">
         <h2 class="h2 h2--infoflag-space">{f:translate(key: 'templates_webcheck_showCheckResult.overviewResults')}</h2>
-        <p><em>{checkResult.webcheck.name} ({f:format.date(date: checkResult.crdate, format: 'd.m.Y - H:i')} Uhr)</em></p>
     </div>
+
+    <f:render partial="FlashMessages" arguments="{_all}" />
+
+    <p><em>{checkResult.webcheck.name} ({f:format.date(date: checkResult.crdate, format: 'd.m.Y - H:i')} Uhr)</em></p>
 
     <!-- Summary -->
     <f:render partial="Webcheck/ShowCheckResult/Summary" arguments="{_all}"/>
-
-    <div class="clear"><!-- --></div>
 
     <!-- Partial results -->
     <f:render partial="Webcheck/ShowCheckResult/Topics" arguments="{_all}"/>
@@ -22,21 +22,25 @@
     <!-- Benchmarks -->
     <f:render partial="Webcheck/ShowCheckResult/Benchmark" arguments="{_all}"/>
 
-    <div class="clear"><!-- --></div>
-
     <!-- Sharing -->
     <f:render partial="Webcheck/ShowCheckResult/Share" arguments="{_all}"/>
 
-    <f:comment>
         <div class="share-box feedback-box">
             <div class="share-box__cnt">
                 <h4>{f:translate(key: 'templates_webcheck_showCheckResult.sendFeedback')}</h4>
             </div>
             <form class="share-box__form">
-                <f:link.action action="feedback" pageUid="{settings.feedback}" class="button">{f:translate(key: 'templates_webcheck_showCheckResult.toFeedback')}</f:link.action>
+                <f:link.action
+                    class="button"
+
+                    action="feedback"
+                    pageUid="{settings.feedback}"
+                    section="tx-rkwwebcheck-main"
+                >
+                    {f:translate(key: 'templates_webcheck_showCheckResult.toFeedback')}
+                </f:link.action>
             </form>
         </div>
-    </f:comment>
 </f:section>
 
 </html>

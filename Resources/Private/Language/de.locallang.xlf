@@ -285,12 +285,12 @@
             </trans-unit>
 
 
-            <!-- Partials/Webcheck/ShowQuestionResult/QuestionDescription.html -->
-            <trans-unit id="partials_webcheck_showQuestionResult_question.descriptionOfQuestion">
+            <!-- Partials/Webcheck/ShowQuestionResult/Modal.html -->
+            <trans-unit id="partials_webcheck_showQuestionResult_modal.descriptionOfQuestion">
                 <source>Additional Description</source>
                 <target>Weitere Informationen</target>
             </trans-unit>
-            <trans-unit id="partials_webcheck_showQuestionResult_question.backToQuestion">
+            <trans-unit id="partials_webcheck_showQuestionResult_modal.backToQuestion">
                 <source>BAck to Question</source>
                 <target>Zurück zur Frage</target>
             </trans-unit>
@@ -346,14 +346,6 @@
                 <source>Overview of shared results for "%s"</source>
                 <target>Geteiltes Gesamtergebnis für "%s"</target>
             </trans-unit>
-            <trans-unit id="templates_webcheck_showSharedCheckResult.andYou">
-                <source>And how good are you?</source>
-                <target>Und wie gut sind Sie?</target>
-            </trans-unit>
-            <trans-unit id="templates_webcheck_showSharedCheckResult.checkNow">
-                <source>Check now</source>
-                <target>Jetzt Check machen</target>
-            </trans-unit>
 
 
             <!-- Partials/Webcheck/ShowSharedCheckResult/Summary.html -->
@@ -368,6 +360,14 @@
             <trans-unit id="partials_webcheck_showSharedCheckResult_summary.text">
                 <source>%s %s made the RKW Check "%s" and reached the following result.</source>
                 <target>%s %s hat den RKW Check "%s" gemacht und dieses Ergebnis erreicht.</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showSharedCheckResult_summary.andYou">
+                <source>And how good are you?</source>
+                <target>Und wie gut sind Sie?</target>
+            </trans-unit>
+            <trans-unit id="partials_webcheck_showSharedCheckResult_summary.checkNow">
+                <source>Check now</source>
+                <target>Jetzt Check machen</target>
             </trans-unit>
 
 
