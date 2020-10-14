@@ -62,7 +62,7 @@ if ($currentVersion < 8000000) {
         public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, \TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface $renderingContext)
         {
             $glossaryList = $arguments['glossaryList'];
-            $cssClass = $arguments['cssClass'] ? $arguments['cssClass'] : 'careercheck__glossary';
+            $cssClass = $arguments['cssClass'] ? $arguments['cssClass'] : 'webcheck__glossary';
             $string = $renderChildrenClosure();
 
             if ($glossaryList instanceof \TYPO3\CMS\Extbase\Persistence\QueryResultInterface) {
@@ -138,7 +138,7 @@ if ($currentVersion < 8000000) {
         public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
         {
             $glossaryList = $arguments['glossaryList'];
-            $cssClass = $arguments['cssClass'] ? $arguments['cssClass'] : 'careercheck__glossary';
+            $cssClass = $arguments['cssClass'] ? $arguments['cssClass'] : 'webcheck__glossary';
             $string = $renderChildrenClosure();
 
             if ($glossaryList instanceof \TYPO3\CMS\Extbase\Persistence\QueryResultInterface) {
