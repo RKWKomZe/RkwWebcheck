@@ -64,7 +64,7 @@ module.tx_rkwwebcheck {
 }
 
 [globalVar = LIT:1 = {$plugin.tx_rkwwebcheck.settings.version}]
-    page.includeJSFooter.txRkwWebcheck = EXT:rkw_webcheck/Resources/Public/Js/webcheck-1.0.js
+    page.includeJSFooter.txRkwWebcheck = EXT:rkw_webcheck/Resources/Public/Scripts/webcheck-1.0.js
 [global]
 
 [globalVar = LIT:2 = {$plugin.tx_rkwwebcheck.settings.version}]
