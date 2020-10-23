@@ -8,34 +8,35 @@
 
         <f:render partial="FlashMessages" arguments="{_all}" />
 
-        <f:form action="checkStart" enctype="multipart/form-data" section="tx-rkwwebcheck-main">
+        <div class="flex-container">
+            <f:form action="checkStart" enctype="multipart/form-data" section="tx-rkwwebcheck-main" class="flex flex-basis-8 full-width-medium space-between">
+                <f:if condition="{frontendUser.txRkwregistrationIsAnonymous}">
+                    <f:then>
+                        <div class="form__field break-after">
+                            <f:form.checkbox
+                                class="checkbox"
+                                id="terms"
+                                name="terms"
+                                value="1"
+                            />
+                            <label for="terms" class="checkbox-label">
+                                {f:translate(key: 'templates_webcheck_checkInit.iAcceptThe')} <f:link.page pageUid="{settings.termsPid}" target="_blank">{f:translate(key: 'templates_webcheck_checkInit.terms')}</f:link.page>
+                            </label>
+                        </div>
+                    </f:then>
+                    <f:else>
+                        <f:form.hidden name="terms" value="1" />
+                    </f:else>
+                </f:if>
 
-            <f:if condition="{frontendUser.txRkwregistrationIsAnonymous}">
-                <f:then>
-                    <div class="form__field">
-                        <f:form.checkbox
-                            class="checkbox"
-                            id="terms"
-                            name="terms"
-                            value="1"
-                        />
-                        <label for="terms" class="checkbox-label">
-                            {f:translate(key: 'templates_webcheck_checkInit.iAcceptThe')} <f:link.page pageUid="{settings.termsPid}" target="_blank">{f:translate(key: 'templates_webcheck_checkInit.terms')}</f:link.page>
-                        </label>
-                    </div>
-                </f:then>
-                <f:else>
-                    <f:form.hidden name="terms" value="1" />
-                </f:else>
-            </f:if>
+                <div class="form__field flex space-start full-width-narrow">
+                    <button type="submit" class="btn btn--primary">
+                        <span>{f:translate(key: 'templates_webcheck_checkInit.startCheck')}</span>
+                    </button>
+                </div>
 
-            <div class="flex-container flex-basis-12 btn-list">
-                <button type="submit" class="btn btn--primary">
-                    <span>{f:translate(key: 'templates_webcheck_checkInit.startCheck')}</span>
-                </button>
-            </div>
-
-        </f:form>
+            </f:form>
+        </div>
 
 
     </f:section>
