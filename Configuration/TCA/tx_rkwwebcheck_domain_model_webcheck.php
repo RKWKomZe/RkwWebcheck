@@ -169,7 +169,7 @@ return [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
-                'eval' => 'trim',
+                'eval' => 'trim, required',
             ],
         ],
         'result_b'         => [
@@ -179,7 +179,7 @@ return [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
-                'eval' => 'trim',
+                'eval' => 'trim, required',
             ],
         ],
         'result_c'         => [
@@ -189,7 +189,7 @@ return [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
-                'eval' => 'trim',
+                'eval' => 'trim, required',
             ],
         ],
         'topics'           => [
