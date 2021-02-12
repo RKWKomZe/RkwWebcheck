@@ -141,25 +141,8 @@ return [
             'label'   => 'LLL:EXT:rkw_webcheck/Resources/Private/Language/locallang_db.xlf:tx_rkwwebcheck_domain_model_webcheck.check_pid',
             'exclude' => 1,
             'config'  => array(
-                'type'    => 'input',
-                'size'    => '50',
-                'max'     => '1024',
-                'eval'    => 'trim,required',
-                'wizards' => array(
-                    'link' => array(
-                        'type'         => 'popup',
-                        'title'        => 'Seite',
-                        'icon'         => 'actions-wizard-link',
-                        'module'       => array(
-                            'name'          => 'wizard_link',
-                        ),
-                        'JSopenParams' => 'height=600,width=600,status=0,menubar=0,scrollbars=1',
-                        'params'       => array(
-                            'blindLinkOptions' => 'file,mail,folder,url',
-                        ),
-                    ),
-                ),
-                'softref' => 'typolink',
+                'type' => 'input',
+                'renderType' => 'inputLink',
             ),
         ),
         'result_a'         => [
