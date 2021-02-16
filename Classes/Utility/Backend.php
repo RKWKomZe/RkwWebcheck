@@ -1,6 +1,6 @@
 <?php
 
-namespace RKW\RkwWebcheck\Helper;
+namespace RKW\RkwWebcheck\Utility;
 
 use RKW\RkwWebcheck\Domain\Model\Webcheck;
 
@@ -19,14 +19,12 @@ use RKW\RkwWebcheck\Domain\Model\Webcheck;
 
 /**
  * Backend
- * Due to the large commonalities, the QueueMail-Model is derived and the other propertys for
- * QueueRecipient specially created
+ * Due to the large commonalities, the QueueMail-Model is derived and the other properties for  QueueRecipient specially created
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwWebcheck
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- * @deprecated This class is deprecated and will be removed soon. Use RKW\RkwWebcheck\Utility\Backend instead.
  */
 class Backend implements \TYPO3\CMS\Core\SingletonInterface
 {

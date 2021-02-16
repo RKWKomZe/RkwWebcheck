@@ -8,7 +8,7 @@ CREATE TABLE tx_rkwwebcheck_domain_model_webcheck (
 
 	name varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
-	check_pid int(11) DEFAULT '0' NOT NULL,
+	check_pid varchar(255) DEFAULT '' NOT NULL,
 	result_a text NOT NULL,
 	result_b text NOT NULL,
 	result_c text NOT NULL,

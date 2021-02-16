@@ -63,7 +63,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * backendHelper
      *
-     * @var \RKW\RkwWebcheck\Helper\Backend
+     * @var \RKW\RkwWebcheck\Utility\Backend
      * @inject
      */
     protected $backendHelper;
