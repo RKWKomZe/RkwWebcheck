@@ -124,19 +124,6 @@ return [
                 'enableRichtext' => true,
             ],
         ],
-        /*
-         * @toDo
-        In TYPO3 8.7 the following "check_pid" config should simply be:
-        ---
-        'config'  => array(
-            'type' => 'input',
-            'renderType' => 'inputLink',
-        ),
-        ---
-        -> But this inputLink need in SQL a varchar instead an integer and does not only persist a UID
-        -> Effect: Several links which are using the (int) PID are not longer functional
-        (search for "$checkResult->getWebcheck()->getCheckPid()" and {checkResult.webcheck.checkPid})
-         */
         'check_pid'        => array(
             'label'   => 'LLL:EXT:rkw_webcheck/Resources/Private/Language/locallang_db.xlf:tx_rkwwebcheck_domain_model_webcheck.check_pid',
             'exclude' => 1,

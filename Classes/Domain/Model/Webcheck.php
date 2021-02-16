@@ -43,7 +43,7 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * checkPid
      *
-     * @var int
+     * @var string
      * @validate NotEmpty
      */
     protected $checkPid = 0;
@@ -125,7 +125,7 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the checkPid
      *
-     * @return int $checkPid
+     * @return string $checkPid
      */
     public function getCheckPid()
     {
@@ -135,7 +135,7 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the checkPid
      *
-     * @param int $checkPid
+     * @param string $checkPid
      * @return void
      */
     public function setCheckPid($checkPid)
