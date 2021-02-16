@@ -1,4 +1,6 @@
+{namespace rkw=RKW\RkwWebcheck\ViewHelpers}
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
     <div class="table-wrapper flex-container my-1 webcheck">
@@ -30,8 +32,8 @@
                                 <f:link.action
                                     class="btn btn--secondary btn--small"
                                     action="showCheckResult"
-                                    arguments="{checkResult :checkResult}"
-                                    pageUid="{checkResult.webcheck.checkPid}"
+                                    arguments="{checkResult:checkResult}"
+                                    pageUid="{rkw:getPidFromTypolink(typolink:'{checkResult.webcheck.checkPid}')}"
                                     section="tx-rkwwebcheck-main"
                                     >
                                     {f:translate(key: 'partials_webcheck_showMyCheckResults_list.result')}

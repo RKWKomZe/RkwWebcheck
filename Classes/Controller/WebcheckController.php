@@ -5,6 +5,7 @@ namespace RKW\RkwWebcheck\Controller;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use \RKW\RkwBasics\Helper\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use \RKW\RkwWebcheck\Utility\Misc;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /*
@@ -1092,7 +1093,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                             array(
                                 'questionResult' => $firstQuestionResult,
                             ),
-                            intval($checkResult->getWebcheck()->getCheckPid())
+                            MISC::getUidFromTypolink($checkResult->getWebcheck()->getCheckPid())
                         );
                         //===
                     }
@@ -1114,7 +1115,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                             array(
                                 'questionResult' => $lastQuestionResult,
                             ),
-                            intval($checkResult->getWebcheck()->getCheckPid())
+                            MISC::getUidFromTypolink($checkResult->getWebcheck()->getCheckPid())
                         );
                         //===
                     }
