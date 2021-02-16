@@ -128,8 +128,19 @@ return [
             'label'   => 'LLL:EXT:rkw_webcheck/Resources/Private/Language/locallang_db.xlf:tx_rkwwebcheck_domain_model_webcheck.check_pid',
             'exclude' => 1,
             'config'  => array(
-                'type' => 'input',
-                'renderType' => 'inputLink',
+                'type' => 'group',
+                'internal_type' => 'db',
+                'allowed' => 'pages',
+                'maxitems' => 1,
+                'minitems' => 0,
+                'size' => 1,
+                'default' => 0,
+                'suggestOptions' => [
+                    'default' => [
+                        'additionalSearchFields' => 'nav_title, alias, url',
+                        'addWhere' => 'AND pages.doktype = 1'
+                    ]
+                ]
             ),
         ),
         'result_a'         => [
