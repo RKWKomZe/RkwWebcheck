@@ -723,7 +723,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                                     'pageUid'     => intval($GLOBALS['TSFE']->id),
                                     'checkResult' => $checkResult,
                                 ),
-                                'subject' => \RKW\RkwMailer\Helper\FrontendLocalization::translate(
+                                'subject' => \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
                                     'rkwMailService.adminCheckFinished.subject',
                                     'rkw_webcheck',
                                     array($checkResult->getWebcheck()->getName()),
@@ -735,7 +735,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
                     // set default subject
                     $mailService->getQueueMail()->setSubject(
-                        \RKW\RkwMailer\Helper\FrontendLocalization::translate(
+                        \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
                             'rkwMailService.adminCheckFinished.subject',
                             'rkw_webcheck',
                             array($checkResult->getWebcheck()->getName()),
@@ -875,7 +875,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
                     // set default subject
                     $mailService->getQueueMail()->setSubject(
-                        \RKW\RkwMailer\Helper\FrontendLocalization::translate(
+                        \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
                             'rkwMailService.shareCheck.subject',
                             'rkw_webcheck',
                             array(
@@ -889,7 +889,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 } else {
                     // set default subject
                     $mailService->getQueueMail()->setSubject(
-                        \RKW\RkwMailer\Helper\FrontendLocalization::translate(
+                        \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
                             'rkwMailService.shareCheck.subjectAnonymous',
                             'rkw_webcheck',
                             array(
