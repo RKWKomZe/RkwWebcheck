@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
 	<file datatype="plaintext" original="messages" product-name="rkw_webcheck" source-language="en" target-language="de" date="2017-08-17T15:06:22Z">
 		<header>
@@ -690,7 +690,7 @@
 			</trans-unit>
 			<trans-unit id="templates_backend_list.intro12" approved="no">
 				<source>Show user data</source>
-				<target phase-name="approval-1" state="final">Weiterhin werden die Benutzendendaten der Person angezeigt, welcher dieses Ergebnis zugeordnet ist.</target>
+				<target phase-name="approval-1" state="final">Weiterhin werden die Nutzendendaten der Person angezeigt, welcher dieses Ergebnis zugeordnet ist.</target>
 			</trans-unit>
 			<trans-unit id="templates_backend_list.check_results">
 				<source>Check results:</source>
