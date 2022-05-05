@@ -74,7 +74,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 							'pageUid' => $pageId,
 							'checkResult' => $checkResult,
 						),
-						'subject' => \RKW\RkwMailer\Helper\FrontendLocalization::translate(
+						'subject' => \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
 							'rkwMailService.adminCheckFinished.subject',
 							'rkw_webcheck',
 							array($checkResult->getWebcheck()->getName()),
@@ -86,7 +86,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 
 			// set default subject
 			$mailService->getQueueMail()->setSubject(
-				\RKW\RkwMailer\Helper\FrontendLocalization::translate(
+				\RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
 					'rkwMailService.adminCheckFinished.subject',
 					'rkw_webcheck',
 					array($checkResult->getWebcheck()->getName())
@@ -187,7 +187,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 
 				// set default subject
 				$mailService->getQueueMail()->setSubject(
-					\RKW\RkwMailer\Helper\FrontendLocalization::translate(
+					\RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
 						'rkwMailService.shareCheck.subject',
 						'rkw_webcheck',
 						array(
@@ -201,7 +201,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 			} else {
 				// set default subject
 				$mailService->getQueueMail()->setSubject(
-					\RKW\RkwMailer\Helper\FrontendLocalization::translate(
+					\RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
 						'rkwMailService.shareCheck.subjectAnonymous',
 						'rkw_webcheck',
 						array(
@@ -273,7 +273,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 							'grade' => $grade,
 							'remarks' => $remarks
 						),
-						'subject' => \RKW\RkwMailer\Helper\FrontendLocalization::translate(
+						'subject' => \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
 							'rkwMailService.adminFeedback.subject',
 							'rkw_webcheck',
 							array($checkResult->getWebcheck()->getName()),
@@ -285,7 +285,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 
 			// set default subject
 			$mailService->getQueueMail()->setSubject(
-				\RKW\RkwMailer\Helper\FrontendLocalization::translate(
+				\RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
 					'rkwMailService.adminFeedback.subject',
 					'rkw_webcheck',
 					array($checkResult->getWebcheck()->getName())
