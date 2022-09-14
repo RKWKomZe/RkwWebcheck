@@ -299,7 +299,7 @@
             <!-- Partials/Webcheck/ShowQuestionResult/Answers.html -->
             <trans-unit id="partials_webcheck_showQuestionResult_answers.tip">
                 <source>Tip</source>
-                <target>RKW Tipp</target>
+                <target>Hinweis</target>
             </trans-unit>
 
 
