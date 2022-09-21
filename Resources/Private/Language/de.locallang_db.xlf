@@ -35,6 +35,14 @@
                 <source>Topics</source>
                 <target>Themenkomplexe</target>
             </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_webcheck.show_hints">
+                <source>Show hints</source>
+                <target>Hinweise zu den Antwortoptionen anzeigen</target>
+            </trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_webcheck.show_hints.enabled">
+				<source>Enabled</source>
+				<target>Aktiviert</target>
+			</trans-unit>
 
 
             <!-- tx_rkwwebcheck_domain_model_topic -->
@@ -91,7 +99,7 @@
             </trans-unit>
             <trans-unit id="tx_rkwwebcheck_domain_model_question.result_1">
                 <source>Rating Answer 1</source>
-                <target>Bewertungstext für Antwort 1</target>
+                <target>Hinweis für Antwort 1</target>
             </trans-unit>
             <trans-unit id="tx_rkwwebcheck_domain_model_question.value_1">
                 <source>Value Answer 1</source>
@@ -103,7 +111,7 @@
             </trans-unit>
             <trans-unit id="tx_rkwwebcheck_domain_model_question.result_2">
                 <source>Rating Answer 2</source>
-                <target>Bewertungstext für Antwort 2</target>
+                <target>Hinweis für Antwort 2</target>
             </trans-unit>
             <trans-unit id="tx_rkwwebcheck_domain_model_question.value_2">
                 <source>Value Answer 2</source>
@@ -115,7 +123,7 @@
             </trans-unit>
             <trans-unit id="tx_rkwwebcheck_domain_model_question.result_3">
                 <source>Rating Answer 3</source>
-                <target>Bewertungstext für Antwort 3</target>
+                <target>Hinweis für Antwort 3</target>
             </trans-unit>
             <trans-unit id="tx_rkwwebcheck_domain_model_question.value_3">
                 <source>Value Answer 3</source>

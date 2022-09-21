@@ -19,6 +19,7 @@ namespace RKW\RkwWebcheck\Domain\Model;
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @author Philipp Grigoleit <p.grigoleit@agentur-fahrenheit.de>
  * @author Salih Özdemir <s.oezdemir@agentur-fahrenheit.de>
+ * @author Christian Dilger <c.dilger@addorange.de>
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwWebcheck
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
@@ -204,6 +205,29 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setResultC($resultC)
     {
         $this->resultC = $resultC;
+    }
+
+    /**
+     * showHints
+     *
+     * @var boolean
+     */
+    protected $showHints = true;
+
+    /**
+     * @return boolean
+     */
+    public function getShowHints()
+    {
+        return $this->showHints;
+    }
+
+    /**
+     * @param boolean $showHints
+     */
+    public function setShowHints($showHints)
+    {
+        $this->showHints = $showHints;
     }
 
     /**
