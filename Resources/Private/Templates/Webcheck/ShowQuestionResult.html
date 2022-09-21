@@ -34,7 +34,9 @@
             <f:render partial="Webcheck/ShowQuestionResult/Question" arguments="{_all}"/>
 
             <f:render partial="Webcheck/ShowQuestionResult/Answers" section="Selection" arguments="{_all}"/>
-            <f:render partial="Webcheck/ShowQuestionResult/Answers" section="Tooltips" arguments="{_all}"/>
+            <f:if condition="{questionResult.webcheck.showHints}">
+                <f:render partial="Webcheck/ShowQuestionResult/Answers" section="Tooltips" arguments="{_all}"/>
+            </f:if>
 
             <f:render partial="Webcheck/ShowQuestionResult/Pagination" arguments="{_all}"/>
 

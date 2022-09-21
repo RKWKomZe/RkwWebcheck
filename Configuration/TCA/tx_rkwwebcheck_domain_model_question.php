@@ -138,6 +138,7 @@ return [
             ],
         ],
         'result_1'         => [
+            'displayCond' => 'USER:RKW\\RkwWebcheck\\DisplayCond\\Question->useHints',
             'exclude' => false,
             'label'   => 'LLL:EXT:rkw_webcheck/Resources/Private/Language/locallang_db.xlf:tx_rkwwebcheck_domain_model_question.result_1',
             'config'  => [
@@ -170,6 +171,7 @@ return [
             ],
         ],
         'result_2'         => [
+            'displayCond' => 'USER:RKW\\RkwWebcheck\\DisplayCond\\Question->useHints',
             'exclude' => false,
             'label'   => 'LLL:EXT:rkw_webcheck/Resources/Private/Language/locallang_db.xlf:tx_rkwwebcheck_domain_model_question.result_2',
             'config'  => [
@@ -202,6 +204,7 @@ return [
             ],
         ],
         'result_3'         => [
+            'displayCond' => 'USER:RKW\\RkwWebcheck\\DisplayCond\\Question->useHints',
             'exclude' => false,
             'label'   => 'LLL:EXT:rkw_webcheck/Resources/Private/Language/locallang_db.xlf:tx_rkwwebcheck_domain_model_question.result_3',
             'config'  => [

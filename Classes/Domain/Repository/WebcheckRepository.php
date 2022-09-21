@@ -43,4 +43,30 @@ class WebcheckRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         return $query->execute();
         //===
     }
+
+    /**
+     * find check by included question
+     *
+     * @param integer $questionId (the id of the included question)
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     */
+    public function findByQuestion(int $questionId = 0)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(false);
+
+        $query->statement(
+            'SELECT tx_rkwwebcheck_domain_model_webcheck.*
+            FROM tx_rkwwebcheck_domain_model_webcheck
+            INNER JOIN tx_rkwwebcheck_topic_question_mm ON tx_rkwwebcheck_topic_question_mm.uid_foreign = ' . $questionId . '
+            INNER JOIN tx_rkwwebcheck_check_topic_mm
+            WHERE tx_rkwwebcheck_check_topic_mm.uid_foreign = tx_rkwwebcheck_topic_question_mm.uid_local
+            AND tx_rkwwebcheck_domain_model_webcheck.uid = tx_rkwwebcheck_check_topic_mm.uid_local
+            GROUP BY tx_rkwwebcheck_domain_model_webcheck.uid'
+        );
+
+        return $query->execute();
+        //===
+
+    }
 }

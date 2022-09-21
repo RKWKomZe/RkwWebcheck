@@ -35,6 +35,14 @@
                 <source>Topics</source>
                 <target>Themenkomplexe</target>
             </trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_webcheck.show_hints">
+                <source>Show hints</source>
+                <target>Hinweise zu den Antwortoptionen anzeigen</target>
+            </trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_webcheck.show_hints.enabled">
+				<source>Enabled</source>
+				<target>Aktiviert</target>
+			</trans-unit>
 
 
             <!-- tx_rkwwebcheck_domain_model_topic -->

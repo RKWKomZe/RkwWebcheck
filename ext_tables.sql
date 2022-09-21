@@ -13,6 +13,7 @@ CREATE TABLE tx_rkwwebcheck_domain_model_webcheck (
 	result_b text NOT NULL,
 	result_c text NOT NULL,
 	topics int(11) unsigned DEFAULT '0' NOT NULL,
+  show_hints tinyint(1) unsigned DEFAULT '1' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
