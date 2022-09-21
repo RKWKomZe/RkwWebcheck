@@ -28,6 +28,12 @@
 			<trans-unit id="tx_rkwwebcheck_domain_model_webcheck.topics">
 				<source>Topics</source>
 			</trans-unit>
+            <trans-unit id="tx_rkwwebcheck_domain_model_webcheck.show_hints">
+                <source>Show hints</source>
+            </trans-unit>
+			<trans-unit id="tx_rkwwebcheck_domain_model_webcheck.show_hints.enabled">
+				<source>Enabled</source>
+			</trans-unit>
 
 
             <!-- tx_rkwwebcheck_domain_model_topic -->
