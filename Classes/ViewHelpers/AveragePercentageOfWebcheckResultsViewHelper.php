@@ -23,19 +23,35 @@ namespace RKW\RkwWebcheck\ViewHelpers;
  * @package RKW_RkwWebcheck
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class AveragePercentageOfWebcheckResultsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class AveragePercentageOfWebcheckResultsViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('averagePoints', 'int', 'The average of points.', true);
+        $this->registerArgument('maxPoints', 'int', 'The maximum of points.', true);
+    }
+
+
     /**
      * calculate average topic percentage
      *
-     * @param mixed $averagePoints
-     * @param mixed $maxPoints
-     * @return integer
+     * @return float
      */
-    public function render($averagePoints, $maxPoints)
+    public function render(): float
     {
+
+        /** @var int $averagePoints */
+        $averagePoints = $this->arguments['averagePoints'];
+
+        /** @var int $maxPoints */
+        $maxPoints = $this->arguments['maxPoints'];
+
         return round($averagePoints / $maxPoints * 100, 2);
-        //===
     }
 
 }

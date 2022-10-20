@@ -14,6 +14,8 @@ namespace RKW\RkwWebcheck\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwWebcheck\Domain\Model\CheckResult;
+
 /**
  * RatingCheckCssViewHelper
  *
@@ -23,16 +25,29 @@ namespace RKW\RkwWebcheck\ViewHelpers;
  * @package RKW_RkwWebcheck
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class RatingCheckTextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class RatingCheckTextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('checkResult', CheckResult::class, 'The checkResult-object.', true);
+    }
+
+
     /**
      * Returns the corresponding text for the percentage value
      *
-     * @param \RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult
      * @return string
      */
-    public function render(\RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult)
+    public function render(): string
     {
+        /** @var \RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult */
+        $checkResult = $this->arguments['checkResult'];
+
         $rating = $checkResult->getWebcheck()->getResultA();
         if ($checkResult->getPercentage() <= 34) {
             $rating = $checkResult->getWebcheck()->getResultC();
@@ -41,7 +56,6 @@ class RatingCheckTextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
         }
 
         return $rating;
-        //===
     }
 
 }

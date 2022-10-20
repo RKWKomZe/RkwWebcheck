@@ -29,7 +29,7 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * name
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $name;
 
@@ -44,7 +44,7 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * checkPid
      *
      * @var int
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $checkPid = 0;
 
@@ -52,7 +52,7 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * resultA
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $resultA;
 
@@ -60,7 +60,7 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * resultB
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $resultB;
 
@@ -68,7 +68,7 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * resultC
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $resultC;
 
@@ -76,7 +76,7 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * topics
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\Topic>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $topics;
 

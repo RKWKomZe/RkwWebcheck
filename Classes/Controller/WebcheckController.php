@@ -3,7 +3,7 @@
 namespace RKW\RkwWebcheck\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use \RKW\RkwBasics\Helper\Common;
+use RKW\RkwBasics\Utility\GeneralUtility as Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /*
@@ -50,13 +50,13 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $persistenceManager;
 
     /**
      * @var \RKW\RkwMailer\Service\MailService
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $rkwMailer;
 
@@ -64,7 +64,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * webcheckRepository
      *
      * @var \RKW\RkwWebcheck\Domain\Repository\WebcheckRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $webcheckRepository;
 
@@ -72,7 +72,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * checkResultRepository
      *
      * @var \RKW\RkwWebcheck\Domain\Repository\CheckResultRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $checkResultRepository;
 
@@ -80,7 +80,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * questionRepository
      *
      * @var \RKW\RkwWebcheck\Domain\Repository\QuestionRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $questionRepository;
 
@@ -88,7 +88,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * questionResultRepository
      *
      * @var \RKW\RkwWebcheck\Domain\Repository\QuestionResultRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $questionResultRepository;
 
@@ -96,7 +96,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * topicRepository
      *
      * @var \RKW\RkwWebcheck\Domain\Repository\TopicRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $topicRepository;
 
@@ -104,7 +104,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * topicResultRepository
      *
      * @var \RKW\RkwWebcheck\Domain\Repository\TopicResultRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $topicResultRepository;
 
@@ -112,7 +112,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * User Repository
      *
      * @var \RKW\RkwWebcheck\Domain\Repository\FrontendUserRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $frontendUserRepository;
 
@@ -120,7 +120,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * BackendUserRepository
      *
      * @var \RKW\RkwWebcheck\Domain\Repository\BackendUserRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $backendUserRepository;
 
@@ -128,7 +128,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * GlossaryRepository
      *
      * @var \RKW\RkwWebcheck\Domain\Repository\GlossaryRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $glossaryRepository;
 
@@ -827,7 +827,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
                 foreach ($emailArray as $email) {
 
-                    if (!\RKW\RkwRegistration\Tools\Registration::validEmail($email)) {
+                    if (!\RKW\RkwRegistration\Utility\FrontendUserUtility::validateEmail($email)) {
                         $this->addFlashMessage(
                             \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                                 'webcheckController.warning.invalidEmail',

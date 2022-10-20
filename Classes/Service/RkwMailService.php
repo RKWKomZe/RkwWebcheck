@@ -1,7 +1,7 @@
 <?php
 namespace RKW\RkwWebcheck\Service;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use \RKW\RkwBasics\Helper\Common;
+use RKW\RkwBasics\Utility\GeneralUtility as Common;
 use \RKW\RkwWebcheck\Domain\Model\FrontendUser;
 use \RKW\RkwWebcheck\Domain\Model\CheckResult;
 
@@ -142,7 +142,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 			$mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
 			foreach ($emailArray as $email) {
 
-				if (! \RKW\RkwRegistration\Tools\Registration::validEmail($email)) {
+				if (! \RKW\RkwRegistration\Utility\FrontendUserUtility::validateEmail($email)) {
 
 					$errorMessages[] = 	\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
 											'webcheckController.warning.invalidEmail',

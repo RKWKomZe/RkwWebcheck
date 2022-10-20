@@ -60,7 +60,7 @@ class TopicResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * results
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\QuestionResult>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $results;
 

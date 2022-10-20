@@ -7,7 +7,7 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use Spipu\Html2Pdf\Html2Pdf;
 use Spipu\Html2Pdf\Exception\Html2PdfException;
 use Spipu\Html2Pdf\Exception\ExceptionFormatter;
-use \RKW\RkwBasics\Helper\Common;
+use RKW\RkwBasics\Utility\GeneralUtility as Common;
 use RKW\RkwWebcheck\Domain\Model\Webcheck;
 use RKW\RkwWebcheck\Domain\Model\CheckResult;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -40,7 +40,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 {
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $persistenceManager;
 
@@ -48,7 +48,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * webcheckRepository
      *
      * @var \RKW\RkwWebcheck\Domain\Repository\WebcheckRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $webcheckRepository;
 
@@ -56,7 +56,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * checkResultRepository
      *
      * @var \RKW\RkwWebcheck\Domain\Repository\CheckResultRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $checkResultRepository;
 
@@ -64,7 +64,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * backendHelper
      *
      * @var \RKW\RkwWebcheck\Utility\Backend
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $backendHelper;
 

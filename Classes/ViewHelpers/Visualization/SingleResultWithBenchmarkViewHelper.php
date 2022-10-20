@@ -26,7 +26,7 @@ use \TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  * @package RKW_RkwWebcheck
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class SingleResultWithBenchmarkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class SingleResultWithBenchmarkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
     /**
@@ -36,22 +36,38 @@ class SingleResultWithBenchmarkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelp
      */
     protected $escapeOutput = false;
 
+
+    /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('benchmarkPercent', 'float', 'The percentage value for the benchmark result.', true);
+        $this->registerArgument('resultPercent', 'float', 'The percentage value for the individual result', true);
+    }
+
+
     /**
      * google virtualization single result
      *
-     * @param float $resultPercent
-     * @param float $benchmarkPercent
      * @return string $string
      */
-    public function render($resultPercent, $benchmarkPercent)
+    public function render(): string
     {
+
+        /** @var float $resultPercent */
+        $resultPercent = $this->arguments['resultPercent'];
+
+        /** @var float $benchmarkPercent */
+        $benchmarkPercent = $this->arguments['benchmarkPercent'];
 
         return "
 			<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
             <script type='text/javascript'>
 				google.charts.load('current', {'packages':['corechart']});
 				google.charts.setOnLoadCallback(drawVisualization);
-			
+
 				function drawVisualization() {
 					var data = google.visualization.arrayToDataTable([
 						[
@@ -65,7 +81,7 @@ class SingleResultWithBenchmarkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelp
 						" . floatval($benchmarkPercent) . "
 						]
 					]);
-			
+
 					var options = {
 						title : '',
 						legend: {
@@ -90,7 +106,7 @@ class SingleResultWithBenchmarkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelp
 							}
 						}
 					};
-			
+
 					var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 					chart.draw(data, options);
 				}

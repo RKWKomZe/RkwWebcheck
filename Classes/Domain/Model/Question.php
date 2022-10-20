@@ -31,7 +31,7 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * question
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $question;
 
@@ -46,7 +46,7 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * answer1
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $answer1;
 
@@ -54,7 +54,7 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * result1
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $result1;
 
@@ -62,7 +62,7 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * value1
      *
      * @var int
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $value1 = 0;
 
@@ -70,7 +70,7 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * answer2
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $answer2;
 
@@ -78,7 +78,7 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * result2
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $result2;
 
@@ -86,7 +86,7 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * value2
      *
      * @var int
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $value2 = 0;
 
@@ -94,7 +94,7 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * answer3
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $answer3;
 
@@ -102,7 +102,7 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * result3
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $result3;
 
@@ -110,7 +110,7 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * value3
      *
      * @var int
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $value3 = 0;
 
