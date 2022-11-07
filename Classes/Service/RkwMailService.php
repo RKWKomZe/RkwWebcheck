@@ -142,7 +142,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 			$mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
 			foreach ($emailArray as $email) {
 
-				if (! \RKW\RkwRegistration\Utility\FrontendUserUtility::validateEmail($email)) {
+				if (! \RKW\RkwRegistration\Utility\FrontendUserUtility::isEmailValid($email)) {
 
 					$errorMessages[] = 	\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
 											'webcheckController.warning.invalidEmail',

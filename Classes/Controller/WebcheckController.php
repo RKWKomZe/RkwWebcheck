@@ -827,7 +827,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
                 foreach ($emailArray as $email) {
 
-                    if (!\RKW\RkwRegistration\Utility\FrontendUserUtility::validateEmail($email)) {
+                    if (!\RKW\RkwRegistration\Utility\FrontendUserUtility::isEmailValid($email)) {
                         $this->addFlashMessage(
                             \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                                 'webcheckController.warning.invalidEmail',
