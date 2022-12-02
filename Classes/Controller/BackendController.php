@@ -7,7 +7,7 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use Spipu\Html2Pdf\Html2Pdf;
 use Spipu\Html2Pdf\Exception\Html2PdfException;
 use Spipu\Html2Pdf\Exception\ExceptionFormatter;
-use RKW\RkwBasics\Utility\GeneralUtility as Common;
+use Madj2k\CoreExtended\Utility\GeneralUtility as Common;
 use RKW\RkwWebcheck\Domain\Model\Webcheck;
 use RKW\RkwWebcheck\Domain\Model\CheckResult;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -150,7 +150,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         try {
 
-            if ($settingsFramework = Common::getTyposcriptConfiguration($this->extensionName, ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK)) {
+            if ($settingsFramework = Common::getTypoScriptConfiguration($this->extensionName, ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK)) {
 
                 /** @var \TYPO3\CMS\Fluid\View\StandaloneView $standaloneView */
                 $standaloneView = GeneralUtility::makeInstance(\TYPO3\CMS\Fluid\View\StandaloneView::class);

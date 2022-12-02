@@ -3,7 +3,7 @@
 namespace RKW\RkwWebcheck\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use RKW\RkwBasics\Utility\GeneralUtility as Common;
+use Madj2k\CoreExtended\Utility\GeneralUtility as Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /*
@@ -700,7 +700,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             // 5. Send email notification to admin
             if (
                 ($checkResult->getCompleted() == 0)
-                && ($settingsFramework = Common::getTyposcriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
+                && ($settingsFramework = Common::getTypoScriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
                 && (isset($settingsFramework['view']))
                 && (isset($settingsFramework['view']['templateRootPaths']))
             ) {
@@ -818,7 +818,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         // 2. Send email
         try {
             if (
-                ($settingsFramework = Common::getTyposcriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
+                ($settingsFramework = Common::getTypoScriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
                 && (isset($settingsFramework['view']))
                 && (isset($settingsFramework['view']['templateRootPaths']))
             ) {

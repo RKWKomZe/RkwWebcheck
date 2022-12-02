@@ -1,7 +1,7 @@
 <?php
 namespace RKW\RkwWebcheck\Service;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use RKW\RkwBasics\Utility\GeneralUtility as Common;
+use Madj2k\CoreExtended\Utility\GeneralUtility as Common;
 use \RKW\RkwWebcheck\Domain\Model\FrontendUser;
 use \RKW\RkwWebcheck\Domain\Model\CheckResult;
 
@@ -54,7 +54,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 	) {
 
 		if (
-			($settingsFramework = Common::getTyposcriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
+			($settingsFramework = Common::getTypoScriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
 			&& ((isset($settingsFramework['view'])))
 			&& ((isset($settingsFramework['view']['templateRootPaths'])))
 		) {
@@ -133,7 +133,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 		$errorMessages = FALSE;
 
 		if (
-				($settingsFramework = Common::getTyposcriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
+				($settingsFramework = Common::getTypoScriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
 				&& (isset($settingsFramework['view']))
 				&& (isset($settingsFramework['view']['templateRootPaths']))
 		){
@@ -252,7 +252,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 		$remarks
 	) {
 		if (
-			($settingsFramework = Common::getTyposcriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
+			($settingsFramework = Common::getTypoScriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
 			&& ((isset($settingsFramework['view'])))
 			&& ((isset($settingsFramework['view']['templateRootPaths'])))
 		) {
