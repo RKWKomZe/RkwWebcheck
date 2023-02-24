@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwWebcheck\Domain\Repository;
 
 /*
@@ -15,6 +14,11 @@ namespace RKW\RkwWebcheck\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwWebcheck\Domain\Model\FrontendUser;
+use RKW\RkwWebcheck\Domain\Model\Webcheck;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+
 /**
  * Class CheckResultRepository
  *
@@ -27,13 +31,16 @@ namespace RKW\RkwWebcheck\Domain\Repository;
  */
 class CheckResultRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
+
     /**
      * Set setRespectStorage on FALSE by default
+     *
+     * @return void
      */
-    public function initializeObject()
+    public function initializeObject(): void
     {
         /** @var \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings $querySettings */
-        $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+        $querySettings = $this->objectManager->get(Typo3QuerySettings::class);
         $querySettings->setRespectStoragePage(false); // ignore the storagePid
         $this->setDefaultQuerySettings($querySettings);
     }
@@ -43,16 +50,16 @@ class CheckResultRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * get CheckResults that are completed by checkId and userId
      * sorted by tstamp
      *
-     * @param \RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck
+     * @param int $checkId
      * @param \RKW\RkwWebcheck\Domain\Model\FrontendUser $feUser
      * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findCompletedByCheckAndFeUser($webcheck, $feUser)
+    public function findCompletedByWebcheckIdAndFeUser(int $checkId, FrontendUser $feUser): QueryResultInterface
     {
         $query = $this->createQuery();
         $query->matching(
             $query->logicalAnd(
-                $query->equals("webcheck", $webcheck),
+                $query->equals("webcheck", $checkId),
                 $query->equals("feUser", $feUser),
                 $query->equals("completed", 1)
             )
@@ -61,7 +68,6 @@ class CheckResultRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query->setOrderings(array("tstamp" => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
 
         return $query->execute();
-        //===
     }
 
 
@@ -70,9 +76,9 @@ class CheckResultRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * sorted by tstamp
      *
      * @param \RKW\RkwWebcheck\Domain\Model\FrontendUser $feUser
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findByFeUser($feUser)
+    public function findByFeUser(FrontendUser $feUser): QueryResultInterface
     {
         $query = $this->createQuery();
         $query->matching(
@@ -81,7 +87,6 @@ class CheckResultRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query->setOrderings(array("tstamp" => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
 
         return $query->execute();
-        //===
     }
 
 
@@ -89,10 +94,10 @@ class CheckResultRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * find checkResults for a specific check that is completed
      * sorted by tstamp
      *
-     * @param \RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @param \RKW\RkwWebcheck\Domain\Model\Webcheck|null $webcheck
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findByWebcheck($webcheck)
+    public function findByWebcheck(Webcheck $webcheck = null): QueryResultInterface
     {
         $query = $this->createQuery();
 
@@ -106,7 +111,30 @@ class CheckResultRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query->setOrderings(array("tstamp" => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
 
         return $query->execute();
-        //===
+    }
+
+
+    /**
+     * find checkResults for a specific check that is completed
+     * sorted by tstamp
+     *
+     * @param int $webcheckUid
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     */
+    public function findByWebcheckUid(int $webcheckUid = 0): QueryResultInterface
+    {
+        $query = $this->createQuery();
+
+        $query->matching(
+            $query->logicalAnd(
+                $query->equals("webcheck", $webcheckUid),
+                $query->equals("completed", 1)
+            )
+        );
+
+        $query->setOrderings(array("tstamp" => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+
+        return $query->execute();
     }
 
 
@@ -119,7 +147,7 @@ class CheckResultRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param bool $array
      * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function getCompletedByCheckId($checkId, $array)
+    public function getCompletedByWebcheckId(int $checkId, bool $array): QueryResultInterface
     {
         $query = $this->createQuery();
 
@@ -134,10 +162,8 @@ class CheckResultRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         if ($array) {
             return $query->execute(true);
-            //===
         }
 
         return $query->execute();
-        //===
     }
 }

@@ -1,8 +1,5 @@
 <?php
-
 namespace RKW\RkwWebcheck\ViewHelpers\Visualization;
-
-use \TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -17,6 +14,8 @@ use \TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  * The TYPO3 project - inspiring people to share!
  */
 
+use \TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+
 /**
  * Class OverallResultOfWebcheckViewHelper
  *
@@ -26,7 +25,7 @@ use \TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  * @package RKW_RkwWebcheck
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class OverallResultOfWebcheckViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class OverallResultOfWebcheckViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * As this ViewHelper renders HTML, the output must not be escaped.
@@ -35,21 +34,37 @@ class OverallResultOfWebcheckViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper
      */
     protected $escapeOutput = false;
 
+
+    /**
+     * Initialize arguments
+     *
+     * @return void
+     */
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+        $this->registerArgument('benchmarkPercent', 'float', 'The percentage value.', true);
+    }
+
+
     /**
      * google virtualization webcheck overall result
      *
-     * @param float $benchmarkPercent
-     * @return string $string
+     * @return string
+     *  @todo remove combination of PHP and JS. This is no fucking WordPress. JS should be outsourced into a template, maybe combined with StandaloneView
      */
-    public function render($benchmarkPercent)
+    public function render(): string
     {
+
+        /** @var float $benchmarkPercent */
+        $benchmarkPercent = $this->arguments['benchmarkPercent'];
 
         return "
 			<script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>
 			<script type=\"text/javascript\">
 				google.charts.load('current', {'packages':['corechart']});
 				google.charts.setOnLoadCallback(drawVisualization);
-			
+
 				function drawVisualization() {
 					var data = google.visualization.arrayToDataTable([
 						[
@@ -61,7 +76,7 @@ class OverallResultOfWebcheckViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper
 							" . floatval($benchmarkPercent) . "
 						]
 					]);
-			
+
 					var options = {
 						title : '',
 						legend: {
@@ -81,7 +96,7 @@ class OverallResultOfWebcheckViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper
 							},
 						}
 					};
-			
+
 					var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 					chart.draw(data, options);
 				}

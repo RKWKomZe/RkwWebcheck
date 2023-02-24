@@ -1,10 +1,5 @@
 <?php
 namespace RKW\RkwWebcheck\Service;
-use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use \RKW\RkwBasics\Helper\Common;
-use \RKW\RkwWebcheck\Domain\Model\FrontendUser;
-use \RKW\RkwWebcheck\Domain\Model\CheckResult;
-
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -18,6 +13,13 @@ use \RKW\RkwWebcheck\Domain\Model\CheckResult;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwMailer\Service\MailService;
+use RKW\RkwWebcheck\Domain\Repository\BackendUserRepository;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use Madj2k\CoreExtended\Utility\GeneralUtility;
+use RKW\RkwWebcheck\Domain\Model\FrontendUser;
+use RKW\RkwWebcheck\Domain\Model\CheckResult;
+
 /**
  * RkwMailService
  *
@@ -26,7 +28,6 @@ use \RKW\RkwWebcheck\Domain\Model\CheckResult;
  * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwWebcheck
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
  */
 class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 {
@@ -35,34 +36,33 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 	 *
 	 * @param array $adminIds
 	 * @param \RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult
-	 * @param integer $pageId
-	 *
+	 * @param int $pageId
 	 * @return void
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
-     * @throws \RKW\RkwMailer\Service\MailException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+     * @throws \RKW\RkwMailer\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
-	 */
+     */
 	public function notifyCheckResultAdmin (
-		$adminIds,
+		array $adminIds,
 		CheckResult $checkResult,
-		$pageId
-	) {
+		int $pageId
+	): void {
 
 		if (
-			($settingsFramework = Common::getTyposcriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
+			($settingsFramework = GeneralUtility::getTypoScriptConfiguration(
+                'Rkwwebcheck',
+                ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK
+            ))
 			&& ((isset($settingsFramework['view'])))
 			&& ((isset($settingsFramework['view']['templateRootPaths'])))
 		) {
 
 			/** @var \RKW\RkwMailer\Service\MailService $mailService */
-			$mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
+			$mailService = GeneralUtility::makeInstance(MailService::class);
 			/** @var \RKW\RkwWebcheck\Domain\Repository\BackendUserRepository $backendUserRepository */
-			$backendUserRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwWebcheck\\Domain\\Repository\\BackendUserRepository');
+			$backendUserRepository = GeneralUtility::makeInstance(BackendUserRepository::class);
 
 			foreach ($adminIds as $adminId) {
 
@@ -103,54 +103,51 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 	}
 
 
-
 	/**
 	 * Send mails to given eMail-addresses for sharing users check
 	 *
 	 * @param \RKW\RkwWebcheck\Domain\Model\FrontendUser $frontendUser
 	 * @param \RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult
 	 * @param array $emailArray
-	 * @param integer $sharedPage
+	 * @param int $sharedPage
 	 * @param string $hash
-	 * @return array|boolean
+	 * @return array
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
-     * @throws \RKW\RkwMailer\Service\MailException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+     * @throws \RKW\RkwMailer\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
-	 */
+     */
 	public function shareResultUser (
 			FrontendUser $frontendUser,
 			CheckResult $checkResult,
-			$emailArray,
-			$sharedPage,
-			$hash
-	) {
+			array $emailArray,
+			int $sharedPage,
+			string $hash
+	): array {
 
-		$errorMessages = FALSE;
-
+		$errorMessages = [];
 		if (
-				($settingsFramework = Common::getTyposcriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
-				&& (isset($settingsFramework['view']))
-				&& (isset($settingsFramework['view']['templateRootPaths']))
+            ($settingsFramework = GeneralUtility::getTypoScriptConfiguration(
+                'Rkwwebcheck',
+                ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK
+            ))
+            && (isset($settingsFramework['view']))
+            && (isset($settingsFramework['view']['templateRootPaths']))
 		){
 
 			/** @var \RKW\RkwMailer\Service\MailService $mailService */
-			$mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
+			$mailService = GeneralUtility::makeInstance(MailService::class);
 			foreach ($emailArray as $email) {
 
-				if (! \RKW\RkwRegistration\Tools\Registration::validEmail($email)) {
+				if (! \RKW\RkwRegistration\Utility\FrontendUserUtility::isEmailValid($email)) {
 
 					$errorMessages[] = 	\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-											'webcheckController.warning.invalidEmail',
-											'rkw_webcheck',
-											array($email)
-										);
+                        'webcheckController.warning.invalidEmail',
+                        'rkw_webcheck',
+                        array($email)
+                    );
 					continue;
-					//===
 				}
 
 				$marker = array(
@@ -162,7 +159,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 				);
 
 				if (
-					(! $frontendUser->getTxRkwregistrationIsAnonymous())
+					(! $frontendUser instanceof \RKW\RkwRegistration\Domain\Model\GuestUser)
 					&& ($frontendUser->getLastName())
 					&& ($frontendUser->getFirstName())
 				) {
@@ -180,7 +177,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 			}
 
 			if (
-				(! $frontendUser->getTxRkwregistrationIsAnonymous())
+				(! $frontendUser instanceof \RKW\RkwRegistration\Domain\Model\GuestUser)
 				&& ($frontendUser->getLastName())
 				&& ($frontendUser->getFirstName())
 			){
@@ -222,9 +219,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 		}
 
 		return $errorMessages;
-		//===
 	}
-
 
 
 	/**
@@ -232,35 +227,34 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 	 *
 	 * @param array $adminIds
 	 * @param \RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult
-	 * @param integer $grade
+	 * @param int $grade
 	 * @param string $remarks
-	 *
 	 * @return void
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
-     * @throws \RKW\RkwMailer\Service\MailException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+     * @throws \RKW\RkwMailer\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
-     * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
 	 */
 	public function sendFeedbackAdmin (
-		$adminIds,
+		array $adminIds,
 		CheckResult $checkResult,
-		$grade,
-		$remarks
-	) {
+		int $grade,
+		string $remarks
+	): void {
 		if (
-			($settingsFramework = Common::getTyposcriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
+			($settingsFramework = GeneralUtility::getTypoScriptConfiguration(
+                'Rkwwebcheck',
+                ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK
+            ))
 			&& ((isset($settingsFramework['view'])))
 			&& ((isset($settingsFramework['view']['templateRootPaths'])))
 		) {
 
 			/** @var \RKW\RkwMailer\Service\MailService $mailService */
-			$mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
+			$mailService =GeneralUtility::makeInstance(MailService::class);
+
 			/** @var \RKW\RkwWebcheck\Domain\Repository\BackendUserRepository $backendUserRepository */
-			$backendUserRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwWebcheck\\Domain\\Repository\\BackendUserRepository');
+			$backendUserRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(BackendUserRepository::class);
 
 			foreach ($adminIds as $adminId) {
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwWebcheck\Domain\Model;
 
 /*
@@ -28,101 +27,81 @@ namespace RKW\RkwWebcheck\Domain\Model;
 class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
-     * question
-     *
-     * @var string
-     * @validate NotEmpty
-     */
-    protected $question;
-
-    /**
-     * description
-     *
      * @var string
      */
-    protected $description;
+    protected string $question = '';
+
 
     /**
-     * answer1
-     *
      * @var string
-     * @validate NotEmpty
      */
-    protected $answer1;
+    protected string $description = '';
+
 
     /**
-     * result1
-     *
      * @var string
-     * @validate NotEmpty
      */
-    protected $result1;
+    protected string $answer1 = '';
+
 
     /**
-     * value1
-     *
+     * @var string
+     */
+    protected string $result1 = '';
+
+
+    /**
      * @var int
-     * @validate NotEmpty
      */
-    protected $value1 = 0;
+    protected int $value1 = 0;
+
 
     /**
-     * answer2
-     *
      * @var string
-     * @validate NotEmpty
      */
-    protected $answer2;
+    protected string $answer2 = '';
+
 
     /**
-     * result2
-     *
      * @var string
-     * @validate NotEmpty
      */
-    protected $result2;
+    protected string $result2 = '';
+
 
     /**
-     * value2
-     *
      * @var int
-     * @validate NotEmpty
      */
-    protected $value2 = 0;
+    protected int $value2 = 0;
+
 
     /**
-     * answer3
-     *
      * @var string
-     * @validate NotEmpty
      */
-    protected $answer3;
+    protected string $answer3 = '';
+
 
     /**
-     * result3
-     *
      * @var string
-     * @validate NotEmpty
      */
-    protected $result3;
+    protected string $result3 = '';
+
 
     /**
-     * value3
-     *
      * @var int
-     * @validate NotEmpty
      */
-    protected $value3 = 0;
+    protected int $value3 = 0;
+
 
     /**
      * Returns the question
      *
-     * @return string $question
+     * @return string
      */
-    public function getQuestion()
+    public function getQuestion(): string
     {
         return $this->question;
     }
+
 
     /**
      * Sets the question
@@ -130,20 +109,22 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $question
      * @return void
      */
-    public function setQuestion($question)
+    public function setQuestion(string $question): void
     {
         $this->question = $question;
     }
 
+
     /**
      * Returns the description
      *
-     * @return string $description
+     * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
+
 
     /**
      * Sets the description
@@ -151,20 +132,22 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $description
      * @return void
      */
-    public function setDescription($description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
 
+
     /**
      * Returns the answer1
      *
-     * @return string $answer1
+     * @return string
      */
-    public function getAnswer1()
+    public function getAnswer1(): string
     {
         return $this->answer1;
     }
+
 
     /**
      * Sets the answer1
@@ -172,20 +155,22 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $answer1
      * @return void
      */
-    public function setAnswer1($answer1)
+    public function setAnswer1(string $answer1): void
     {
         $this->answer1 = $answer1;
     }
 
+
     /**
      * Returns the result1
      *
-     * @return string $result1
+     * @return string
      */
-    public function getResult1()
+    public function getResult1(): string
     {
         return $this->result1;
     }
+
 
     /**
      * Sets the result1
@@ -193,20 +178,22 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $result1
      * @return void
      */
-    public function setResult1($result1)
+    public function setResult1(string $result1): void
     {
         $this->result1 = $result1;
     }
 
+
     /**
      * Returns the value1
      *
-     * @return int $value1
+     * @return int
      */
-    public function getValue1()
+    public function getValue1(): int
     {
         return $this->value1;
     }
+
 
     /**
      * Sets the value1
@@ -214,20 +201,22 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param int $value1
      * @return void
      */
-    public function setValue1($value1)
+    public function setValue1(int $value1): void
     {
         $this->value1 = $value1;
     }
+
 
     /**
      * Returns the answer2
      *
      * @return string $answer2
      */
-    public function getAnswer2()
+    public function getAnswer2(): string
     {
         return $this->answer2;
     }
+
 
     /**
      * Sets the answer2
@@ -235,20 +224,22 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $answer2
      * @return void
      */
-    public function setAnswer2($answer2)
+    public function setAnswer2(string $answer2): void
     {
         $this->answer2 = $answer2;
     }
 
+
     /**
      * Returns the result2
      *
-     * @return string $result2
+     * @return string
      */
-    public function getResult2()
+    public function getResult2(): string
     {
         return $this->result2;
     }
+
 
     /**
      * Sets the result2
@@ -256,20 +247,22 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $result2
      * @return void
      */
-    public function setResult2($result2)
+    public function setResult2(string $result2): void
     {
         $this->result2 = $result2;
     }
 
+
     /**
      * Returns the value2
      *
-     * @return int $value2
+     * @return int
      */
-    public function getValue2()
+    public function getValue2(): int
     {
         return $this->value2;
     }
+
 
     /**
      * Sets the value2
@@ -277,20 +270,22 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param int $value2
      * @return void
      */
-    public function setValue2($value2)
+    public function setValue2(int $value2): void
     {
         $this->value2 = $value2;
     }
 
+
     /**
      * Returns the answer3
      *
-     * @return string $answer3
+     * @return string
      */
-    public function getAnswer3()
+    public function getAnswer3(): string
     {
         return $this->answer3;
     }
+
 
     /**
      * Sets the answer3
@@ -298,20 +293,22 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $answer3
      * @return void
      */
-    public function setAnswer3($answer3)
+    public function setAnswer3(string $answer3): void
     {
         $this->answer3 = $answer3;
     }
 
+
     /**
      * Returns the result3
      *
-     * @return string $result3
+     * @return string
      */
-    public function getResult3()
+    public function getResult3(): string
     {
         return $this->result3;
     }
+
 
     /**
      * Sets the result3
@@ -319,20 +316,22 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $result3
      * @return void
      */
-    public function setResult3($result3)
+    public function setResult3(string $result3): void
     {
         $this->result3 = $result3;
     }
 
+
     /**
      * Returns the value3
      *
-     * @return int $value3
+     * @return int
      */
-    public function getValue3()
+    public function getValue3(): int
     {
         return $this->value3;
     }
+
 
     /**
      * Sets the value3
@@ -340,7 +339,7 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param int $value3
      * @return void
      */
-    public function setValue3($value3)
+    public function setValue3(int $value3): void
     {
         $this->value3 = $value3;
     }
@@ -349,22 +348,22 @@ class Question extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Gets the value by answer
      *
-     * @param $answer
-     * @return int|null
+     * @param int $answer
+     * @return int
      */
-    public function getValueByAnswer($answer)
+    public function getValueByAnswer(int $answer): int
     {
-        $value = null;
+        $value = 0;
 
-        if ($answer == '1') {
+        if ($answer == 1) {
             $value = $this->value1;
         }
 
-        if ($answer == '2') {
+        if ($answer == 2) {
             $value = $this->value2;
         }
 
-        if ($answer == '3') {
+        if ($answer == 3) {
             $value = $this->value3;
         }
 

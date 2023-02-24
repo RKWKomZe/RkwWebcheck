@@ -23,19 +23,31 @@ namespace RKW\RkwWebcheck\ViewHelpers;
  * @package RKW_RkwWebcheck
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class PercentCalcViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class PercentCalcViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('sum', 'float', 'The current sum value.', true);
+        $this->registerArgument('maxSum', 'float', 'The maximum sum value.', true);
+    }
+
+
     /**
      * calculate percent
      *
-     * @param float $sum
-     * @param float $maxSum
-     * @return string
+     * @return float
      */
-    public function render($sum, $maxSum)
+    public function render(): float
     {
+        $sum = $this->arguments['sum'];
+        $maxSum = $this->arguments['maxSum'];
+
         return round($sum / $maxSum * 100);
-        //===
     }
 
 }

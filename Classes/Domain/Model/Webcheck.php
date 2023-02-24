@@ -1,17 +1,20 @@
 <?php
-
 namespace RKW\RkwWebcheck\Domain\Model;
 
-/***
- * /*
+/*
  * This file is part of the TYPO3 CMS project.
+ *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
  * of the License, or any later version.
+ *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
+ *
  * The TYPO3 project - inspiring people to share!
  */
+
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Class Webcheck
@@ -27,208 +30,53 @@ namespace RKW\RkwWebcheck\Domain\Model;
 class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
-     * name
-     *
-     * @var string
-     * @validate NotEmpty
-     */
-    protected $name;
-
-    /**
-     * description
-     *
      * @var string
      */
-    protected $description;
+    protected string $name = '';
+
 
     /**
-     * checkPid
-     *
+     * @var string
+     */
+    protected string $description = '';
+
+
+    /**
      * @var int
-     * @validate NotEmpty
      */
-    protected $checkPid = 0;
+    protected int $checkPid = 0;
+
 
     /**
-     * resultA
-     *
      * @var string
-     * @validate NotEmpty
      */
-    protected $resultA;
+    protected string $resultA = '';
+
 
     /**
-     * resultB
-     *
      * @var string
-     * @validate NotEmpty
      */
-    protected $resultB;
+    protected string $resultB = '';
+
 
     /**
-     * resultC
-     *
      * @var string
-     * @validate NotEmpty
      */
-    protected $resultC;
+    protected string $resultC = '';
+
 
     /**
-     * topics
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\Topic>
-     * @cascade remove
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\Topic>|null
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
-    protected $topics;
+    protected ?ObjectStorage $topics = null;
+
 
     /**
-     * Returns the name
-     *
-     * @return string $name
+     * @var bool
      */
-    public function getName()
-    {
-        return $this->name;
-    }
+    protected bool $showHints = true;
 
-    /**
-     * Sets the name
-     *
-     * @param string $name
-     * @return void
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * Returns the description
-     *
-     * @return string $description
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Sets the description
-     *
-     * @param string $description
-     * @return void
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Returns the checkPid
-     *
-     * @return int $checkPid
-     */
-    public function getCheckPid()
-    {
-        return $this->checkPid;
-    }
-
-    /**
-     * Sets the checkPid
-     *
-     * @param int $checkPid
-     * @return void
-     */
-    public function setCheckPid($checkPid)
-    {
-        $this->checkPid = $checkPid;
-    }
-
-    /**
-     * Returns the resultA
-     *
-     * @return string $resultA
-     */
-    public function getResultA()
-    {
-        return $this->resultA;
-    }
-
-    /**
-     * Sets the resultA
-     *
-     * @param string $resultA
-     * @return void
-     */
-    public function setResultA($resultA)
-    {
-        $this->resultA = $resultA;
-    }
-
-    /**
-     * Returns the resultB
-     *
-     * @return string $resultB
-     */
-    public function getResultB()
-    {
-        return $this->resultB;
-    }
-
-    /**
-     * Sets the resultB
-     *
-     * @param string $resultB
-     * @return void
-     */
-    public function setResultB($resultB)
-    {
-        $this->resultB = $resultB;
-    }
-
-    /**
-     * Returns the resultC
-     *
-     * @return string $resultC
-     */
-    public function getResultC()
-    {
-        return $this->resultC;
-    }
-
-    /**
-     * Sets the resultC
-     *
-     * @param string $resultC
-     * @return void
-     */
-    public function setResultC($resultC)
-    {
-        $this->resultC = $resultC;
-    }
-
-    /**
-     * showHints
-     *
-     * @var boolean
-     */
-    protected $showHints = true;
-
-    /**
-     * @return boolean
-     */
-    public function getShowHints()
-    {
-        return $this->showHints;
-    }
-
-    /**
-     * @param boolean $showHints
-     */
-    public function setShowHints($showHints)
-    {
-        $this->showHints = $showHints;
-    }
 
     /**
      * __construct
@@ -238,6 +86,7 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
+
 
     /**
      * Initializes all ObjectStorage properties
@@ -252,13 +101,171 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->topics = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
+
+    /**
+     * Returns the name
+     *
+     * @return string $name
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+
+    /**
+     * Sets the name
+     *
+     * @param string $name
+     * @return void
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+
+    /**
+     * Returns the description
+     *
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+
+    /**
+     * Sets the description
+     *
+     * @param string $description
+     * @return void
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+
+    /**
+     * Returns the checkPid
+     *
+     * @return int
+     */
+    public function getCheckPid(): int
+    {
+        return $this->checkPid;
+    }
+
+
+    /**
+     * Sets the checkPid
+     *
+     * @param int $checkPid
+     * @return void
+     */
+    public function setCheckPid(int $checkPid): void
+    {
+        $this->checkPid = $checkPid;
+    }
+
+
+    /**
+     * Returns the resultA
+     *
+     * @return string
+     */
+    public function getResultA(): string
+    {
+        return $this->resultA;
+    }
+
+
+    /**
+     * Sets the resultA
+     *
+     * @param string $resultA
+     * @return void
+     */
+    public function setResultA(string $resultA): void
+    {
+        $this->resultA = $resultA;
+    }
+
+
+    /**
+     * Returns the resultB
+     *
+     * @return string
+     */
+    public function getResultB(): string
+    {
+        return $this->resultB;
+    }
+
+
+    /**
+     * Sets the resultB
+     *
+     * @param string $resultB
+     * @return void
+     */
+    public function setResultB(string $resultB): void
+    {
+        $this->resultB = $resultB;
+    }
+
+
+    /**
+     * Returns the resultC
+     *
+     * @return string
+     */
+    public function getResultC(): string
+    {
+        return $this->resultC;
+    }
+
+
+    /**
+     * Sets the resultC
+     *
+     * @param string $resultC
+     * @return void
+     */
+    public function setResultC(string $resultC): void
+    {
+        $this->resultC = $resultC;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function getShowHints(): bool
+    {
+        return $this->showHints;
+    }
+
+
+    /**
+     * @param bool $showHints
+     * @return void
+     */
+    public function setShowHints(bool $showHints): void
+    {
+        $this->showHints = $showHints;
+    }
+
+
     /**
      * Adds a Topic
      *
      * @param \RKW\RkwWebcheck\Domain\Model\Topic $topic
      * @return void
      */
-    public function addTopic(Topic $topic)
+    public function addTopic(Topic $topic): void
     {
         $this->topics->attach($topic);
     }
@@ -269,20 +276,22 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwWebcheck\Domain\Model\Topic $topicToRemove The Topic to be removed
      * @return void
      */
-    public function removeTopic(Topic $topicToRemove)
+    public function removeTopic(Topic $topicToRemove): void
     {
         $this->topics->detach($topicToRemove);
     }
+
 
     /**
      * Returns the topics
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\Topic> $topics
      */
-    public function getTopics()
+    public function getTopics(): ObjectStorage
     {
         return $this->topics;
     }
+
 
     /**
      * Sets the topics
@@ -290,7 +299,7 @@ class Webcheck extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\Topic> $topics
      * @return void
      */
-    public function setTopics($topics)
+    public function setTopics(ObjectStorage $topics): void
     {
         $this->topics = $topics;
     }

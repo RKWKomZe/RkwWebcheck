@@ -1,6 +1,6 @@
 <?php
-
 namespace RKW\RkwWebcheck\ViewHelpers;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -23,16 +23,31 @@ namespace RKW\RkwWebcheck\ViewHelpers;
  * @package RKW_RkwWebcheck
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class RatingCssViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class RatingCssViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    /**
+     * Initialize arguments
+     *
+     * @return void
+     */
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+        $this->registerArgument('percentage', 'float', 'The percentage value.', false, 0.0);
+    }
+
+
     /**
      * Returns the corresponding CSS-Class for the percentage value
      *
-     * @param float $percentage
      * @return string
      */
-    public function render($percentage = 0.0)
+    public function render(): string
     {
+        /** @var float $percentage */
+        $percentage = $this->arguments['percentage'];
+
         $rating = 'good';
         if ($percentage <= 34) {
             $rating = 'bad';
@@ -41,7 +56,6 @@ class RatingCssViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewH
         }
 
         return $rating;
-        //===
     }
 
 }

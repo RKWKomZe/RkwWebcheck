@@ -1,6 +1,6 @@
 <?php
-
 namespace RKW\RkwWebcheck\ViewHelpers;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -14,6 +14,8 @@ namespace RKW\RkwWebcheck\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  * GetMaxPointsOfTopicViewHelper
  *
@@ -23,18 +25,32 @@ namespace RKW\RkwWebcheck\ViewHelpers;
  * @package RKW_RkwWebcheck
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class GetMaxPointsOfTopicViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class GetMaxPointsOfTopicViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    /**
+     * Initialize arguments
+     *
+     * @return void
+     */
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+        $this->registerArgument('questions', ObjectStorage::class, 'The objectStorage of questions', true);
+    }
+
+
     /**
      * get maximum points of a topic
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $questions
-     * @return string
+     * @return int
      */
-    public function render(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $questions)
+    public function render(): int
     {
+        /** @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage $questions */
+        $questions = $this->arguments['questions'];
+
         return count($questions) * 2;
-        //===
     }
 
 }

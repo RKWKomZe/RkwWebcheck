@@ -137,7 +137,7 @@
                 <source>An error occured while trying to send your result. Please try again.</source>
             </trans-unit>
             <trans-unit id="webcheckController.success.sentSharingEmails">
-                <source>Wohoo! Your result been sent successfully.</source>
+                <source>Woohoo! Your result been sent successfully.</source>
             </trans-unit>
             <trans-unit id="webcheckController.warning.missingParamsSharing">
                 <source>The link you used seems not be valid. Please contact our support.</source>
@@ -155,7 +155,7 @@
                 <source>Unfortunately editing the check result was not possible Please contact our support.</source>
             </trans-unit>
             <trans-unit id="webcheckController.success.checkDeleted">
-                <source>Wohoo! The check results have been deleted successfully.</source>
+                <source>Woohoo! The check results have been deleted successfully.</source>
             </trans-unit>
             <trans-unit id="webcheckController.warning.noChecks">
                 <source>Unfortunately you didn't complete a check yet. Please complete a check to be able to benchmark it.</source>
