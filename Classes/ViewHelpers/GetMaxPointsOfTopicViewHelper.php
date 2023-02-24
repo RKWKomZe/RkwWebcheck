@@ -1,6 +1,6 @@
 <?php
-
 namespace RKW\RkwWebcheck\ViewHelpers;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -14,7 +14,6 @@ namespace RKW\RkwWebcheck\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
-use RKW\RkwWebcheck\Domain\Model\Topic;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
@@ -31,8 +30,10 @@ class GetMaxPointsOfTopicViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Ab
 
     /**
      * Initialize arguments
+     *
+     * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('questions', ObjectStorage::class, 'The objectStorage of questions', true);

@@ -1,6 +1,6 @@
 <?php
-
 namespace RKW\RkwWebcheck\ViewHelpers;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -30,8 +30,10 @@ class RatingCheckTextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstra
 
     /**
      * Initialize arguments
+     *
+     * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('checkResult', CheckResult::class, 'The checkResult-object.', true);

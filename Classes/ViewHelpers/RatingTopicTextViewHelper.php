@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwWebcheck\ViewHelpers;
 /*
  * This file is part of the TYPO3 CMS project.
@@ -14,9 +13,7 @@ namespace RKW\RkwWebcheck\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
-use RKW\RkwWebcheck\Domain\Model\CheckResult;
 use RKW\RkwWebcheck\Domain\Model\TopicResult;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * RatingTopicCssViewHelper
@@ -30,12 +27,12 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 class RatingTopicTextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
-
-
     /**
      * Initialize arguments
+     *
+     * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('checkResult', TopicResult::class, 'The topicResult-object.', true);

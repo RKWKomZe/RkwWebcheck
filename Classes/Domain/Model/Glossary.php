@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwWebcheck\Domain\Model;
 
 /*
@@ -16,7 +15,7 @@ namespace RKW\RkwWebcheck\Domain\Model;
  */
 
 /**
- * Class Topic
+ * Class Glossary
  *
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @copyright RKW Kompetenzzentrum
@@ -25,28 +24,23 @@ namespace RKW\RkwWebcheck\Domain\Model;
  */
 class Glossary extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-    /**
-     * name
-     *
-     * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $name;
 
     /**
-     * description
-     *
      * @var string
      */
-    protected $description;
+    protected string $name = '';
 
 
     /**
-     * webcheck
-     *
-     * @var \RKW\RkwWebcheck\Domain\Model\Webcheck
+     * @var string
      */
-    protected $webcheck;
+    protected string $description = '';
+
+
+    /**
+     * @var \RKW\RkwWebcheck\Domain\Model\Webcheck|null
+     */
+    protected ?Webcheck $webcheck = null;
 
 
     /**
@@ -54,10 +48,11 @@ class Glossary extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $name
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
+
 
     /**
      * Sets the name
@@ -65,20 +60,22 @@ class Glossary extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $name
      * @return void
      */
-    public function setName($name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
+
     /**
      * Returns the description
      *
-     * @return string $description
+     * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
+
 
     /**
      * Sets the description
@@ -86,20 +83,22 @@ class Glossary extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $description
      * @return void
      */
-    public function setDescription($description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
 
+
     /**
      * Returns the webcheck
      *
-     * @return \RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck
+     * @return \RKW\RkwWebcheck\Domain\Model\Webcheck
      */
-    public function getWebcheck()
+    public function getWebcheck():? Webcheck
     {
         return $this->webcheck;
     }
+
 
     /**
      * Sets the webcheck
@@ -107,9 +106,8 @@ class Glossary extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck
      * @return void
      */
-    public function setWebcheck(\RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck)
+    public function setWebcheck(Webcheck $webcheck): void
     {
         $this->webcheck = $webcheck;
     }
-
 }

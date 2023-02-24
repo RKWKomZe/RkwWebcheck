@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwWebcheck\Domain\Model;
 
 /*
@@ -29,39 +28,34 @@ class QuestionResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
     /**
-     * sum
-     *
      * @var int
      */
-    protected $sum = 0;
+    protected int $sum = 0;
+
 
     /**
-     * webcheck
-     *
-     * @var \RKW\RkwWebcheck\Domain\Model\Webcheck
+     * @var \RKW\RkwWebcheck\Domain\Model\Webcheck|null
      */
-    protected $webcheck;
+    protected ?Webcheck $webcheck = null;
+
 
     /**
-     * topic
-     *
-     * @var \RKW\RkwWebcheck\Domain\Model\Topic
+     * @var \RKW\RkwWebcheck\Domain\Model\Topic|null
      */
-    protected $topic;
+    protected ?Topic $topic = null;
+
 
     /**
-     * question
-     *
-     * @var \RKW\RkwWebcheck\Domain\Model\Question
+     * @var \RKW\RkwWebcheck\Domain\Model\Question|null
      */
-    protected $question;
+    protected ?Question $question = null;
+
 
     /**
-     * topicResult
-     *
-     * @var \RKW\RkwWebcheck\Domain\Model\TopicResult
+     * @var \RKW\RkwWebcheck\Domain\Model\TopicResult|null
      */
-    protected $topicResult;
+    protected ?TopicResult $topicResult = null;
+
 
     /**
      * __construct
@@ -72,6 +66,7 @@ class QuestionResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->initStorageObjects();
     }
 
+
     /**
      * Initializes all ObjectStorage properties
      * Do not modify this method!
@@ -80,7 +75,7 @@ class QuestionResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return void
      */
-    protected function initStorageObjects()
+    protected function initStorageObjects(): void
     {
         $this->results = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
@@ -89,12 +84,13 @@ class QuestionResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the sum
      *
-     * @return int $sum
+     * @return int
      */
-    public function getSum()
+    public function getSum(): int
     {
         return $this->sum;
     }
+
 
     /**
      * Sets the sum
@@ -102,20 +98,22 @@ class QuestionResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param int $sum
      * @return void
      */
-    public function setSum($sum)
+    public function setSum(int $sum): void
     {
         $this->sum = $sum;
     }
 
+
     /**
      * Returns the webcheck
      *
-     * @return \RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck
+     * @return \RKW\RkwWebcheck\Domain\Model\Webcheck
      */
-    public function getWebcheck()
+    public function getWebcheck():? Webcheck
     {
         return $this->webcheck;
     }
+
 
     /**
      * Sets the webcheck
@@ -123,20 +121,22 @@ class QuestionResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck
      * @return void
      */
-    public function setWebcheck(\RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck)
+    public function setWebcheck(Webcheck $webcheck): void
     {
         $this->webcheck = $webcheck;
     }
 
+
     /**
      * Returns the topic
      *
-     * @return \RKW\RkwWebcheck\Domain\Model\Topic $topic
+     * @return \RKW\RkwWebcheck\Domain\Model\Topic
      */
-    public function getTopic()
+    public function getTopic():? Topic
     {
         return $this->topic;
     }
+
 
     /**
      * Sets the topic
@@ -144,20 +144,22 @@ class QuestionResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwWebcheck\Domain\Model\Topic $topic
      * @return void
      */
-    public function setTopic(\RKW\RkwWebcheck\Domain\Model\Topic $topic)
+    public function setTopic(Topic $topic): void
     {
         $this->topic = $topic;
     }
 
+
     /**
      * Returns the question
      *
-     * @return \RKW\RkwWebcheck\Domain\Model\Question $question
+     * @return \RKW\RkwWebcheck\Domain\Model\Question
      */
-    public function getQuestion()
+    public function getQuestion():? Question
     {
         return $this->question;
     }
+
 
     /**
      * Sets the question
@@ -165,7 +167,7 @@ class QuestionResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwWebcheck\Domain\Model\Question $question
      * @return void
      */
-    public function setQuestion(\RKW\RkwWebcheck\Domain\Model\Question $question)
+    public function setQuestion(Question $question): void
     {
         $this->question = $question;
     }
@@ -174,12 +176,13 @@ class QuestionResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the topicResult
      *
-     * @return \RKW\RkwWebcheck\Domain\Model\TopicResult $topicResult
+     * @return \RKW\RkwWebcheck\Domain\Model\TopicResult
      */
-    public function getTopicResult()
+    public function getTopicResult():? TopicResult
     {
         return $this->topicResult;
     }
+
 
     /**
      * Sets the topicResult
@@ -187,7 +190,7 @@ class QuestionResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwWebcheck\Domain\Model\TopicResult $topicResult
      * @return void
      */
-    public function setTopicResult(\RKW\RkwWebcheck\Domain\Model\TopicResult $topicResult)
+    public function setTopicResult(TopicResult $topicResult): void
     {
         $this->topicResult = $topicResult;
     }

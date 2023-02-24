@@ -42,8 +42,9 @@ class GlossaryViewHelper extends AbstractViewHelper
      * Initialize arguments.
      *
      * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
+     * @return voiud
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('glossaryList', QueryResultInterface::class, 'A queryResult of glossary-objects', true);
@@ -76,8 +77,14 @@ class GlossaryViewHelper extends AbstractViewHelper
             $cnt = 0;
             foreach ($glossaryList as $glossary) {
                 if ($glossary instanceof \RKW\RkwWebcheck\Domain\Model\Glossary) {
-                    $string = preg_replace('/\b(' . $glossary->getName() . ')\b/i', '<!-- REPLACEMENT-START-' . $cnt . ' -->' . strip_tags("$1") . '<!-- REPLACEMENT-END-' . $cnt . ' -->', $string);
-                    $replacementArray['<!-- REPLACEMENT-START-' . $cnt . ' -->'] = '<span class="' . $cssClass . '" title="' . addslashes($glossary->getDescription()) . '">';
+                    $string = preg_replace(
+                        '/\b(' . $glossary->getName() . ')\b/i',
+                        '<!-- REPLACEMENT-START-' . $cnt . ' -->' . strip_tags("$1")
+                            . '<!-- REPLACEMENT-END-' . $cnt . ' -->',
+                        $string
+                    );
+                    $replacementArray['<!-- REPLACEMENT-START-' . $cnt . ' -->'] = '<span class="' . $cssClass
+                        . '" title="' . addslashes($glossary->getDescription()) . '">';
                     $replacementArray['<!-- REPLACEMENT-END-' . $cnt . ' -->'] = '</span>';
                     $cnt++;
                 }

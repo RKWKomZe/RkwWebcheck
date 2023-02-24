@@ -1,8 +1,5 @@
 <?php
-
 namespace RKW\RkwWebcheck\ViewHelpers\Visualization;
-
-use \TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -16,6 +13,8 @@ use \TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  *
  * The TYPO3 project - inspiring people to share!
  */
+
+use \TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Class OverallResultOfWebcheckViewHelper
@@ -35,19 +34,24 @@ class OverallResultOfWebcheckViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelpe
      */
     protected $escapeOutput = false;
 
+
     /**
      * Initialize arguments
+     *
+     * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('benchmarkPercent', 'float', 'The percentage value.', true);
     }
 
+
     /**
      * google virtualization webcheck overall result
      *
-     * @return string $string
+     * @return string
+     *  @todo remove combination of PHP and JS. This is no fucking WordPress. JS should be outsourced into a template, maybe combined with StandaloneView
      */
     public function render(): string
     {

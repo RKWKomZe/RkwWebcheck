@@ -39,8 +39,10 @@ class SingleResultWithBenchmarkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHel
 
     /**
      * Initialize arguments
+     *
+     * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('benchmarkPercent', 'float', 'The percentage value for the benchmark result.', true);
@@ -52,6 +54,7 @@ class SingleResultWithBenchmarkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHel
      * google virtualization single result
      *
      * @return string $string
+     *  @todo remove combination of PHP and JS. This is no fucking WordPress. JS should be outsourced into a template, maybe combined with StandaloneView
      */
     public function render(): string
     {

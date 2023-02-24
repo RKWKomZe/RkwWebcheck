@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwWebcheck\Domain\Model;
 
 /*
@@ -15,6 +14,8 @@ namespace RKW\RkwWebcheck\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  * Class Topic
  *
@@ -27,182 +28,49 @@ namespace RKW\RkwWebcheck\Domain\Model;
  */
 class Topic extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-    /**
-     * name
-     *
-     * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $name;
 
     /**
-     * description
-     *
      * @var string
      */
-    protected $description;
+    protected string $name = '';
+
 
     /**
-     * weight
-     *
+     * @var string
+     */
+    protected string $description = '';
+
+
+    /**
      * @var float
      */
-    protected $weight = 0.0;
+    protected float $weight = 0.0;
+
 
     /**
-     * resultA
-     *
      * @var string
      */
-    protected $resultA;
+    protected string $resultA = '';
+
 
     /**
-     * resultB
-     *
      * @var string
      */
-    protected $resultB;
+    protected string $resultB = '';
+
 
     /**
-     * resultC
-     *
      * @var string
      */
-    protected $resultC;
+    protected string $resultC = '';
+
 
     /**
-     * questions
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\Question>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\Question>|null
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
-    protected $questions;
+    protected ?ObjectStorage $questions = null;
 
-    /**
-     * Returns the name
-     *
-     * @return string $name
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Sets the name
-     *
-     * @param string $name
-     * @return void
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * Returns the description
-     *
-     * @return string $description
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Sets the description
-     *
-     * @param string $description
-     * @return void
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Returns the weight
-     *
-     * @return float $weight
-     */
-    public function getWeight()
-    {
-        return $this->weight;
-    }
-
-    /**
-     * Sets the weight
-     *
-     * @param float $weight
-     * @return void
-     */
-    public function setWeight($weight)
-    {
-        $this->weight = $weight;
-    }
-
-    /**
-     * Returns the resultA
-     *
-     * @return string $resultA
-     */
-    public function getResultA()
-    {
-        return $this->resultA;
-    }
-
-    /**
-     * Sets the resultA
-     *
-     * @param string $resultA
-     * @return void
-     */
-    public function setResultA($resultA)
-    {
-        $this->resultA = $resultA;
-    }
-
-    /**
-     * Returns the resultB
-     *
-     * @return string $resultB
-     */
-    public function getResultB()
-    {
-        return $this->resultB;
-    }
-
-    /**
-     * Sets the resultB
-     *
-     * @param string $resultB
-     * @return void
-     */
-    public function setResultB($resultB)
-    {
-        $this->resultB = $resultB;
-    }
-
-    /**
-     * Returns the resultC
-     *
-     * @return string $resultC
-     */
-    public function getResultC()
-    {
-        return $this->resultC;
-    }
-
-    /**
-     * Sets the resultC
-     *
-     * @param string $resultC
-     * @return void
-     */
-    public function setResultC($resultC)
-    {
-        $this->resultC = $resultC;
-    }
 
     /**
      * __construct
@@ -212,6 +80,7 @@ class Topic extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
+
 
     /**
      * Initializes all ObjectStorage properties
@@ -226,13 +95,152 @@ class Topic extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->questions = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
+
+    /**
+     * Returns the name
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+
+    /**
+     * Sets the name
+     *
+     * @param string $name
+     * @return void
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+
+    /**
+     * Returns the description
+     *
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+
+    /**
+     * Sets the description
+     *
+     * @param string $description
+     * @return void
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+
+    /**
+     * Returns the weight
+     *
+     * @return float
+     */
+    public function getWeight(): float
+    {
+        return $this->weight;
+    }
+
+
+    /**
+     * Sets the weight
+     *
+     * @param float $weight
+     * @return void
+     */
+    public function setWeight(float $weight): void
+    {
+        $this->weight = $weight;
+    }
+
+
+    /**
+     * Returns the resultA
+     *
+     * @return string
+     */
+    public function getResultA(): string
+    {
+        return $this->resultA;
+    }
+
+
+    /**
+     * Sets the resultA
+     *
+     * @param string $resultA
+     * @return void
+     */
+    public function setResultA(string $resultA): void
+    {
+        $this->resultA = $resultA;
+    }
+
+
+    /**
+     * Returns the resultB
+     *
+     * @return string
+     */
+    public function getResultB(): string
+    {
+        return $this->resultB;
+    }
+
+
+    /**
+     * Sets the resultB
+     *
+     * @param string $resultB
+     * @return void
+     */
+    public function setResultB(string $resultB): void
+    {
+        $this->resultB = $resultB;
+    }
+
+
+    /**
+     * Returns the resultC
+     *
+     * @return string
+     */
+    public function getResultC(): string
+    {
+        return $this->resultC;
+    }
+
+
+    /**
+     * Sets the resultC
+     *
+     * @param string $resultC
+     * @return void
+     */
+    public function setResultC(string $resultC): void
+    {
+        $this->resultC = $resultC;
+    }
+
+
     /**
      * Adds a Question
      *
      * @param \RKW\RkwWebcheck\Domain\Model\Question $question
      * @return void
      */
-    public function addQuestion(\RKW\RkwWebcheck\Domain\Model\Question $question)
+    public function addQuestion(Question $question): void
     {
         $this->questions->attach($question);
     }
@@ -243,20 +251,22 @@ class Topic extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwWebcheck\Domain\Model\Question $questionToRemove The Question to be removed
      * @return void
      */
-    public function removeQuestion(\RKW\RkwWebcheck\Domain\Model\Question $questionToRemove)
+    public function removeQuestion(Question $questionToRemove): void
     {
         $this->questions->detach($questionToRemove);
     }
 
+
     /**
      * Returns the questions
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\Question> $questions
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\Question>
      */
-    public function getQuestions()
+    public function getQuestions(): ObjectStorage
     {
         return $this->questions;
     }
+
 
     /**
      * Sets the questions
@@ -264,7 +274,7 @@ class Topic extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\Question> $questions
      * @return void
      */
-    public function setQuestions($questions)
+    public function setQuestions(ObjectStorage $questions): void
     {
         $this->questions = $questions;
     }

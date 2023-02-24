@@ -1,6 +1,6 @@
 <?php
-
 namespace RKW\RkwWebcheck\ViewHelpers;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -28,8 +28,10 @@ class RatingCssViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractView
 
     /**
      * Initialize arguments
+     *
+     * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('percentage', 'float', 'The percentage value.', false, 0.0);

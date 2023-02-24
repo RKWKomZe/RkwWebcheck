@@ -1,6 +1,6 @@
 <?php
-
 namespace RKW\RkwWebcheck\ViewHelpers;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -28,8 +28,10 @@ class AveragePercentageOfWebcheckResultsViewHelper extends \TYPO3Fluid\Fluid\Cor
 
     /**
      * Initialize arguments
+     *
+     * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('averagePoints', 'int', 'The average of points.', true);

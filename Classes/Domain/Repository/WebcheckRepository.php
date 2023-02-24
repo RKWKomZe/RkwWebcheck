@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwWebcheck\Domain\Repository;
 
 /*
@@ -14,6 +13,8 @@ namespace RKW\RkwWebcheck\Domain\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
+
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
  * Class WebcheckRepository
@@ -32,25 +33,25 @@ class WebcheckRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * get all checks
      * sorted by name
      *
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findAllOrderByName()
+    public function findAllOrderByName(): QueryResultInterface
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
-        $query->setOrderings(array('name' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+        $query->setOrderings(['name' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
 
         return $query->execute();
-        //===
     }
+
 
     /**
      * find check by included question
      *
-     * @param integer $questionId (the id of the included question)
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @param int $questionId (the id of the included question)
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findByQuestion(int $questionId = 0)
+    public function findByQuestion(int $questionId = 0): QueryResultInterface
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
@@ -66,7 +67,6 @@ class WebcheckRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         );
 
         return $query->execute();
-        //===
 
     }
 }

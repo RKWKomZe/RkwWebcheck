@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwWebcheck\Domain\Model;
 
 /*
@@ -15,6 +14,10 @@ namespace RKW\RkwWebcheck\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwRegistration\Domain\Model\GuestUser;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+
 /**
  * Class CheckResult
  *
@@ -29,97 +32,82 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
     /**
-     * crdate
-     *
      * @var int
      */
-    protected $crdate;
+    protected int $crdate = 0;
+
 
     /**
-     * tstamp
-     *
      * @var int
      */
-    protected $tstamp;
+    protected int $tstamp = 0;
+
 
     /**
-     * feUser
-     *
-     * @var \RKW\RkwWebcheck\Domain\Model\FrontendUser
+     * @var \RKW\RkwWebcheck\Domain\Model\FrontendUser|null
      */
-    protected $feUser = null;
+    protected ?FrontendUser $feUser = null;
+
 
     /**
-     * sum
-     *
      * @var int
      */
-    protected $sum = 0;
+    protected int $sum = 0;
 
 
     /**
-     * percentage
-     *
      * @var float
      */
-    protected $percentage = 0.0;
+    protected float $percentage = 0.0;
+
 
     /**
-     * completed
-     *
-     * @var boolean
-     */
-    protected $completed = false;
-
-    /**
-     * sendNotification
-     *
      * @var bool
      */
-    protected $sendNotification = false;
+    protected bool $completed = false;
+
 
     /**
-     * notificationTimestamp
-     *
+     * @var bool
+     */
+    protected bool $sendNotification = false;
+
+
+    /**
      * @var int
      */
-    protected $notificationTimestamp;
+    protected int $notificationTimestamp = 0;
+
 
     /**
-     * results
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\TopicResult>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\TopicResult>|null
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
-    protected $results = null;
+    protected ?ObjectStorage $results = null;
+
 
     /**
-     * lasttopic
-     *
-     * @var \RKW\RkwWebcheck\Domain\Model\Topic
+     * @var \RKW\RkwWebcheck\Domain\Model\Topic|null
      */
-    protected $lastTopic = null;
+    protected ?Topic $lastTopic = null;
+
 
     /**
-     * lastquestion
-     *
-     * @var \RKW\RkwWebcheck\Domain\Model\Question
+     * @var \RKW\RkwWebcheck\Domain\Model\Question|null
      */
-    protected $lastQuestion = null;
+    protected ?Question $lastQuestion = null;
+
 
     /**
-     * webcheck
-     *
-     * @var \RKW\RkwWebcheck\Domain\Model\Webcheck
+     * @var \RKW\RkwWebcheck\Domain\Model\Webcheck|null
      */
-    protected $webcheck;
+    protected ?Webcheck $webcheck = null;
+
 
     /**
-     * humanReadableLabel
-     *
      * @var string
      */
-    protected $humanReadableLabel;
+    protected string $humanReadableLabel = '';
 
 
     /**
@@ -130,6 +118,7 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
+
 
     /**
      * Initializes all ObjectStorage properties
@@ -148,9 +137,9 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the crdate
      *
-     * @return int $crdate
+     * @return int
      */
-    public function getCrdate()
+    public function getCrdate(): int
     {
         return $this->crdate;
     }
@@ -160,19 +149,20 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Returns the crdate
      *
      * @param string $format
-     * @return int $crdate
+     * @return string
      */
-    public function getCrdateFormated($format = 'd.m.Y - H:i \U\h\r')
+    public function getCrdateFormated(string $format = 'd.m.Y - H:i \U\h\r'): string
     {
         return date($format, $this->crdate);
     }
 
+
     /**
      * Returns the tstamp
      *
-     * @return int $tstamp
+     * @return int
      */
-    public function getTstamp()
+    public function getTstamp(): int
     {
         return $this->tstamp;
     }
@@ -183,38 +173,41 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \RKW\RkwWebcheck\Domain\Model\FrontendUser $feUser
      */
-    public function getFeUser()
+    public function getFeUser():? FrontendUser
     {
         return $this->feUser;
     }
 
+
     /**
      * Sets the feUser
      *
-     * @param \RKW\RkwWebcheck\Domain\Model\\FrontendUser $feUser
+     * @param \RKW\RkwWebcheck\Domain\Model\FrontendUser $feUser
      * @return void
      */
-    public function setFeUser($feUser)
+    public function setFeUser(FrontendUser $feUser): void
     {
         $this->feUser = $feUser;
     }
+
 
     /**
      * Deletes the feUser
      *
      * @return void
      */
-    public function deleteFeUser()
+    public function deleteFeUser(): void
     {
         $this->feUser = null;
     }
+
 
     /**
      * Returns the sum
      *
      * @return int $sum
      */
-    public function getSum()
+    public function getSum(): int
     {
         return $this->sum;
     }
@@ -226,17 +219,18 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param int $sum
      * @return void
      */
-    public function setSum($sum)
+    public function setSum(int $sum): void
     {
         $this->sum = $sum;
     }
+
 
     /**
      * Returns the percentage
      *
      * @return int $percentage
      */
-    public function getPercentage()
+    public function getPercentage(): int
     {
         return $this->percentage;
     }
@@ -248,7 +242,7 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param int $percentage
      * @return void
      */
-    public function setPercentage($percentage)
+    public function setPercentage(int $percentage): void
     {
         $this->percentage = $percentage;
     }
@@ -257,12 +251,13 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the completed
      *
-     * @return bool $completed
+     * @return bool
      */
-    public function getCompleted()
+    public function getCompleted(): bool
     {
         return $this->completed;
     }
+
 
     /**
      * Sets the completed
@@ -270,20 +265,22 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param bool $completed
      * @return void
      */
-    public function setCompleted($completed)
+    public function setCompleted(bool $completed): void
     {
         $this->completed = $completed;
     }
 
+
     /**
      * Returns the sendNotification
      *
-     * @return bool $sendNotification
+     * @return bool
      */
-    public function getSendNotification()
+    public function getSendNotification(): bool
     {
         return $this->sendNotification;
     }
+
 
     /**
      * Sets the sendNotification
@@ -291,30 +288,33 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param bool $sendNotification
      * @return void
      */
-    public function setSendNotification($sendNotification)
+    public function setSendNotification(bool $sendNotification): void
     {
         $this->sendNotification = $sendNotification;
     }
+
 
     /**
      * Returns the boolean state of sendNotification
      *
      * @return bool
      */
-    public function isSendNotification()
+    public function isSendNotification(): bool
     {
         return $this->sendNotification;
     }
 
+
     /**
      * Returns the notificationTimestamp
      *
-     * @return int $notificationTimestamp
+     * @return int
      */
-    public function getNotificationTimestamp()
+    public function getNotificationTimestamp(): int
     {
         return $this->notificationTimestamp;
     }
+
 
     /**
      * Sets the notificationTimestamp
@@ -322,10 +322,11 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param int $notificationTimestamp
      * @return void
      */
-    public function setNotificationTimestamp($notificationTimestamp)
+    public function setNotificationTimestamp(int $notificationTimestamp): void
     {
         $this->notificationTimestamp = $notificationTimestamp;
     }
+
 
     /**
      * Adds a TopicResult
@@ -333,10 +334,11 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwWebcheck\Domain\Model\TopicResult $result
      * @return void
      */
-    public function addResult(\RKW\RkwWebcheck\Domain\Model\TopicResult $result)
+    public function addResult(TopicResult $result): void
     {
         $this->results->attach($result);
     }
+
 
     /**
      * Removes a TopicResult
@@ -344,20 +346,22 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwWebcheck\Domain\Model\TopicResult $resultToRemove The TopicResult to be removed
      * @return void
      */
-    public function removeResult(\RKW\RkwWebcheck\Domain\Model\TopicResult $resultToRemove)
+    public function removeResult(TopicResult $resultToRemove): void
     {
         $this->results->detach($resultToRemove);
     }
+
 
     /**
      * Returns the results
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\TopicResult> $results
      */
-    public function getResults()
+    public function getResults(): ObjectStorage
     {
         return $this->results;
     }
+
 
     /**
      * Sets the results
@@ -365,20 +369,22 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwWebcheck\Domain\Model\TopicResult> $results
      * @return void
      */
-    public function setResults($results)
+    public function setResults(ObjectStorage $results): void
     {
         $this->results = $results;
     }
+
 
     /**
      * Returns lastTopic
      *
      * @return \RKW\RkwWebcheck\Domain\Model\Topic $lastTopic
      */
-    public function getLastTopic()
+    public function getLastTopic():? Topic
     {
         return $this->lastTopic;
     }
+
 
     /**
      * Sets lastTopic
@@ -386,20 +392,22 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwWebcheck\Domain\Model\Topic $lastTopic
      * @return void
      */
-    public function setLastTopic(\RKW\RkwWebcheck\Domain\Model\Topic $lastTopic)
+    public function setLastTopic(Topic $lastTopic): void
     {
         $this->lastTopic = $lastTopic;
     }
 
+
     /**
      * Returns lastQuestion
      *
-     * @return \RKW\RkwWebcheck\Domain\Model\Question $lastQuestion
+     * @return \RKW\RkwWebcheck\Domain\Model\Question
      */
-    public function getLastQuestion()
+    public function getLastQuestion(): Question
     {
         return $this->lastQuestion;
     }
+
 
     /**
      * Sets lastQuestion
@@ -407,20 +415,22 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwWebcheck\Domain\Model\Question $lastQuestion
      * @return void
      */
-    public function setLastQuestion(\RKW\RkwWebcheck\Domain\Model\Question $lastQuestion)
+    public function setLastQuestion(Question $lastQuestion): void
     {
         $this->lastQuestion = $lastQuestion;
     }
+
 
     /**
      * Returns the webcheck
      *
      * @return \RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck
      */
-    public function getWebcheck()
+    public function getWebcheck():? Webcheck
     {
         return $this->webcheck;
     }
+
 
     /**
      * Sets the webcheck
@@ -428,10 +438,11 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck
      * @return void
      */
-    public function setWebcheck(\RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck)
+    public function setWebcheck(Webcheck $webcheck): void
     {
         $this->webcheck = $webcheck;
     }
+
 
     /**
      * To get a human readable label for select fields (used at BackendController->list)
@@ -440,27 +451,29 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @author Maximilian Fäßler
      * @return string
      */
-    public function getHumanReadableLabel()
+    public function getHumanReadableLabel(): string
     {
         // 1. Formatted timestamp
         $label = date("d.m.Y", $this->getTstamp());
+
         // 2. Total Points
-        $label .= ' - ' . $this->getSum() . ' ' . \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_rkwwebcheck_domain_model_checkresult.points', 'rkw_webcheck');
+        $label .= ' - ' . $this->getSum() . ' ' . LocalizationUtility::translate('tx_rkwwebcheck_domain_model_checkresult.points', 'rkw_webcheck');
+
         // 3. Percentage
         $label .= ' - ' . $this->getPercentage() . "%";
+
         // 4. Users name
         if ($this->getFeUser()) {
-            if ($this->getFeUser()->getTxRkwregistrationIsAnonymous()) {
-                $label .= ' - ' . \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_rkwwebcheck_domain_model_checkresult.anonymous', 'rkw_webcheck');
+            if ($this->getFeUser() instanceof GuestUser) {
+                $label .= ' - ' . LocalizationUtility::translate('tx_rkwwebcheck_domain_model_checkresult.anonymous', 'rkw_webcheck');
             } else {
                 $label .= ' - ' . $this->getFeUser()->getFirstName() . ' ' . $this->getFeUser()->getLastName();
             }
         } else {
-            $label .= ' - ' . \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('tx_rkwwebcheck_domain_model_checkresult.userDeleted', 'rkw_webcheck');
+            $label .= ' - ' . LocalizationUtility::translate('tx_rkwwebcheck_domain_model_checkresult.userDeleted', 'rkw_webcheck');
         }
 
         return $label;
-        //===
     }
 
 
@@ -468,18 +481,16 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * getResultByTopic
      *
      * @param \RKW\RkwWebcheck\Domain\Model\Topic $topic
-     * @return \RKW\RkwWebcheck\Domain\Model\TopicResult|object|boolean $result
+     * @return \RKW\RkwWebcheck\Domain\Model\TopicResult $result
      */
-    public function getResultByTopic(\RKW\RkwWebcheck\Domain\Model\Topic $topic)
+    public function getResultByTopic(Topic $topic):? TopicResult
     {
         foreach ($this->results as $result) {
             if ($result->getTopic() == $topic) {
                 return $result;
-                //===
             }
         }
 
-        return false;
-        //===
+        return null;
     }
 }
