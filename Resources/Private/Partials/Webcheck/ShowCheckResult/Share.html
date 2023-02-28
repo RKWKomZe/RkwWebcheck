@@ -2,7 +2,7 @@
     data-namespace-typo3-fluid="true">
 
     <f:if condition="{settings.sharedCheckPid}">
-        <f:if condition="{checkResult.feUser.txRkwregistrationIsAnonymous} == 0">
+        <f:if condition="{checkResult.feUser.txFeregisterIsAnonymous} == 0">
             <div class="contentbox contentbox--gray mt-1">
                 <h3 class="webcheck-small-headline">{f:translate(key: 'partials_webcheck_showCheckResult_share.sendResultAsMail')}</h3>
                 <f:form action="shareCheckResult" enctype="multipart/form-data" name="checkResult" object="{checkResult}" class="form webcheck-form">

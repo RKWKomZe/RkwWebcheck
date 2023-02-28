@@ -14,7 +14,7 @@ namespace RKW\RkwWebcheck\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
-use RKW\RkwRegistration\Domain\Model\GuestUser;
+use Madj2k\FeRegister\Domain\Model\GuestUser;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 

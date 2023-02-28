@@ -14,8 +14,8 @@ namespace RKW\RkwWebcheck\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
-use RKW\RkwMailer\Service\MailService;
-use RKW\RkwRegistration\Domain\Model\GuestUser;
+use Madj2k\Postmaster\Service\MailService;
+use Madj2k\FeRegister\Domain\Model\GuestUser;
 use RKW\RkwWebcheck\Domain\Model\CheckResult;
 use Madj2k\CoreExtended\Utility\GeneralUtility;
 use RKW\RkwWebcheck\Domain\Model\FrontendUser;
@@ -74,7 +74,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
 
     /**
-     * @var \RKW\RkwMailer\Service\MailService
+     * @var \Madj2k\Postmaster\Service\MailService
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected MailService $rkwMailer;
@@ -711,7 +711,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 && (isset($settingsFramework['view']['templateRootPaths']))
             ) {
 
-                /** @var \RKW\RkwMailer\Service\MailService $mailService */
+                /** @var \Madj2k\Postmaster\Service\MailService $mailService */
                 $mailService = GeneralUtility::makeInstance(MailService::class);
                 $adminIds = GeneralUtility::trimExplode(',', $this->settings['notificationBackendUser']);
 
@@ -729,7 +729,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                                     'pageUid'     => intval($GLOBALS['TSFE']->id),
                                     'checkResult' => $checkResult,
                                 ),
-                                'subject' => \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                                'subject' => \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
                                     'rkwMailService.adminCheckFinished.subject',
                                     'rkw_webcheck',
                                     array($checkResult->getWebcheck()->getName()),
@@ -741,7 +741,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
                     // set default subject
                     $mailService->getQueueMail()->setSubject(
-                        \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                        \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
                             'rkwMailService.adminCheckFinished.subject',
                             'rkw_webcheck',
                             array($checkResult->getWebcheck()->getName()),
@@ -831,11 +831,11 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 && (isset($settingsFramework['view']['templateRootPaths']))
             ) {
 
-                /** @var \RKW\RkwMailer\Service\MailService $mailService */
+                /** @var \Madj2k\Postmaster\Service\MailService $mailService */
                 $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailService::class);
                 foreach ($emailArray as $email) {
 
-                    if (!\RKW\RkwRegistration\Utility\FrontendUserUtility::isEmailValid($email)) {
+                    if (!\Madj2k\FeRegister\Utility\FrontendUserUtility::isEmailValid($email)) {
                         $this->addFlashMessage(
                             \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                                 'webcheckController.warning.invalidEmail',
@@ -882,7 +882,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
                     // set default subject
                     $mailService->getQueueMail()->setSubject(
-                        \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                        \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
                             'rkwMailService.shareCheck.subject',
                             'rkw_webcheck',
                             array(
@@ -890,20 +890,20 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                                 $this->getFrontendUser()->getLastName(),
                                 $checkResult->getWebcheck()->getName(),
                             ),
-                            $this->getFrontendUser()->getTxRkwregistrationLanguageKey()
+                            $this->getFrontendUser()->getTxFeregisterLanguageKey()
                         )
                     );
 
                 } else {
                     // set default subject
                     $mailService->getQueueMail()->setSubject(
-                        \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                        \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
                             'rkwMailService.shareCheck.subjectAnonymous',
                             'rkw_webcheck',
                             array(
                                 $checkResult->getWebcheck()->getName(),
                             ),
-                            $this->getFrontendUser()->getTxRkwregistrationLanguageKey()
+                            $this->getFrontendUser()->getTxFeregisterLanguageKey()
                         )
                     );
                 }
@@ -997,7 +997,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $this->view->assign('anonymous', true);
 
         if (
-            (! $checkResult->getFeUser() instanceof \RKW\RkwRegistration\Domain\Model\GuestUser)
+            (! $checkResult->getFeUser() instanceof \Madj2k\FeRegister\Domain\Model\GuestUser)
             && ($checkResult->getFeUser()->getLastName())
             && ($checkResult->getFeUser()->getFirstName())
         ) {
@@ -1278,7 +1278,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      *
      * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
-     * @throws \RKW\RkwMailer\Exception
+     * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
@@ -1306,7 +1306,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 $this->view->assign('Note:', $grade);
                 $this->view->assign('Anmerkungen:', $remarks);
 
-                /** @var \RKW\RkwMailer\Service\MailService $mailService */
+                /** @var \Madj2k\Postmaster\Service\MailService $mailService */
                 $mailService = GeneralUtility::makeInstance(MailService::class);
 
                 $mails = explode(",", $this->settings['email']);
