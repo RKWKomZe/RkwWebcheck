@@ -27,8 +27,8 @@
 		"spipu/html2pdf": "^5.0",
 		"typo3/cms-core": "~9.5.0",
 		"typo3/cms-rte-ckeditor": "~9.5.0",
-        "rkw/rkw-mailer": "~9.5.0",
-        "rkw/rkw-registration": "~9.5.0"
+        "madj2k/t3-postmaster": "~9.5.0",
+        "madj2k/t3-fe-register": "~9.5.0"
     },
     "autoload": {
         "psr-4": {

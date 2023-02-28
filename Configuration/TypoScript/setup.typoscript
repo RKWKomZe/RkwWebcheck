@@ -3,14 +3,14 @@ config.tx_extbase.persistence {
 		RKW\RkwWebcheck\Domain\Model\FrontendUser {
 
 			// storage for new records in cross-extension-context
-      newRecordStoragePid = {$plugin.tx_rkwregistration.persistence.storagePid}
+            newRecordStoragePid = {$plugin.tx_feregister.persistence.storagePid}
 
 			mapping {
 				tableName = fe_users
 				recordType =
 			}
 		}
-		RKW\RkwRegistration\Domain\Model\FrontendUser {
+		Madj2k\FeRegister\Domain\Model\FrontendUser {
 			subclasses {
 				Tx_RkwWebcheck_FrontendUser = RKW\RkwWebcheck\Domain\Model\FrontendUser
 			}

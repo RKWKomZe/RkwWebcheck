@@ -14,7 +14,7 @@ namespace RKW\RkwWebcheck\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
-use RKW\RkwRegistration\Domain\Model\GuestUser;
+use Madj2k\FeRegister\Domain\Model\GuestUser;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
@@ -481,7 +481,7 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * getResultByTopic
      *
      * @param \RKW\RkwWebcheck\Domain\Model\Topic $topic
-     * @return \RKW\RkwWebcheck\Domain\Model\TopicResult $result
+     * @return \RKW\RkwWebcheck\Domain\Model\TopicResult|null $result
      */
     public function getResultByTopic(Topic $topic):? TopicResult
     {

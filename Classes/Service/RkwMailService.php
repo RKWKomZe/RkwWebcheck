@@ -13,7 +13,7 @@ namespace RKW\RkwWebcheck\Service;
  * The TYPO3 project - inspiring people to share!
  */
 
-use RKW\RkwMailer\Service\MailService;
+use Madj2k\Postmaster\Service\MailService;
 use RKW\RkwWebcheck\Domain\Repository\BackendUserRepository;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use Madj2k\CoreExtended\Utility\GeneralUtility;
@@ -39,7 +39,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 	 * @param int $pageId
 	 * @return void
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
-     * @throws \RKW\RkwMailer\Exception
+     * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
@@ -59,7 +59,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 			&& ((isset($settingsFramework['view']['templateRootPaths'])))
 		) {
 
-			/** @var \RKW\RkwMailer\Service\MailService $mailService */
+			/** @var \Madj2k\Postmaster\Service\MailService $mailService */
 			$mailService = GeneralUtility::makeInstance(MailService::class);
 			/** @var \RKW\RkwWebcheck\Domain\Repository\BackendUserRepository $backendUserRepository */
 			$backendUserRepository = GeneralUtility::makeInstance(BackendUserRepository::class);
@@ -74,7 +74,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 							'pageUid' => $pageId,
 							'checkResult' => $checkResult,
 						),
-						'subject' => \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+						'subject' => \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
 							'rkwMailService.adminCheckFinished.subject',
 							'rkw_webcheck',
 							array($checkResult->getWebcheck()->getName()),
@@ -86,7 +86,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 
 			// set default subject
 			$mailService->getQueueMail()->setSubject(
-				\RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+				\Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
 					'rkwMailService.adminCheckFinished.subject',
 					'rkw_webcheck',
 					array($checkResult->getWebcheck()->getName())
@@ -113,7 +113,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 	 * @param string $hash
 	 * @return array
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
-     * @throws \RKW\RkwMailer\Exception
+     * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
@@ -136,11 +136,11 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
             && (isset($settingsFramework['view']['templateRootPaths']))
 		){
 
-			/** @var \RKW\RkwMailer\Service\MailService $mailService */
+			/** @var \Madj2k\Postmaster\Service\MailService $mailService */
 			$mailService = GeneralUtility::makeInstance(MailService::class);
 			foreach ($emailArray as $email) {
 
-				if (! \RKW\RkwRegistration\Utility\FrontendUserUtility::isEmailValid($email)) {
+				if (! \Madj2k\FeRegister\Utility\FrontendUserUtility::isEmailValid($email)) {
 
 					$errorMessages[] = 	\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                         'webcheckController.warning.invalidEmail',
@@ -159,7 +159,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 				);
 
 				if (
-					(! $frontendUser instanceof \RKW\RkwRegistration\Domain\Model\GuestUser)
+					(! $frontendUser instanceof \Madj2k\FeRegister\Domain\Model\GuestUser)
 					&& ($frontendUser->getLastName())
 					&& ($frontendUser->getFirstName())
 				) {
@@ -177,14 +177,14 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 			}
 
 			if (
-				(! $frontendUser instanceof \RKW\RkwRegistration\Domain\Model\GuestUser)
+				(! $frontendUser instanceof \Madj2k\FeRegister\Domain\Model\GuestUser)
 				&& ($frontendUser->getLastName())
 				&& ($frontendUser->getFirstName())
 			){
 
 				// set default subject
 				$mailService->getQueueMail()->setSubject(
-					\RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+					\Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
 						'rkwMailService.shareCheck.subject',
 						'rkw_webcheck',
 						array(
@@ -192,19 +192,19 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 							$frontendUser->getLastName(),
 							$checkResult->getWebcheck()->getName()
 						),
-						$frontendUser->getTxRkwregistrationLanguageKey()
+						$frontendUser->getTxFeregisterLanguageKey()
 					)
 				);
 			} else {
 				// set default subject
 				$mailService->getQueueMail()->setSubject(
-					\RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+					\Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
 						'rkwMailService.shareCheck.subjectAnonymous',
 						'rkw_webcheck',
 						array(
 							$checkResult->getWebcheck()->getName()
 						),
-						$frontendUser->getTxRkwregistrationLanguageKey()
+						$frontendUser->getTxFeregisterLanguageKey()
 					)
 				);
 			}
@@ -231,7 +231,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 	 * @param string $remarks
 	 * @return void
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
-     * @throws \RKW\RkwMailer\Exception
+     * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
 	 */
@@ -250,7 +250,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 			&& ((isset($settingsFramework['view']['templateRootPaths'])))
 		) {
 
-			/** @var \RKW\RkwMailer\Service\MailService $mailService */
+			/** @var \Madj2k\Postmaster\Service\MailService $mailService */
 			$mailService =GeneralUtility::makeInstance(MailService::class);
 
 			/** @var \RKW\RkwWebcheck\Domain\Repository\BackendUserRepository $backendUserRepository */
@@ -267,7 +267,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 							'grade' => $grade,
 							'remarks' => $remarks
 						),
-						'subject' => \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+						'subject' => \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
 							'rkwMailService.adminFeedback.subject',
 							'rkw_webcheck',
 							array($checkResult->getWebcheck()->getName()),
@@ -279,7 +279,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 
 			// set default subject
 			$mailService->getQueueMail()->setSubject(
-				\RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+				\Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
 					'rkwMailService.adminFeedback.subject',
 					'rkw_webcheck',
 					array($checkResult->getWebcheck()->getName())

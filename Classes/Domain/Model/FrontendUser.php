@@ -24,7 +24,7 @@ namespace RKW\RkwWebcheck\Domain\Model;
  * @package RKW_RkwWebcheck
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class FrontendUser extends \RKW\RkwRegistration\Domain\Model\FrontendUser
+class FrontendUser extends \Madj2k\FeRegister\Domain\Model\FrontendUser
 {
 
 
