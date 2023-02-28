@@ -194,7 +194,7 @@
             </trans-unit>
             <trans-unit id="tx_rkwwebcheck_domain_model_share.description">
                 <source>Share a Check</source>
-                <target>Nutzer können hiermit einen Check teilen</target>
+                <target>Nutzende können hiermit einen Check teilen</target>
             </trans-unit>
 
             <trans-unit id="tx_rkwwebcheck_domain_model_shared">
@@ -203,7 +203,7 @@
             </trans-unit>
             <trans-unit id="tx_rkwwebcheck_domain_model_shared.description">
                 <source>Show Shared Checks</source>
-                <target>Zeigt dem Nutzer alle geteilte Checks an</target>
+                <target>Zeigt den Nutzenden alle geteilte Checks an</target>
             </trans-unit>
 
             <trans-unit id="tx_rkwwebcheck_domain_model_mycheck">
@@ -235,7 +235,7 @@
             </trans-unit>
             <trans-unit id="tx_rkwwebcheck_flexform.backendUser">
                 <source>Backend User for Notification on Finished Check</source>
-                <target>Backend-Nutzer für Benachrichtigung bei abgeschlossenem Check</target>
+                <target>Backend-Nutzende für Benachrichtigung bei abgeschlossenem Check</target>
             </trans-unit>
             <trans-unit id="tx_rkwwebcheck_flexform.feedback">
                 <source>Page with Feedback-Plugin</source>

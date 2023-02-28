@@ -1,30 +1,43 @@
 <?php
-
 namespace RKW\RkwWebcheck\DisplayCond;
 
-use RKW\RkwWebcheck\Domain\Repository\WebcheckRepository;
-
-/**
- * This file is part of the "RkwWebcheck" Extension for TYPO3 CMS.
+/*
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
  */
-
+use RKW\RkwWebcheck\Domain\Repository\WebcheckRepository;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
- * Checks display conditions on TCA
+ * Class WebcheckController
+ *
+ * @author Steffen Kroggel <developer@steffenkroggel.de>
+ * @author Philipp Grigoleit <p.grigoleit@agentur-fahrenheit.de>
+ * @author Salih Özdemir <s.oezdemir@agentur-fahrenheit.de>
+ * @copyright RKW Kompetenzzentrum
+ * @package RKW_RkwWebcheck
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @copyright RKW Kompetenzzentrum
+ * @package RKW_RkwWebcheck
  */
+
 class Question
 {
 
     /**
-     * webcheckRepository
-     *
-     * @var \RKW\RkwWebcheck\Domain\Repository\WebcheckRepository
+     * @var \RKW\RkwWebcheck\Domain\Repository\WebcheckRepository|null
      * @inject
      */
-    protected $webcheckRepository;
+    protected ?WebcheckRepository $webcheckRepository = null;
+
 
     /**
      * Question constructor
@@ -33,8 +46,7 @@ class Question
     public function __construct()
     {
 
-        $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-
+        $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(ObjectManager::class);
         if (!$this->webcheckRepository) {
             $this->webcheckRepository = $objectManager->get(WebcheckRepository::class);
         }
@@ -48,7 +60,6 @@ class Question
     {
         /** @var \RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck */
         $webcheck = $this->webcheckRepository->findByQuestion($array['record']['uid'])->getFirst();
-
         return $webcheck->getShowHints();
     }
 

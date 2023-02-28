@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2017-08-17T15:06:22Z" product-name="rkw_webcheck">
-		<header/>
+	<file datatype="plaintext" original="messages" product-name="rkw_webcheck" source-language="en" target-language="de" date="2017-08-17T15:06:22Z">
+		<header>
+      <phase-group>
+        <phase contact-name="Melanie" contact-email="berberich@rkw.de" process-name="approval" tool-id="lokalize-22.03.70" phase-name="approval-1" date="2022-02-14"/>
+      </phase-group>
+      <tool tool-version="22.03.70" tool-id="lokalize-22.03.70" tool-name="Lokalize"/>
+    </header>
 		<body>
 
 			<!--
@@ -115,9 +120,9 @@
 				<source>Anonymous</source>
 				<target>Anonym</target>
 			</trans-unit>
-			<trans-unit id="tx_rkwwebcheck_domain_model_checkresult.userDeleted">
+			<trans-unit id="tx_rkwwebcheck_domain_model_checkresult.userDeleted" approved="no">
 				<source>User deleted</source>
-				<target>Nutzer gelöscht</target>
+				<target phase-name="approval-1" state="final">Nutzendenaccount gelöscht</target>
 			</trans-unit>
 
 
@@ -144,8 +149,8 @@
                 <target>Hmm... Beim Versenden des Ergebnisses ist leider ein Fehler aufgetreten. Bitte versuchen Sie es erneut.</target>
             </trans-unit>
             <trans-unit id="webcheckController.success.sentSharingEmails">
-                <source>Wohoo! Your result been sent successfully.</source>
-                <target>Wohoo! Ihr Ergebnis wurde erfolgreich versendet.</target>
+                <source>Woohoo! Your result been sent successfully.</source>
+                <target>Woohoo! Ihr Ergebnis wurde erfolgreich versendet.</target>
             </trans-unit>
             <trans-unit id="webcheckController.warning.missingParamsSharing">
                 <source>The link you used seems not be valid. Please contact our support.</source>
@@ -168,8 +173,8 @@
                 <target>Hmm... Leider war das Bearbeiten des Checks nicht möglich. Bitte wenden Sie sich an unseren Support.</target>
             </trans-unit>
             <trans-unit id="webcheckController.success.checkDeleted">
-                <source>Wohoo! The check results have been deleted successfully.</source>
-                <target>Wohoo! Das Checkergebnis wurde erfolgreich gelöscht.</target>
+                <source>Woohoo! The check results have been deleted successfully.</source>
+                <target>Woohoo! Das Checkergebnis wurde erfolgreich gelöscht.</target>
             </trans-unit>
             <trans-unit id="webcheckController.warning.noChecks">
                 <source>Unfortunately you didn't complete a check yet. Please complete a check to be able to benchmark it.</source>
@@ -485,9 +490,9 @@
                 <source>Benchmarks</source>
                 <target>Benchmarks</target>
             </trans-unit>
-            <trans-unit id="templates_webcheck_showBenchmark.text">
+            <trans-unit id="templates_webcheck_showBenchmark.text" approved="no">
                 <source>Here you can compare your results with another of your results - or with the average result of all check-participants.</source>
-                <target>Hier können Sie Ihre Ergebnisse mit eigenen Ergebnissen aus der Vergangenheit vergleichen und sehen, ob Sie sich verbessert haben. Sie können hier aber auch sehen, wie Sie im Vergleich zum Durchschnitt der Ergebnisse aller Check-Teilnehmer abschneiden.</target>
+                <target phase-name="approval-1" state="final">Hier können Sie Ihre Ergebnisse mit eigenen Ergebnissen aus der Vergangenheit vergleichen und sehen, ob Sie sich verbessert haben. Sie können hier aber auch sehen, wie Sie im Vergleich zum Durchschnitt der Ergebnisse aller Check-Teilnehmenden abschneiden.</target>
             </trans-unit>
             <trans-unit id="templates_webcheck_showBenchmark.chooseMyCheck">
                 <source>Select a check</source>
@@ -505,9 +510,9 @@
                 <source>Not enough results</source>
                 <target>Nicht genügend Ergebnisse</target>
             </trans-unit>
-            <trans-unit id="templates_webcheck_showBenchmark.notEnoughResultsDescription">
+            <trans-unit id="templates_webcheck_showBenchmark.notEnoughResultsDescription" approved="no">
                 <source>Unfortunately there aren't enough check results yet to display the benchmark.</source>
-                <target>Leider liegen uns noch nicht genügend Ergebnisse vor, um einen zuverlässigen Vergleichswert über die Ergebnisse aller Check-Teilnehmer berechnen zu können. Bitte schauen Sie in einigen Tagen erneut vorbei.</target>
+                <target phase-name="approval-1" state="final">Leider liegen uns noch nicht genügend Ergebnisse vor, um einen zuverlässigen Vergleichswert über die Ergebnisse aller Check-Teilnehmenden berechnen zu können. Bitte schauen Sie in einigen Tagen erneut vorbei.</target>
             </trans-unit>
             <trans-unit id="templates_webcheck_showBenchmark.toMyChecks">
                 <source>To MyChecks</source>
@@ -689,9 +694,9 @@
 				<source>Result benchmark comparison.</source>
 				<target>Dieses Ergebnis wird mit dem Benchmark aller anderen Ergebnisse verglichen.</target>
 			</trans-unit>
-			<trans-unit id="templates_backend_list.intro12">
+			<trans-unit id="templates_backend_list.intro12" approved="no">
 				<source>Show user data</source>
-				<target>Weiterhin werden die Benutzerdaten der Person angezeigt, welcher dieses Ergebnis zugeordnet ist.</target>
+				<target phase-name="approval-1" state="final">Weiterhin werden die Nutzendendaten der Person angezeigt, welcher dieses Ergebnis zugeordnet ist.</target>
 			</trans-unit>
 			<trans-unit id="templates_backend_list.check_results">
 				<source>Check results:</source>

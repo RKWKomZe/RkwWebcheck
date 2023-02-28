@@ -1,8 +1,5 @@
 <?php
-
 namespace RKW\RkwWebcheck\Utility;
-
-use RKW\RkwWebcheck\Domain\Model\Webcheck;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -17,9 +14,10 @@ use RKW\RkwWebcheck\Domain\Model\Webcheck;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwWebcheck\Domain\Model\Webcheck;
+
 /**
  * Backend
- * Due to the large commonalities, the QueueMail-Model is derived and the other properties for  QueueRecipient specially created
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @copyright RKW Kompetenzzentrum
@@ -29,18 +27,17 @@ use RKW\RkwWebcheck\Domain\Model\Webcheck;
 class Backend implements \TYPO3\CMS\Core\SingletonInterface
 {
     /**
-     * is calculating benchmarks for a webcheck
+     * Calculates benchmarks for a webcheck
      *
      * @param \RKW\RkwWebcheck\Domain\Model\Webcheck $webcheck
      * @param array $checkResultList
      * @return array
      */
-    public function getCheckBenchmark
-    (
+    public function getCheckBenchmark (
         Webcheck $webcheck,
-        $checkResultList
-    )
-    {
+        array $checkResultList
+    ): array {
+
         $checksum = 0;
         $counter = 0;
 
@@ -70,6 +67,5 @@ class Backend implements \TYPO3\CMS\Core\SingletonInterface
         );
 
         return ($benchmark);
-        //===
     }
 }

@@ -1,6 +1,6 @@
 <?php
-
 namespace RKW\RkwWebcheck\ViewHelpers;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -14,6 +14,8 @@ namespace RKW\RkwWebcheck\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwWebcheck\Domain\Model\Topic;
+
 /**
  * AverageSumOfWebcheckResultsViewHelper
  *
@@ -23,17 +25,35 @@ namespace RKW\RkwWebcheck\ViewHelpers;
  * @package RKW_RkwWebcheck
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class AverageSumOfWebcheckResultsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class AverageSumOfWebcheckResultsViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    /**
+     * Initialize arguments
+     *
+     * @return void
+     */
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+        $this->registerArgument('resultList', 'array', 'The array of results.', true);
+        $this->registerArgument('topic', Topic::class, 'The current topic.', true);
+    }
+
+
     /**
      * calculate average topic value
      *
-     * @param array $resultList
-     * @param \RKW\RkwWebcheck\Domain\Model\Topic $topic
-     * @return integer
+     * @return float
      */
-    public function render($resultList, $topic)
+    public function render(): float
     {
+        /** @var array $resultList */
+        $resultList = $this->arguments['resultList'];
+
+        /** @var \RKW\RkwWebcheck\Domain\Model\Topic $topic */
+        $topic = $this->arguments['topic'];
+
         $topicSum = 0;
         $counter = 0;
         /** @var \RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult */
@@ -49,7 +69,6 @@ class AverageSumOfWebcheckResultsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHe
         }
 
         return round($topicSum / $counter, 2);
-        //===
     }
 
 }

@@ -15,6 +15,8 @@ namespace RKW\RkwWebcheck\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+
 /**
  * Class GlossaryRepository
  *
@@ -28,11 +30,13 @@ class GlossaryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
      * Set setRespectStorage on FALSE by default
+     *
+     * @return void
      */
-    public function initializeObject()
+    public function initializeObject(): void
     {
         /** @var \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings $querySettings */
-        $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+        $querySettings = $this->objectManager->get(Typo3QuerySettings::class);
         $querySettings->setRespectStoragePage(false); // ignore the storagePid
         $this->setDefaultQuerySettings($querySettings);
     }

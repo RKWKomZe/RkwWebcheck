@@ -10,7 +10,7 @@ config.tx_extbase.persistence {
 				recordType =
 			}
 		}
-		RKW\RkwRegistration\Domain\Model\FrontendUser {
+		Madj2k\FeRegister\Domain\Model\FrontendUser {
 			subclasses {
 				Tx_RkwWebcheck_FrontendUser = RKW\RkwWebcheck\Domain\Model\FrontendUser
 			}
