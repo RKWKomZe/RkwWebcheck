@@ -17,10 +17,10 @@ return [
         'iconfile'                 => 'EXT:rkw_webcheck/Resources/Public/Icons/tx_rkwwebcheck_domain_model_webcheck.gif',
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, check_pid, result_a, result_b, result_c, topics',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, check_pid, result_a, result_b, result_c, show_hints, topics',
     ],
     'types'     => [
-        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, check_pid, result_a, result_b, result_c, topics'],
+        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, check_pid, result_a, result_b, result_c, show_hints, topics'],
     ],
     'columns'   => [
         'sys_language_uid' => [
@@ -187,6 +187,19 @@ return [
                     'expandSingle' => 1,
                 ],
             ],
+        ],
+        'show_hints'           => [
+            'exclude' => false,
+            'label'   => 'LLL:EXT:rkw_webcheck/Resources/Private/Language/locallang_db.xlf:tx_rkwwebcheck_domain_model_webcheck.show_hints',
+            'config'  => [
+                'type'  => 'check',
+                'items' => [
+                    '1' => [
+                        '0' => 'LLL:EXT:rkw_webcheck/Resources/Private/Language/locallang_db.xlf:tx_rkwwebcheck_domain_model_webcheck.show_hints.enabled',
+                    ],
+                ],
+            ],
+            'onChange' => 'reload'
         ],
     ],
 ];
