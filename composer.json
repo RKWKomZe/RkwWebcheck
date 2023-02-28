@@ -23,13 +23,12 @@
         }
     ],
     "require": {
-        "php": ">=5.6",
-        "typo3/cms-core": "~7.6.0 || ~8.7.0",
-        "spipu/html2pdf": "^5.0",
-        "rkw/rkw-basics": "~8.7.0",
-        "rkw/rkw-mailer": "~8.7.0",
-        "rkw/rkw-registration": "~8.7.0",
-        "typo3/cms-rte-ckeditor": "~8.7.31"
+        "php": ">=7.4",
+		"spipu/html2pdf": "^5.0",
+		"typo3/cms-core": "~9.5.0",
+		"typo3/cms-rte-ckeditor": "~9.5.0",
+        "madj2k/t3-postmaster": "~9.5.0",
+        "madj2k/t3-fe-register": "~9.5.0"
     },
     "autoload": {
         "psr-4": {

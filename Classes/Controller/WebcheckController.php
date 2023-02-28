@@ -1,10 +1,5 @@
 <?php
-
 namespace RKW\RkwWebcheck\Controller;
-
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use \RKW\RkwBasics\Helper\Common;
-use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -18,6 +13,27 @@ use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  *
  * The TYPO3 project - inspiring people to share!
  */
+
+use Madj2k\Postmaster\Service\MailService;
+use Madj2k\FeRegister\Domain\Model\GuestUser;
+use Madj2k\CoreExtended\Utility\GeneralUtility;
+use RKW\RkwWebcheck\Domain\Model\CheckResult;
+use RKW\RkwWebcheck\Domain\Model\FrontendUser;
+use RKW\RkwWebcheck\Domain\Model\QuestionResult;
+use RKW\RkwWebcheck\Domain\Model\TopicResult;
+use RKW\RkwWebcheck\Domain\Repository\BackendUserRepository;
+use RKW\RkwWebcheck\Domain\Repository\CheckResultRepository;
+use RKW\RkwWebcheck\Domain\Repository\FrontendUserRepository;
+use RKW\RkwWebcheck\Domain\Repository\GlossaryRepository;
+use RKW\RkwWebcheck\Domain\Repository\QuestionRepository;
+use RKW\RkwWebcheck\Domain\Repository\QuestionResultRepository;
+use RKW\RkwWebcheck\Domain\Repository\TopicRepository;
+use RKW\RkwWebcheck\Domain\Repository\TopicResultRepository;
+use RKW\RkwWebcheck\Domain\Repository\WebcheckRepository;
+use TYPO3\CMS\Core\Log\Logger;
+use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 /**
  * Class WebcheckController
@@ -41,6 +57,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     const SIGNAL_AFTER_CHECK_FINISHED = 'afterCheckFinishedAdmin';
 
+
     /**
      * Signal name for use in ext_localconf.php
      *
@@ -48,103 +65,96 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     const SIGNAL_SHARING = 'sharing';
 
+
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $persistenceManager;
+    protected PersistenceManager $persistenceManager;
+
 
     /**
-     * @var \RKW\RkwMailer\Service\MailService
-     * @inject
+     * @var \Madj2k\Postmaster\Service\MailService
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $rkwMailer;
+    protected MailService $rkwMailer;
+
 
     /**
-     * webcheckRepository
-     *
      * @var \RKW\RkwWebcheck\Domain\Repository\WebcheckRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $webcheckRepository;
+    protected WebcheckRepository $webcheckRepository;
+
 
     /**
-     * checkResultRepository
-     *
      * @var \RKW\RkwWebcheck\Domain\Repository\CheckResultRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $checkResultRepository;
+    protected CheckResultRepository $checkResultRepository;
+
 
     /**
-     * questionRepository
-     *
      * @var \RKW\RkwWebcheck\Domain\Repository\QuestionRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $questionRepository;
+    protected QuestionRepository $questionRepository;
+
 
     /**
-     * questionResultRepository
-     *
      * @var \RKW\RkwWebcheck\Domain\Repository\QuestionResultRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $questionResultRepository;
+    protected QuestionResultRepository $questionResultRepository;
+
 
     /**
-     * topicRepository
-     *
      * @var \RKW\RkwWebcheck\Domain\Repository\TopicRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $topicRepository;
+    protected TopicRepository $topicRepository;
+
 
     /**
-     * topicResultRepository
-     *
      * @var \RKW\RkwWebcheck\Domain\Repository\TopicResultRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $topicResultRepository;
+    protected TopicResultRepository $topicResultRepository;
+
 
     /**
-     * User Repository
-     *
      * @var \RKW\RkwWebcheck\Domain\Repository\FrontendUserRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $frontendUserRepository;
+    protected FrontendUserRepository $frontendUserRepository;
+
 
     /**
-     * BackendUserRepository
-     *
      * @var \RKW\RkwWebcheck\Domain\Repository\BackendUserRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $backendUserRepository;
+    protected BackendUserRepository $backendUserRepository;
+
 
     /**
-     * GlossaryRepository
-     *
      * @var \RKW\RkwWebcheck\Domain\Repository\GlossaryRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $glossaryRepository;
+    protected GlossaryRepository $glossaryRepository;
 
 
     /**
-     * @var \TYPO3\CMS\Core\Log\Logger
+     * @var \TYPO3\CMS\Core\Log\Logger|null
      */
-    protected $logger;
+    protected ?Logger $logger;
 
 
     /**
      * returns the logged in FrontendUser - to be used in other functions
      *
-     * @return int the user id
+     * @return int
      */
-    protected function getFrontendUserId()
+    protected function getFrontendUserId(): int
     {
         $userId = $GLOBALS['TSFE']->fe_user->user['uid'];
 
@@ -156,13 +166,12 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * Returns current logged in user object
      *
-     * @return \RKW\RkwWebcheck\Domain\Model\FrontendUser|NULL
+     * @return \RKW\RkwWebcheck\Domain\Model\FrontendUser|null
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    protected function getFrontendUser()
+    protected function getFrontendUser():? FrontendUser
     {
-
         if (!$this->getFrontendUserId()) {
             $this->addFlashMessage(
                 \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
@@ -173,12 +182,9 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
-
-        /** @var \RKW\RkwWebcheck\Domain\Repository\FrontendUserRepository $frontendUserRepository */
         return $this->frontendUserRepository->findByIdentifier($this->getFrontendUserId());
-        //===
+
     }
 
 
@@ -189,7 +195,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    public function checkInitAction()
+    public function checkInitAction(): void
     {
         /** @var \RKW\RkwWebcheck\Domain\Model\Webcheck $check */
         $check = $this->webcheckRepository->findByUid(intval($this->settings['check']));
@@ -203,20 +209,20 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 null,
                 array('terms' => 1)
             );
-            //===
         }
     }
+
 
     /**
      * action checkStart
      *
-     * @param int $terms
+     * @param bool $terms
      * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      */
-    public function checkStartAction($terms = 0)
+    public function checkStartAction(bool $terms = false): void
     {
 
         // 1. check terms
@@ -231,7 +237,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
             );
             $this->redirect('checkInit');
-            //===
         }
 
         // 2. initialize check
@@ -248,7 +253,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         // 4. build result-objects
         // Initialize new QuestionResult
         /** @var \RKW\RkwWebcheck\Domain\Model\QuestionResult $questionResult */
-        $questionResult = GeneralUtility::makeInstance('RKW\\RkwWebcheck\\Domain\\Model\\QuestionResult');
+        $questionResult = GeneralUtility::makeInstance(QuestionResult::class);
         $questionResult->setWebcheck($check);
         $questionResult->setTopic($topic);
         $questionResult->setQuestion($question);
@@ -256,7 +261,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
         // Initialize new TopicResult
         /** @var \RKW\RkwWebcheck\Domain\Model\TopicResult $topicResult */
-        $topicResult = GeneralUtility::makeInstance('RKW\\RkwWebcheck\\Domain\\Model\\TopicResult');
+        $topicResult = GeneralUtility::makeInstance(TopicResult::class);
         $topicResult->setWebcheck($check);
         $topicResult->setTopic($topic);
         $topicResult->addResult($questionResult);
@@ -264,7 +269,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
         // Initialize new CheckResult
         /** @var \RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult */
-        $checkResult = GeneralUtility::makeInstance('RKW\\RkwWebcheck\\Domain\\Model\\CheckResult');
+        $checkResult = GeneralUtility::makeInstance(CheckResult::class);
         $checkResult->setFeUser($this->getFrontendUser());
         $checkResult->setWebcheck($check);
         $checkResult->addResult($topicResult);
@@ -275,8 +280,12 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         // Persist
         $this->persistenceManager->persistAll();
 
-        $this->redirect('showQuestionResult', null, null, array('questionResult' => $questionResult));
-        //===
+        $this->redirect(
+            'showQuestionResult',
+            null,
+            null,
+            ['questionResult' => $questionResult]
+        );
     }
 
 
@@ -288,7 +297,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    public function showQuestionResultAction(\RKW\RkwWebcheck\Domain\Model\QuestionResult $questionResult)
+    public function showQuestionResultAction(QuestionResult $questionResult): void
     {
 
         // 1. check if given questionResult belongs to logged in user
@@ -302,7 +311,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
 
         // 2. Get topic and question - and positions
@@ -385,7 +393,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      */
-    public function updateQuestionResultAction(\RKW\RkwWebcheck\Domain\Model\QuestionResult $questionResult)
+    public function updateQuestionResultAction(QuestionResult $questionResult): void
     {
 
         // 1. check if given questionResult belongs to logged in user
@@ -399,7 +407,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
 
         // 2. get current topic and question
@@ -437,7 +444,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             if (!$newQuestionResult) {
 
                 /** @var \RKW\RkwWebcheck\Domain\Model\QuestionResult $newQuestionResult */
-                $newQuestionResult = GeneralUtility::makeInstance('RKW\\RkwWebcheck\\Domain\\Model\\QuestionResult');
+                $newQuestionResult = GeneralUtility::makeInstance(QuestionResult::class);
                 $newQuestionResult->setWebcheck($questionResult->getWebcheck());
                 $newQuestionResult->setTopic($questionResult->getTopic());
                 $newQuestionResult->setQuestion($newQuestion);
@@ -453,13 +460,11 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             $this->redirect('showQuestionResult', null, null, array(
                 'questionResult' => $newQuestionResult,
             ));
-            //===
         }
 
         $this->redirect('updateTopicResult', null, null, array(
             'topicResult' => $questionResult->getTopicResult(),
         ));
-        //===
     }
 
 
@@ -473,7 +478,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      */
-    public function showTopicResultAction(\RKW\RkwWebcheck\Domain\Model\TopicResult $topicResult)
+    public function showTopicResultAction(\RKW\RkwWebcheck\Domain\Model\TopicResult $topicResult): void
     {
 
         // 1. check if given questionResult belongs to logged in user
@@ -487,7 +492,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
 
         // 2. get current topic and question
@@ -495,7 +499,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $topic = $topicResult->getTopic();
         $topicPosition = $topicResult->getWebcheck()->getTopics()->getPosition($topic) - 1;
 
-        /** @var \RKW\RkwWebcheck\Domain\Model\CheckResult $topicResult */
+        /** @var \RKW\RkwWebcheck\Domain\Model\TopicResult $topicResult */
         $checkResult = $topicResult->getCheckResult();
 
         // 4. Get new Topic from Webcheck
@@ -524,7 +528,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
                 // init new QuestionResult
                 /** @var \RKW\RkwWebcheck\Domain\Model\QuestionResult $newQuestionResult */
-                $newQuestionResult = GeneralUtility::makeInstance('RKW\\RkwWebcheck\\Domain\\Model\\QuestionResult');
+                $newQuestionResult = GeneralUtility::makeInstance(QuestionResult::class);
                 $newQuestionResult->setWebcheck($topicResult->getWebcheck());
                 $newQuestionResult->setTopic($newTopic);
                 $newQuestionResult->setQuestion($firstQuestion);
@@ -532,7 +536,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
                 // int new TopicResult and add QuestionResult
                 /** @var \RKW\RkwWebcheck\Domain\Model\TopicResult $newTopicResult */
-                $newTopicResult = GeneralUtility::makeInstance('RKW\\RkwWebcheck\\Domain\\Model\\TopicResult');
+                $newTopicResult = GeneralUtility::makeInstance(TopicResult::class);
                 $newTopicResult->setWebcheck($topicResult->getWebcheck());
                 $newTopicResult->setTopic($newTopic);
                 $newTopicResult->addResult($newQuestionResult);
@@ -574,7 +578,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      */
-    public function updateTopicResultAction(\RKW\RkwWebcheck\Domain\Model\TopicResult $topicResult)
+    public function updateTopicResultAction(TopicResult $topicResult): void
     {
 
         // 1. check if given questionResult belongs to logged in user
@@ -588,7 +592,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
 
         // 2. get current topic
@@ -612,9 +615,9 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $this->redirect('showTopicResult', null, null, array(
             'topicResult' => $topicResult,
         ));
-        //===
 
     }
+
 
     /**
      * action checkFinished
@@ -624,7 +627,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    public function showCheckResultAction(\RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult)
+    public function showCheckResultAction(CheckResult $checkResult): void
     {
 
         // 1. check if given questionResult belongs to logged in user
@@ -638,7 +641,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
 
         $this->view->assign('checkResult', $checkResult);
@@ -658,7 +660,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      */
-    public function updateCheckResultAction(\RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult)
+    public function updateCheckResultAction(CheckResult $checkResult): void
     {
 
         // 1. check if given questionResult belongs to logged in user
@@ -672,7 +674,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
 
         // 2. Calculate final result
@@ -700,14 +701,19 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             // 5. Send email notification to admin
             if (
                 ($checkResult->getCompleted() == 0)
-                && ($settingsFramework = Common::getTyposcriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
+                && (
+                    $settingsFramework = GeneralUtility::getTypoScriptConfiguration(
+                        'Rkwwebcheck',
+                        ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK
+                    )
+                )
                 && (isset($settingsFramework['view']))
                 && (isset($settingsFramework['view']['templateRootPaths']))
             ) {
 
-                /** @var \RKW\RkwMailer\Service\MailService $mailService */
-                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
-                $adminIds = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->settings['notificationBackendUser']);
+                /** @var \Madj2k\Postmaster\Service\MailService $mailService */
+                $mailService = GeneralUtility::makeInstance(MailService::class);
+                $adminIds = GeneralUtility::trimExplode(',', $this->settings['notificationBackendUser']);
 
                 if (
                     (is_array($adminIds))
@@ -723,7 +729,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                                     'pageUid'     => intval($GLOBALS['TSFE']->id),
                                     'checkResult' => $checkResult,
                                 ),
-                                'subject' => \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                                'subject' => \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
                                     'rkwMailService.adminCheckFinished.subject',
                                     'rkw_webcheck',
                                     array($checkResult->getWebcheck()->getName()),
@@ -735,7 +741,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
                     // set default subject
                     $mailService->getQueueMail()->setSubject(
-                        \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                        \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
                             'rkwMailService.adminCheckFinished.subject',
                             'rkw_webcheck',
                             array($checkResult->getWebcheck()->getName()),
@@ -763,7 +769,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $this->redirect('showCheckResult', null, null, array(
             'checkResult' => $checkResult,
         ));
-        //===
     }
 
 
@@ -776,7 +781,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    public function shareCheckResultAction(\RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult, $emails = null)
+    public function shareCheckResultAction(CheckResult $checkResult, string $emails = ''): void
     {
 
         // 1. check if given checkResult belongs to logged in user
@@ -790,7 +795,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
 
         $sharedPage = intval($this->settings['sharedCheckPid']);
@@ -812,22 +816,26 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             $this->redirect('showCheckResult', null, null, array(
                 'checkResult' => $checkResult,
             ));
-            //===
         }
 
         // 2. Send email
         try {
             if (
-                ($settingsFramework = Common::getTyposcriptConfiguration('Rkwwebcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK))
+                (
+                    $settingsFramework = GeneralUtility::getTypoScriptConfiguration(
+                        'Rkwwebcheck',
+                        ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK
+                    )
+                )
                 && (isset($settingsFramework['view']))
                 && (isset($settingsFramework['view']['templateRootPaths']))
             ) {
 
-                /** @var \RKW\RkwMailer\Service\MailService $mailService */
-                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
+                /** @var \Madj2k\Postmaster\Service\MailService $mailService */
+                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailService::class);
                 foreach ($emailArray as $email) {
 
-                    if (!\RKW\RkwRegistration\Tools\Registration::validEmail($email)) {
+                    if (!\Madj2k\FeRegister\Utility\FrontendUserUtility::isEmailValid($email)) {
                         $this->addFlashMessage(
                             \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                                 'webcheckController.warning.invalidEmail',
@@ -838,7 +846,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                             \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
                         );
                         continue;
-                        //===
                     }
 
                     $marker = array(
@@ -850,7 +857,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                     );
 
                     if (
-                        (!$this->getFrontendUser()->getTxRkwregistrationIsAnonymous())
+                        (!$this->getFrontendUser() instanceof GuestUser)
                         && ($this->getFrontendUser()->getLastName())
                         && ($this->getFrontendUser()->getFirstName())
                     ) {
@@ -868,14 +875,14 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 }
 
                 if (
-                    (!$this->getFrontendUser()->getTxRkwregistrationIsAnonymous())
+                    (!$this->getFrontendUser() instanceof GuestUser)
                     && ($this->getFrontendUser()->getLastName())
                     && ($this->getFrontendUser()->getFirstName())
                 ) {
 
                     // set default subject
                     $mailService->getQueueMail()->setSubject(
-                        \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                        \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
                             'rkwMailService.shareCheck.subject',
                             'rkw_webcheck',
                             array(
@@ -883,19 +890,20 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                                 $this->getFrontendUser()->getLastName(),
                                 $checkResult->getWebcheck()->getName(),
                             ),
-                            $this->getFrontendUser()->getTxRkwregistrationLanguageKey()
+                            $this->getFrontendUser()->getTxFeregisterLanguageKey()
                         )
                     );
+
                 } else {
                     // set default subject
                     $mailService->getQueueMail()->setSubject(
-                        \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                        \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
                             'rkwMailService.shareCheck.subjectAnonymous',
                             'rkw_webcheck',
                             array(
                                 $checkResult->getWebcheck()->getName(),
                             ),
-                            $this->getFrontendUser()->getTxRkwregistrationLanguageKey()
+                            $this->getFrontendUser()->getTxFeregisterLanguageKey()
                         )
                     );
                 }
@@ -909,7 +917,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 // send mail
                 if (!$mailService->send()) {
                     throw new \Exception();
-                    //===
                 };
             }
 
@@ -923,7 +930,10 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
         } catch (\Exception $e) {
 
-            $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, 'Error while trying to send sharing e-mail.');
+            $this->getLogger()->log(
+                \TYPO3\CMS\Core\Log\LogLevel::ERROR,
+                'Error while trying to send sharing e-mail.'
+            );
             $this->addFlashMessage(
                 \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                     'webcheckController.warning.errorSendingSharingEmail',
@@ -937,20 +947,19 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $this->redirect('showCheckResult', null, null, array(
             'checkResult' => $checkResult,
         ));
-        //===
 
     }
 
     /**
      * action showSharedCheckResult
      *
-     * @param \RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult
+     * @param \RKW\RkwWebcheck\Domain\Model\CheckResult|null $checkResult
      * @param string $hash
      * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    public function showSharedCheckResultAction(\RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult = null, $hash = null)
+    public function showSharedCheckResultAction(CheckResult $checkResult = null, string $hash = ''): void
     {
 
         // 1. Check basic values
@@ -967,7 +976,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error', null, null, null);
-            //===
         }
 
         // 2. Check validity of hash-value
@@ -983,14 +991,13 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error', null, null, null);
-            //===
         }
 
         // 4. Assignments
         $this->view->assign('anonymous', true);
 
         if (
-            (!$checkResult->getFeUser()->getTxRkwregistrationIsAnonymous())
+            (! $checkResult->getFeUser() instanceof \Madj2k\FeRegister\Domain\Model\GuestUser)
             && ($checkResult->getFeUser()->getLastName())
             && ($checkResult->getFeUser()->getFirstName())
         ) {
@@ -1022,9 +1029,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
-
 
         $checkResults = $this->checkResultRepository->findByFeUser($this->getFrontendUser());
         if (
@@ -1050,7 +1055,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    public function editCheckResultAction(\RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult)
+    public function editCheckResultAction(CheckResult $checkResult): void
     {
         // 1. check if given checkResult belongs to logged in user
         if ($checkResult->getFeUser()->getUid() != $this->getFrontendUser()->getUid()) {
@@ -1063,9 +1068,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
-
 
         // 2. if check is not completed, we start from the last question and last topic available
         if ($checkResult->getCompleted()) {
@@ -1093,7 +1096,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                             ),
                             intval($checkResult->getWebcheck()->getCheckPid())
                         );
-                        //===
                     }
                 }
             }
@@ -1115,7 +1117,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                             ),
                             intval($checkResult->getWebcheck()->getCheckPid())
                         );
-                        //===
                     }
                 }
 
@@ -1131,8 +1132,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
         );
         $this->redirect('showMyCheckResults');
-        //===
-
     }
 
 
@@ -1144,9 +1143,8 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      */
-    public function deleteCheckResultAction(\RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult)
+    public function deleteCheckResultAction(CheckResult $checkResult)
     {
 
         // 1. check if given checkResult belongs to logged in user
@@ -1160,7 +1158,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
 
         // 2. Delete checkResult
@@ -1175,20 +1172,19 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         );
 
         $this->redirect('showMyCheckResults');
-        //===
     }
 
 
     /**
      * action showBenchmark
      *
-     * @param \RKW\RkwWebcheck\Domain\Model\CheckResult $mainCheckResult
-     * @param \RKW\RkwWebcheck\Domain\Model\CheckResult $compareCheckResult
+     * @param \RKW\RkwWebcheck\Domain\Model\CheckResult|null $mainCheckResult
+     * @param \RKW\RkwWebcheck\Domain\Model\CheckResult|null $compareCheckResult
      * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
-    public function showBenchmarkAction(\RKW\RkwWebcheck\Domain\Model\CheckResult $mainCheckResult = null, \RKW\RkwWebcheck\Domain\Model\CheckResult $compareCheckResult = null)
+    public function showBenchmarkAction(CheckResult $mainCheckResult = null, CheckResult $compareCheckResult = null)
     {
 
         // 1. Checked if user is logged in
@@ -1202,11 +1198,10 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
 
         // 2. Checked if user is not anonymous
-        if ($this->getFrontendUser()->getTxRkwregistrationIsAnonymous()) {
+        if ($this->getFrontendUser() instanceof GuestUser) {
             $this->addFlashMessage(
                 \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                     'webcheckController.warning.noAnonymous',
@@ -1216,7 +1211,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
             $this->redirect('error');
-            //===
         }
 
         // 3. Return results for selected check
@@ -1224,10 +1218,14 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
             // 3.1. Check for number of results
             $benchmarkMinChecks = ($this->settings['benchmarkMinChecks'] ? intval($this->settings['benchmarkMinChecks']) : 10);
-            $allCheckResults = $this->checkResultRepository->findByWebcheck($this->settings['check']);
+            $allCheckResults = $this->checkResultRepository->findByWebcheckUid(intval($this->settings['check']));
 
             // 3.2 Get results of user
-            $checkResults = $this->checkResultRepository->findCompletedByCheckAndFeUser(intval($this->settings['check']), $this->getFrontendUser());
+            $checkResults = $this->checkResultRepository->findCompletedByWebcheckIdAndFeUser(
+                intval($this->settings['check']),
+                $this->getFrontendUser()
+            );
+
             if (count($checkResults) < 1) {
                 $this->addFlashMessage(
                     \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
@@ -1280,19 +1278,17 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      *
      * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
-     * @throws \RKW\RkwMailer\Service\MailException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+     * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
-     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+     *  @todo rework this method!
      */
     public function feedbackAction()
     {
-        $userId = $this->getUser();
+        $userId = $this->getFrontendUser()->getUid();
         $arguments = $this->request->getArguments();
-
 
         if (isset($arguments)) {
             $grade = $arguments['tx_rkwwebcheck']['note'];
@@ -1310,11 +1306,10 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 $this->view->assign('Note:', $grade);
                 $this->view->assign('Anmerkungen:', $remarks);
 
-                /** @var \RKW\RkwMailer\Service\MailService $mailService */
-                $mailService = GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
+                /** @var \Madj2k\Postmaster\Service\MailService $mailService */
+                $mailService = GeneralUtility::makeInstance(MailService::class);
 
                 $mails = explode(",", $this->settings['email']);
-
                 foreach ($mails as $mail) {
                     $mailService->setTo(
                         array(
@@ -1363,15 +1358,14 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      *
      * @return \TYPO3\CMS\Core\Log\Logger
      */
-    protected function getLogger()
+    protected function getLogger(): Logger
     {
 
         if (!$this->logger instanceof \TYPO3\CMS\Core\Log\Logger) {
-            $this->logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+            $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
         }
 
         return $this->logger;
-        //===
     }
 
 
