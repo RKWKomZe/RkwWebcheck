@@ -14,9 +14,13 @@ namespace RKW\RkwWebcheck\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
-use Madj2k\Postmaster\Service\MailService;
+use Madj2k\CoreExtended\Utility\SiteUtility;
+use Madj2k\FeRegister\Utility\FrontendUserSessionUtility;
+use Madj2k\FeRegister\Utility\FrontendUserUtility;
+use Madj2k\Postmaster\Mail\MailMassage;
 use Madj2k\FeRegister\Domain\Model\GuestUser;
 use Madj2k\CoreExtended\Utility\GeneralUtility;
+use Madj2k\Postmaster\Mail\MailMessage;
 use RKW\RkwWebcheck\Domain\Model\CheckResult;
 use RKW\RkwWebcheck\Domain\Model\FrontendUser;
 use RKW\RkwWebcheck\Domain\Model\QuestionResult;
@@ -71,13 +75,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected PersistenceManager $persistenceManager;
-
-
-    /**
-     * @var \Madj2k\Postmaster\Service\MailService
-     * @TYPO3\CMS\Extbase\Annotation\Inject
-     */
-    protected MailService $rkwMailer;
 
 
     /**
@@ -153,13 +150,11 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * returns the logged in FrontendUser - to be used in other functions
      *
      * @return int
+     * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
      */
     protected function getFrontendUserId(): int
     {
-        $userId = $GLOBALS['TSFE']->fe_user->user['uid'];
-
-        return $userId;
-        //===
+        return FrontendUserSessionUtility::getLoggedInUserId();
     }
 
 
@@ -169,6 +164,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @return \RKW\RkwWebcheck\Domain\Model\FrontendUser|null
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+     * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
      */
     protected function getFrontendUser():? FrontendUser
     {
@@ -183,6 +179,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             );
             $this->redirect('error');
         }
+
         return $this->frontendUserRepository->findByIdentifier($this->getFrontendUserId());
 
     }
@@ -711,8 +708,8 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 && (isset($settingsFramework['view']['templateRootPaths']))
             ) {
 
-                /** @var \Madj2k\Postmaster\Service\MailService $mailService */
-                $mailService = GeneralUtility::makeInstance(MailService::class);
+                /** @var \Madj2k\Postmaster\Mail\MailMessage $mailService */
+                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailMessage::class);
                 $adminIds = GeneralUtility::trimExplode(',', $this->settings['notificationBackendUser']);
 
                 if (
@@ -831,8 +828,8 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 && (isset($settingsFramework['view']['templateRootPaths']))
             ) {
 
-                /** @var \Madj2k\Postmaster\Service\MailService $mailService */
-                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailService::class);
+                /** @var \Madj2k\Postmaster\Mail\MailMessage $mailService */
+                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailMessage::class);
                 foreach ($emailArray as $email) {
 
                     if (!\Madj2k\FeRegister\Utility\FrontendUserUtility::isEmailValid($email)) {
@@ -857,7 +854,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                     );
 
                     if (
-                        (!$this->getFrontendUser() instanceof GuestUser)
+                        (! FrontendUserUtility::isGuestUser($this->getFrontendUser()))
                         && ($this->getFrontendUser()->getLastName())
                         && ($this->getFrontendUser()->getFirstName())
                     ) {
@@ -875,7 +872,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 }
 
                 if (
-                    (!$this->getFrontendUser() instanceof GuestUser)
+                    (! FrontendUserUtility::isGuestUser($this->getFrontendUser()))
                     && ($this->getFrontendUser()->getLastName())
                     && ($this->getFrontendUser()->getFirstName())
                 ) {
@@ -890,7 +887,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                                 $this->getFrontendUser()->getLastName(),
                                 $checkResult->getWebcheck()->getName(),
                             ),
-                            $this->getFrontendUser()->getTxFeregisterLanguageKey()
+                            SiteUtility::getCurrentTypo3Language()
                         )
                     );
 
@@ -903,7 +900,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                             array(
                                 $checkResult->getWebcheck()->getName(),
                             ),
-                            $this->getFrontendUser()->getTxFeregisterLanguageKey()
+                            SiteUtility::getCurrentTypo3Language()
                         )
                     );
                 }
@@ -949,6 +946,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         ));
 
     }
+
 
     /**
      * action showSharedCheckResult
@@ -1201,7 +1199,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         }
 
         // 2. Checked if user is not anonymous
-        if ($this->getFrontendUser() instanceof GuestUser) {
+        if (FrontendUserUtility::isGuestUser($this->getFrontendUser())) {
             $this->addFlashMessage(
                 \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                     'webcheckController.warning.noAnonymous',
@@ -1306,8 +1304,8 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 $this->view->assign('Note:', $grade);
                 $this->view->assign('Anmerkungen:', $remarks);
 
-                /** @var \Madj2k\Postmaster\Service\MailService $mailService */
-                $mailService = GeneralUtility::makeInstance(MailService::class);
+                /** @var \Madj2k\Postmaster\Mail\MailMessage $mailService */
+                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailMessage::class);
 
                 $mails = explode(",", $this->settings['email']);
                 foreach ($mails as $mail) {

@@ -42,11 +42,12 @@ class GlossaryViewHelper extends AbstractViewHelper
      * Initialize arguments.
      *
      * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
-     * @return voiud
+     * @return void
      */
     public function initializeArguments(): void
     {
         parent::initializeArguments();
+        $this->registerArgument('value', 'string', 'String to work on');
         $this->registerArgument('glossaryList', QueryResultInterface::class, 'A queryResult of glossary-objects', true);
         $this->registerArgument('cssClass', 'string', 'CSS-class for glossary items', false, 'webcheck__glossary');
     }
@@ -71,6 +72,7 @@ class GlossaryViewHelper extends AbstractViewHelper
         $cssClass = $arguments['cssClass'];
 
         $string = $renderChildrenClosure();
+
         if ($glossaryList instanceof \TYPO3\CMS\Extbase\Persistence\QueryResultInterface) {
 
             $replacementArray = array();

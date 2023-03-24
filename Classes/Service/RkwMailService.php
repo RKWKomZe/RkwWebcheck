@@ -13,7 +13,9 @@ namespace RKW\RkwWebcheck\Service;
  * The TYPO3 project - inspiring people to share!
  */
 
-use Madj2k\Postmaster\Service\MailService;
+use Madj2k\CoreExtended\Utility\SiteUtility;
+use Madj2k\Postmaster\Mail\MailMassage;
+use Madj2k\Postmaster\Mail\MailMessage;
 use RKW\RkwWebcheck\Domain\Repository\BackendUserRepository;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use Madj2k\CoreExtended\Utility\GeneralUtility;
@@ -59,8 +61,9 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 			&& ((isset($settingsFramework['view']['templateRootPaths'])))
 		) {
 
-			/** @var \Madj2k\Postmaster\Service\MailService $mailService */
-			$mailService = GeneralUtility::makeInstance(MailService::class);
+            /** @var \Madj2k\Postmaster\Mail\MailMessage $mailService */
+            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailMessage::class);
+
 			/** @var \RKW\RkwWebcheck\Domain\Repository\BackendUserRepository $backendUserRepository */
 			$backendUserRepository = GeneralUtility::makeInstance(BackendUserRepository::class);
 
@@ -103,20 +106,21 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 	}
 
 
-	/**
-	 * Send mails to given eMail-addresses for sharing users check
-	 *
-	 * @param \RKW\RkwWebcheck\Domain\Model\FrontendUser $frontendUser
-	 * @param \RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult
-	 * @param array $emailArray
-	 * @param int $sharedPage
-	 * @param string $hash
-	 * @return array
+    /**
+     * Send mails to given eMail-addresses for sharing users check
+     *
+     * @param \RKW\RkwWebcheck\Domain\Model\FrontendUser $frontendUser
+     * @param \RKW\RkwWebcheck\Domain\Model\CheckResult $checkResult
+     * @param array $emailArray
+     * @param int $sharedPage
+     * @param string $hash
+     * @return array
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
+     * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
      */
 	public function shareResultUser (
 			FrontendUser $frontendUser,
@@ -136,8 +140,9 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
             && (isset($settingsFramework['view']['templateRootPaths']))
 		){
 
-			/** @var \Madj2k\Postmaster\Service\MailService $mailService */
-			$mailService = GeneralUtility::makeInstance(MailService::class);
+            /** @var \Madj2k\Postmaster\Mail\MailMessage $mailService */
+            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailMessage::class);
+
 			foreach ($emailArray as $email) {
 
 				if (! \Madj2k\FeRegister\Utility\FrontendUserUtility::isEmailValid($email)) {
@@ -187,12 +192,12 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 					\Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
 						'rkwMailService.shareCheck.subject',
 						'rkw_webcheck',
-						array(
+						[
 							$frontendUser->getFirstName(),
 							$frontendUser->getLastName(),
 							$checkResult->getWebcheck()->getName()
-						),
-						$frontendUser->getTxFeregisterLanguageKey()
+						],
+						SiteUtility::getCurrentTypo3Language()
 					)
 				);
 			} else {
@@ -201,10 +206,10 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 					\Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
 						'rkwMailService.shareCheck.subjectAnonymous',
 						'rkw_webcheck',
-						array(
+						[
 							$checkResult->getWebcheck()->getName()
-						),
-						$frontendUser->getTxFeregisterLanguageKey()
+						],
+                        SiteUtility::getCurrentTypo3Language()
 					)
 				);
 			}
@@ -250,8 +255,8 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 			&& ((isset($settingsFramework['view']['templateRootPaths'])))
 		) {
 
-			/** @var \Madj2k\Postmaster\Service\MailService $mailService */
-			$mailService =GeneralUtility::makeInstance(MailService::class);
+            /** @var \Madj2k\Postmaster\Mail\MailMessage $mailService */
+            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailMessage::class);
 
 			/** @var \RKW\RkwWebcheck\Domain\Repository\BackendUserRepository $backendUserRepository */
 			$backendUserRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(BackendUserRepository::class);

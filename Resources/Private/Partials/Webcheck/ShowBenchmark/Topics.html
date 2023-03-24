@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
+    xmlns:rkwWebcheck="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
     <div class="table-wrapper flex-container my-1 webcheck">
@@ -24,11 +24,11 @@
                     <th class="table__topic table__topic--head">
                         {f:translate(key: 'partials_webcheck_showBenchmark_topics.completeResult')}
                     </th>
-                    <td class="table__score value--<rkw:ratingCss percentage='{mainCheckResult.percentage}' />">
+                    <td class="table__score value--<rkwWebcheck:ratingCss percentage='{mainCheckResult.percentage}' />">
                         <f:format.number decimals="0" decimalSeparator="." >{mainCheckResult.percentage}</f:format.number>%
                     </td>
                     <f:if condition="{compareCheckResult}">
-                        <td class="table__score value--<rkw:ratingCss percentage='{compareCheckResult.percentage}' />">
+                        <td class="table__score value--<rkwWebcheck:ratingCss percentage='{compareCheckResult.percentage}' />">
                             <f:format.number decimals="0" decimalSeparator="." >{compareCheckResult.percentage}</f:format.number>%
                         </td>
                     </f:if>
@@ -39,13 +39,13 @@
                         <th class="table__topic">
                             {topicResult.topic.name}
                         </th>
-                        <td class="table__score value--<rkw:ratingCss percentage='{topicResult.percentage}' />">
+                        <td class="table__score value--<rkwWebcheck:ratingCss percentage='{topicResult.percentage}' />">
                             <f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%
                         </td>
                         <f:if condition="{compareCheckResult}">
                             <f:for each="{compareCheckResult.results}" as="compareTopicResult" iteration="iteratorCompare">
                                 <f:if condition="{iteratorCompare.cycle} == {iteratorMain.cycle}">
-                                    <td class="table__score value--<rkw:ratingCss percentage='{topicResult.percentage}' />">
+                                    <td class="table__score value--<rkwWebcheck:ratingCss percentage='{topicResult.percentage}' />">
                                         <f:format.number decimals="0" decimalSeparator="." >{compareTopicResult.percentage}</f:format.number>%
                                     </td>
                                 </f:if>

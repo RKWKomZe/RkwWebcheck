@@ -34,7 +34,7 @@ class Question
 
     /**
      * @var \RKW\RkwWebcheck\Domain\Repository\WebcheckRepository|null
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected ?WebcheckRepository $webcheckRepository = null;
 
