@@ -1,9 +1,9 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
+    xmlns:rkwWebcheck="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
     <div class="flex">
-        <h2 class="h4 align-center"><rkw:glossary glossaryList="{glossaryList}">{questionResult.question.question}</rkw:glossary></h2>
+        <h2 class="h4 align-center"><rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.question -> f:format.raw()}</rkwWebcheck:glossary></h2>
     </div>
 
 </html>

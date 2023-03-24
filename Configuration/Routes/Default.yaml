@@ -1,0 +1,62 @@
+routeEnhancers:
+  RkwWebcheck:
+    type: Extbase
+    namespace: 'tx_rkwwebcheck_check'
+    routes:
+      - routePath: '/rkw-webcheck/init'
+        _controller: 'Webcheck::checkInit'
+      - routePath: '/rkw-webcheck/start'
+        _controller: 'Webcheck::checkStart'
+      - routePath: '/rkw-webcheck/updatequestion'
+        _controller: 'Webcheck::updateQuestionResult'
+      - routePath: '/rkw-webcheck/question'
+        _controller: 'Webcheck::showQuestionResult'
+      - routePath: '/rkw-webcheck/question/{questionResult}'
+        _controller: 'Webcheck::showQuestionResult'
+      - routePath: '/rkw-webcheck/topic/{topicResult}'
+        _controller: 'Webcheck::showTopicResult'
+      - routePath: '/rkw-webcheck/updatecheck'
+        _controller: 'Webcheck::updateCheckResult'
+      - routePath: '/rkw-webcheck/check/{checkResult}'
+        _controller: 'Webcheck::showCheckResult'
+      - routePath: '/rkw-webcheck/share'
+        _controller: 'Webcheck::shareCheckResult'
+    defaultController: 'Webcheck::checkInit'
+    requirements:
+      questionResult: '[0-9]{1,10}'
+      topicResult: '[0-9]{1,10}'
+      checkResult: '[0-9]{1,10}'
+  RkwWebcheckShared:
+    type: Extbase
+    namespace: 'tx_rkwwebcheck_sharedcheck'
+    routes:
+      - routePath: '/rkw-webcheck/shareCheckResult/{checkResult}'
+        _controller: 'Webcheck::shareCheckResult'
+      - routePath: '/rkw-webcheck/showSharedCheckResult/{checkResult}'
+        _controller: 'Webcheck::showSharedCheckResult'
+      - routePath: '/rkw-survey/error/'
+        _controller: 'Webcheck::error'
+    defaultController: 'Webcheck::showSharedCheckResult'
+    requirements:
+      checkResult: '[0-9]{1,10}'
+  RkwWebcheckBenchmark:
+    type: Extbase
+    namespace: 'tx_rkwwebcheck_benchmark'
+    routes:
+      - routePath: '/rkw-webcheck/benchmark/{mainCheckResult}'
+        _controller: 'Webcheck::showBenchmark'
+    defaultController: 'Webcheck::showBenchmark'
+    requirements:
+      mainCheckResult: '[0-9]{1,10}'
+  RkwWebcheckMyWebcheck:
+    type: Extbase
+    namespace: 'tx_rkwwebcheck_mychecks'
+    routes:
+      - routePath: '/rkw-webcheck/mycheckresults'
+        _controller: 'Webcheck::showMyCheckResults'
+      - routePath: '/rkw-webcheck/deleteresult/{checkResult}'
+        _controller: 'Webcheck::deleteCheckResult'
+    defaultController: 'Webcheck::showMyCheckResults'
+    requirements:
+      checkResult: '[0-9]{1,10}'
+

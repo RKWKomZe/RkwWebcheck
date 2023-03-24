@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
+    xmlns:rkwWebcheck="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
 <f:layout name="Default" />
@@ -21,11 +21,11 @@
 
     <div class="webcheck-description flex space-between">
         <div class="info-flag info-flag--small-height info-flag--left flex-basis-2">
-            <span class="info-flag__text info-flag__text--<rkw:ratingCss percentage='{topicResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
+            <span class="info-flag__text info-flag__text--<rkwWebcheck:ratingCss percentage='{topicResult.percentage}' />"><f:format.number decimals="0" decimalSeparator="." >{topicResult.percentage}</f:format.number>%</span>
         </div>
-        <f:if condition="<rkw:ratingTopicText topicResult='{topicResult}' />">
+        <f:if condition="<rkwWebcheck:ratingTopicText topicResult='{topicResult}' />">
             <div class="description-text flex-basis-10">
-                <p><rkw:ratingTopicText topicResult='{topicResult}' /></p>
+                <p><rkwWebcheck:ratingTopicText topicResult='{topicResult}' /></p>
             </div>
         </f:if>
     </div>

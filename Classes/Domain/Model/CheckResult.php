@@ -15,6 +15,7 @@ namespace RKW\RkwWebcheck\Domain\Model;
  */
 
 use Madj2k\FeRegister\Domain\Model\GuestUser;
+use Madj2k\FeRegister\Utility\FrontendUserUtility;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
@@ -464,7 +465,7 @@ class CheckResult extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
         // 4. Users name
         if ($this->getFeUser()) {
-            if ($this->getFeUser() instanceof GuestUser) {
+            if (FrontendUserUtility::isGuestUser($this->getFeUser())) {
                 $label .= ' - ' . LocalizationUtility::translate('tx_rkwwebcheck_domain_model_checkresult.anonymous', 'rkw_webcheck');
             } else {
                 $label .= ' - ' . $this->getFeUser()->getFirstName() . ' ' . $this->getFeUser()->getLastName();

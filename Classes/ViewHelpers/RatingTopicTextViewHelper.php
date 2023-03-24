@@ -35,7 +35,7 @@ class RatingTopicTextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstra
     public function initializeArguments(): void
     {
         parent::initializeArguments();
-        $this->registerArgument('checkResult', TopicResult::class, 'The topicResult-object.', true);
+        $this->registerArgument('topicResult', TopicResult::class, 'The topicResult-object.', true);
     }
 
 

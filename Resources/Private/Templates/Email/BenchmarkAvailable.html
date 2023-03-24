@@ -1,28 +1,30 @@
-namespace vh=Madj2k\Postmaster\ViewHelpers}
-<f:layout name="Email/{mailType}" />
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:postmaster="http://typo3.org/ns/Madj2k/Postmaster/ViewHelpers"
+      data-namespace-typo3-fluid="true">
 
-
-<!-- PLAINTEXT -->
-<!-- No intend here !!! -->
-<f:section name="Plaintext">
-	<vh:frontend.translate key="templates_email_benchmarkAvailable.headline" languageKey="{frontendUser.txFeregisterLanguageKey}" extensionName="rkwWebcheck" />
-
-	<vh:frontend.translate key="templates_email_benchmarkAvailable.text1" languageKey="{frontendUser.txFeregisterLanguageKey}" extensionName="rkwWebcheck" />
-
-	<vh:frontend.link action="showSharedCheckResult" controller="Webcheck" extensionName="rkwWebcheck" pluginName="sharedCheck" absolute="true" pageUid="{pageUid}" additionalParams="{tx_rkwwebcheck_sharedcheck: {checkResult: checkResult, hash: hash}}"/>
-</f:section>
-
-<!-- HTML -->
-<f:section name="Html">
-
-	<h1>
-		<vh:frontend.translate key="templates_email_benchmarkAvailable.headline" languageKey="{frontendUser.txFeregisterLanguageKey}" extensionName="rkwWebcheck" />
-	</h1>
-	<p><vh:frontend.translate key="templates_email_benchmarkAvailable.text1" languageKey="{frontendUser.txFeregisterLanguageKey}" extensionName="rkwWebcheck" /></p>
-	<p>
-		<a href="<vh:frontend.link action='showSharedCheckResult' controller='Webcheck' extensionName='rkwWebcheck' pluginName='sharedCheck' absolute='true' pageUid='{pageUid}' additionalParams='{tx_rkwwebcheck_sharedcheck: {checkResult: checkResult, hash: hash}}'/>">
-			<vh:frontend.translate key="templates_email_benchmarkAvailable.linkLabel" languageKey="{frontendUser.txFeregisterLanguageKey}" extensionName="rkwWebcheck" />
-		</a>
-	</p>
-
-</f:section>
+    <f:layout name="Email/{mailType}" />
+    
+    <!-- PLAINTEXT -->
+    <f:section name="Plaintext"><postmaster:email.plaintextLineBreaks>
+        <postmaster:email.translate key="templates_email_benchmarkAvailable.headline" languageKey="{queueRecipient.languageCode}" extensionName="rkwWebcheck" />\n\n
+    
+        <postmaster:email.translate key="templates_email_benchmarkAvailable.text1" languageKey="{queueRecipient.languageCode}" extensionName="rkwWebcheck" />\n\n
+    
+        <postmaster:email.uri.action action="showSharedCheckResult" controller="Webcheck" extensionName="rkwWebcheck" pluginName="sharedCheck" absolute="true" pageUid="{pageUid}" additionalParams="{tx_rkwwebcheck_sharedcheck: {checkResult: checkResult, hash: hash}}"/>
+    </postmaster:email.plaintextLineBreaks></f:section>
+    
+    <!-- HTML -->
+    <f:section name="Html">
+    
+        <h1>
+            <postmaster:email.translate key="templates_email_benchmarkAvailable.headline" languageKey="{queueRecipient.languageCode}" extensionName="rkwWebcheck" />
+        </h1>
+        <p><postmaster:email.translate key="templates_email_benchmarkAvailable.text1" languageKey="{queueRecipient.languageCode}" extensionName="rkwWebcheck" /></p>
+        <p>
+            <a href="<postmaster:email.uri.action action='showSharedCheckResult' controller='Webcheck' extensionName='rkwWebcheck' pluginName='sharedCheck' absolute='true' pageUid='{pageUid}' additionalParams='{tx_rkwwebcheck_sharedcheck: {checkResult: checkResult, hash: hash}}'/>">
+                <postmaster:email.translate key="templates_email_benchmarkAvailable.linkLabel" languageKey="{queueRecipient.languageCode}" extensionName="rkwWebcheck" />
+            </a>
+        </p>
+    
+    </f:section>
+</html>
