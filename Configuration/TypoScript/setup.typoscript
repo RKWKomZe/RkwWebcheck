@@ -37,9 +37,19 @@ config.tx_extbase.persistence {
 
 plugin.tx_rkwwebcheck {
 	view {
-		templateRootPaths.0 = {$plugin.tx_rkwwebcheck.view.templateRootPath}
-		partialRootPaths.0 = {$plugin.tx_rkwwebcheck.view.partialRootPath}
-		layoutRootPaths.0 = {$plugin.tx_rkwwebcheck.view.layoutRootPath}
+		templateRootPaths {
+		    0 = EXT:rkw_webcheck/Resources/Private/Templates/
+		    1 = {$plugin.tx_rkwwebcheck.view.templateRootPath}
+		}
+		partialRootPaths {
+		    0 = EXT:rkw_webcheck/Resources/Private/Partials/
+		    1 = {$plugin.tx_rkwwebcheck.view.partialRootPath}
+		    2 = {$plugin.tx_coreextended.view.partialRootPath}
+		}
+		layoutRootPaths {
+		    0 = EXT:rkw_webcheck/Resources/Private/Layouts/
+		    1 = {$plugin.tx_rkwwebcheck.view.layoutRootPath}
+		}
 	}
 	persistence {
 		storagePid = {$plugin.tx_rkwwebcheck.persistence.storagePid}
@@ -58,24 +68,24 @@ module.tx_rkwwebcheck {
 		storagePid = {$module.tx_rkwwebcheck.persistence.storagePid}
 	}
 	view {
-		templateRootPaths.0 = EXT:rkw_webcheck/Resources/Private/Backend/Templates/
-		templateRootPaths.1 = {$module.tx_rkwwebcheck.view.templateRootPath}
-		partialRootPaths.0 = EXT:rkw_webcheck/Resources/Private/Backend/Partials/
-		partialRootPaths.1 = {$module.tx_rkwwebcheck.view.partialRootPath}
-		layoutRootPaths.0 = EXT:rkw_webcheck/Resources/Private/Backend/Layouts/
-		layoutRootPaths.1 = {$module.tx_rkwwebcheck.view.layoutRootPath}
+		templateRootPaths {
+		    0 = EXT:rkw_webcheck/Resources/Private/Backend/Templates/
+		    1 = {$module.tx_rkwwebcheck.view.templateRootPath}
+		}
+		partialRootPaths {
+		    0 = EXT:rkw_webcheck/Resources/Private/Backend/Partials/
+		    1 = {$module.tx_rkwwebcheck.view.partialRootPath}
+		}
+		layoutRootPaths {
+		    0 = EXT:rkw_webcheck/Resources/Private/Backend/Layouts/
+		    1 = {$module.tx_rkwwebcheck.view.layoutRootPath}
+		}
 	}
 }
 
-[globalVar = LIT:1 = {$plugin.tx_rkwwebcheck.settings.version}]
-    page.includeJSFooter.txRkwWebcheck = EXT:rkw_webcheck/Resources/Public/Scripts/webcheck-1.0.js
-[global]
+page.includeCSS.txRkwWebcheck = EXT:rkw_webcheck/Resources/Public/Styles/webcheck-2.0.css
+page.includeJSFooter.txRkwWebcheck = EXT:rkw_webcheck/Resources/Public/Scripts/webcheck-2.0.js
 
-[globalVar = LIT:2 = {$plugin.tx_rkwwebcheck.settings.version}]
-    page.includeCSS.txRkwWebcheck = EXT:rkw_webcheck/Resources/Public/Styles/webcheck-2.0.css
-    page.includeJSFooter.txRkwWebcheck = EXT:rkw_webcheck/Resources/Public/Scripts/webcheck-2.0.js
-[global]
-
-[globalVar = LIT:1 = {$plugin.tx_rkwwebcheck.settings.includeJQuery}]
+[{$plugin.tx_rkwwebcheck.settings.includeJQuery} == 1]
 	page.includeJSFooterlibs.txRkwWebcheck  = EXT:rkw_webcheck/Resources/Public/Scripts/jquery-3.4.1.min.js
-[global]
+[END]

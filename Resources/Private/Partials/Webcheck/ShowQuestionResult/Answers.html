@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:rkw="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
+    xmlns:rkwWebcheck="http://typo3.org/ns/RKW/RkwWebcheck/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
     <f:section name="Selection">
@@ -19,7 +19,7 @@
                                     additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-1'}"
                                 />
                                 <label class="radio-label radio-label--webcheck answer" for="answer1">
-                                    <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer1 -> f:format.raw()}</rkw:glossary>
+                                    <rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.answer1 -> f:format.raw()}</rkwWebcheck:glossary>
                                 </label>
                             </div>
                         </f:then>
@@ -33,7 +33,7 @@
                                     additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-1'}"
                                 />
                                 <label class="radio-label radio-label--webcheck answer" for="answer1">
-                                    <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer1 -> f:format.raw()}</rkw:glossary>
+                                    <rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.answer1 -> f:format.raw()}</rkwWebcheck:glossary>
                                 </label>
                             </div>
 
@@ -52,7 +52,7 @@
                                 />
 
                                 <label class="radio-label radio-label--webcheck answer" for="answer2">
-                                    <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer2 -> f:format.raw()}</rkw:glossary>
+                                    <rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.answer2 -> f:format.raw()}</rkwWebcheck:glossary>
                                 </label>
                             </div>
 
@@ -67,7 +67,7 @@
                                     additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-2'}"
                                 />
                                 <label class="radio-label radio-label--webcheck answer" for="answer2">
-                                    <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer2 -> f:format.raw()}</rkw:glossary>
+                                    <rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.answer2 -> f:format.raw()}</rkwWebcheck:glossary>
                                 </label>
                             </div>
 
@@ -85,7 +85,7 @@
                                     additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-3'}"
                                 />
                                 <label class="radio-label radio-label--webcheck answer" for="answer3">
-                                    <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer3 -> f:format.raw()}</rkw:glossary>
+                                    <rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.answer3 -> f:format.raw()}</rkwWebcheck:glossary>
                                 </label>
                             </div>
 
@@ -101,7 +101,7 @@
                                 />
 
                                 <label class="radio-label radio-label--webcheck answer" for="answer3">
-                                    <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer3 -> f:format.raw()}</rkw:glossary>
+                                    <rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.answer3 -> f:format.raw()}</rkwWebcheck:glossary>
                                 </label>
                             </div>
 
@@ -121,7 +121,7 @@
                             additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-1'}"
                         />
                         <label class="radio-label radio-label--webcheck answer" for="answer1">
-                            <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer1 -> f:format.raw()}</rkw:glossary>
+                            <rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.answer1 -> f:format.raw()}</rkwWebcheck:glossary>
                         </label>
                     </div>
 
@@ -136,7 +136,7 @@
                             additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-2'}"
                         />
                         <label class="radio-label radio-label--webcheck answer" for="answer2">
-                            <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer2 -> f:format.raw()}</rkw:glossary>
+                            <rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.answer2 -> f:format.raw()}</rkwWebcheck:glossary>
                         </label>
                     </div>
 
@@ -150,7 +150,7 @@
                             additionalAttributes="{data-tip-id : 'tx-rkwwebcheck-tip-3'}"
                         />
                         <label class="radio-label radio-label--webcheck answer" for="answer3">
-                            <rkw:glossary glossaryList="{glossaryList}">{questionResult.question.answer3 -> f:format.raw()}</rkw:glossary>
+                            <rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.answer3 -> f:format.raw()}</rkwWebcheck:glossary>
                         </label>
                     </div>
 
@@ -169,13 +169,13 @@
             </div>
             <div class="tip-box__content">
                 <p class="tip-box__text" id="tx-rkwwebcheck-tip-1">
-                    <rkw:glossary glossaryList="{glossaryList}"><f:format.raw>{questionResult.question.result1}</f:format.raw></rkw:glossary>
+                    <rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.result1 -> f:format.raw()}</rkwWebcheck:glossary>
                 </p>
                 <p class="tip-box__text" id="tx-rkwwebcheck-tip-2">
-                    <rkw:glossary glossaryList="{glossaryList}"><f:format.raw>{questionResult.question.result2}</f:format.raw></rkw:glossary>
+                    <rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.result2 -> f:format.raw()}</rkwWebcheck:glossary>
                 </p>
                 <p class="tip-box__text" id="tx-rkwwebcheck-tip-3">
-                    <rkw:glossary glossaryList="{glossaryList}"><f:format.raw>{questionResult.question.result3}</f:format.raw></rkw:glossary>
+                    <rkwWebcheck:glossary glossaryList="{glossaryList}">{questionResult.question.result3 -> f:format.raw()}</rkwWebcheck:glossary>
                 </p>
             </div>
         </div>
