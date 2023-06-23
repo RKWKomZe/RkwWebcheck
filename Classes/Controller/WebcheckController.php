@@ -191,6 +191,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+     * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
      */
     public function checkInitAction(): void
     {
@@ -218,6 +219,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
+     * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
      */
     public function checkStartAction(bool $terms = false): void
     {
