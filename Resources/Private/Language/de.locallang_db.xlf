@@ -229,10 +229,6 @@
                 <source>Check to Show</source>
                 <target>Check, der angezeigt werden soll</target>
             </trans-unit>
-            <trans-unit id="tx_rkwwebcheck_flexform.terms">
-                <source>Page with Terms and Conditions</source>
-                <target>Seite mit den AGB</target>
-            </trans-unit>
             <trans-unit id="tx_rkwwebcheck_flexform.backendUser">
                 <source>Backend User for Notification on Finished Check</source>
                 <target>Backend-Nutzende für Benachrichtigung bei abgeschlossenem Check</target>

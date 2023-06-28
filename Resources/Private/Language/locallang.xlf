@@ -124,9 +124,6 @@
 			-->
 
             <!-- Flash-Messages -->
-            <trans-unit id="webcheckController.warning.terms">
-                <source>You have to accept our terms and conditions.</source>
-            </trans-unit>
             <trans-unit id="webcheckController.warning.noEmails">
                 <source>Please enter at least one e-mail.</source>
             </trans-unit>
@@ -170,12 +167,6 @@
 			-->
 
             <!-- Templates/Webcheck/CheckInit.html -->
-            <trans-unit id="templates_webcheck_checkInit.iAcceptThe">
-                <source>I accept the</source>
-            </trans-unit>
-            <trans-unit id="templates_webcheck_checkInit.terms">
-                <source>terms and conditions.</source>
-            </trans-unit>
             <trans-unit id="templates_webcheck_checkInit.startCheck">
                 <source>Start Check Now</source>
             </trans-unit>
