@@ -214,29 +214,14 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * action checkStart
      *
-     * @param bool $terms
      * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
      */
-    public function checkStartAction(bool $terms = false): void
+    public function checkStartAction(): void
     {
-
-        // 1. check terms
-        if (!$terms) {
-            $this->addFlashMessage(
-                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                    'webcheckController.warning.terms',
-                    'rkw_webcheck'
-                ),
-                null,
-                \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
-
-            );
-            $this->redirect('checkInit');
-        }
 
         // 2. initialize check
         /** @var \RKW\RkwWebcheck\Domain\Model\Webcheck $check */
@@ -295,6 +280,7 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+     * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
      */
     public function showQuestionResultAction(QuestionResult $questionResult): void
     {
@@ -1367,7 +1353,6 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
         return $this->logger;
     }
-
 
 }
 

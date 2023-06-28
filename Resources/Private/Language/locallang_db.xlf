@@ -243,9 +243,7 @@
             <trans-unit id="tx_rkwwebcheck_flexform.check">
                 <source>Check to Show</source>
             </trans-unit>
-            <trans-unit id="tx_rkwwebcheck_flexform.terms">
-                <source>Page with Terms and Conditions</source>
-            </trans-unit>
+
             <trans-unit id="tx_rkwwebcheck_flexform.backendUser">
                 <source>Backend User for Notification on Finished Check</source>
             </trans-unit>
