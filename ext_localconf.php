@@ -67,6 +67,21 @@ call_user_func(
 			]
 		);
 
+        //=================================================================
+        // Add XClasses for extending existing classes
+        //=================================================================
+        // for TYPO3 12+
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\Madj2k\FeRegister\Domain\Model\FrontendUser::class] = [
+            'className' => \RKW\RkwWebcheck\Domain\Model\FrontendUser::class
+        ];
+
+        // for TYPO3 9.5 - 11.5 only, not required for TYPO3 12
+        \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\Container\Container::class)
+            ->registerImplementation(
+                \Madj2k\FeRegister\Domain\Model\FrontendUser::class,
+                \RKW\RkwWebcheck\Domain\Model\FrontendUser::class
+            );
+
 
         //=================================================================
         // Register Logger
@@ -85,5 +100,5 @@ call_user_func(
         );
 	},
 
-	$_EXTKEY
+	'rkw_webcheck'
 );
