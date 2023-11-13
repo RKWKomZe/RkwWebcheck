@@ -159,7 +159,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         try {
 
-            if ($settingsFramework = Common::getTypoScriptConfiguration($this->extensionName, ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK)) {
+            if ($settingsFramework = Common::getTypoScriptConfiguration('rkw_webcheck', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK)) {
 
                 /** @var \TYPO3\CMS\Fluid\View\StandaloneView $standaloneView */
                 $standaloneView = GeneralUtility::makeInstance(\TYPO3\CMS\Fluid\View\StandaloneView::class);
