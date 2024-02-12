@@ -8,12 +8,12 @@ call_user_func(
         if (TYPO3_MODE === 'BE') {
 
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-                $extKey,
+                'RKW.' . $extKey,
                 'web', // Make module a submodule of 'tools'
                 'webcheckbe', // Submodule key
                 '', // Position
                 [
-                    \RKW\RkwWebcheck\Controller\BackendController::class => 'list, result, print, pdf',
+                    'Backend' => 'list, result, print, pdf',
                 ],
                 [
                     'access' => 'user,group',
