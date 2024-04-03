@@ -44,28 +44,64 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected PersistenceManager $persistenceManager;
+    protected ?PersistenceManager $persistenceManager = null;
 
 
     /**
      * @var \RKW\RkwWebcheck\Domain\Repository\WebcheckRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected WebcheckRepository $webcheckRepository;
+    protected ?WebcheckRepository $webcheckRepository = null;
 
 
     /**
      * @var \RKW\RkwWebcheck\Domain\Repository\CheckResultRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected CheckResultRepository $checkResultRepository;
+    protected ?CheckResultRepository $checkResultRepository = null;
 
 
     /**
      * @var \RKW\RkwWebcheck\Utility\Backend
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected Backend $backendHelper;
+    protected ?Backend $backendHelper = null;
+
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
+     */
+    public function injectPersistenceManager(PersistenceManager $persistenceManager)
+    {
+        $this->persistenceManager = $persistenceManager;
+    }
+
+
+    /**
+     * @param \RKW\RkwWebcheck\Domain\Repository\WebcheckRepository $webcheckRepository
+     */
+    public function injectWebcheckRepository(WebcheckRepository $webcheckRepository)
+    {
+        $this->webcheckRepository = $webcheckRepository;
+    }
+
+
+    /**
+     * @param \RKW\RkwWebcheck\Domain\Repository\CheckResultRepository $checkResultRepository
+     */
+    public function injectCheckResultRepository(CheckResultRepository $checkResultRepository)
+    {
+        $this->checkResultRepository = $checkResultRepository;
+    }
+
+
+    /**
+     * @param \RKW\RkwWebcheck\Utility\Backend $backendHelper
+     */
+    public function injectBackend(Backend $backendHelper)
+    {
+        $this->backendHelper = $backendHelper;
+    }
 
 
     /**

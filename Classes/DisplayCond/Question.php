@@ -40,8 +40,18 @@ class Question
 
 
     /**
+     * @param \RKW\RkwWebcheck\Domain\Repository\WebcheckRepository $webcheckRepository
+     */
+    public function injectWebcheckRepository(WebcheckRepository $webcheckRepository)
+    {
+        $this->webcheckRepository = $webcheckRepository;
+    }
+
+
+    /**
      * Question constructor
      * @return void
+     * @throws \TYPO3\CMS\Extbase\Object\Exception
      */
     public function __construct()
     {
