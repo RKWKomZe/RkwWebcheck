@@ -147,7 +147,7 @@ class CheckResultRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param bool $array
      * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function getCompletedByWebcheckId(int $checkId, bool $array): QueryResultInterface
+    public function getCompletedByWebcheckId(int $checkId, bool $array)
     {
         $query = $this->createQuery();
 
