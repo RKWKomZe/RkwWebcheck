@@ -36,6 +36,7 @@ use RKW\RkwWebcheck\Domain\Repository\TopicResultRepository;
 use RKW\RkwWebcheck\Domain\Repository\WebcheckRepository;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\Site\Entity\SiteInterface;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
@@ -74,76 +75,166 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected PersistenceManager $persistenceManager;
+    protected ?PersistenceManager $persistenceManager = null;
 
 
     /**
      * @var \RKW\RkwWebcheck\Domain\Repository\WebcheckRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected WebcheckRepository $webcheckRepository;
+    protected ?WebcheckRepository $webcheckRepository = null;
 
 
     /**
      * @var \RKW\RkwWebcheck\Domain\Repository\CheckResultRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected CheckResultRepository $checkResultRepository;
+    protected ?CheckResultRepository $checkResultRepository = null;
 
 
     /**
      * @var \RKW\RkwWebcheck\Domain\Repository\QuestionRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected QuestionRepository $questionRepository;
+    protected ?QuestionRepository $questionRepository = null;
 
 
     /**
      * @var \RKW\RkwWebcheck\Domain\Repository\QuestionResultRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected QuestionResultRepository $questionResultRepository;
+    protected ?QuestionResultRepository $questionResultRepository = null;
 
 
     /**
      * @var \RKW\RkwWebcheck\Domain\Repository\TopicRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected TopicRepository $topicRepository;
+    protected ?TopicRepository $topicRepository = null;
 
 
     /**
      * @var \RKW\RkwWebcheck\Domain\Repository\TopicResultRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected TopicResultRepository $topicResultRepository;
+    protected ?TopicResultRepository $topicResultRepository = null;
 
 
     /**
      * @var \RKW\RkwWebcheck\Domain\Repository\FrontendUserRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected FrontendUserRepository $frontendUserRepository;
+    protected ?FrontendUserRepository $frontendUserRepository = null;
 
 
     /**
      * @var \RKW\RkwWebcheck\Domain\Repository\BackendUserRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected BackendUserRepository $backendUserRepository;
+    protected ?BackendUserRepository $backendUserRepository = null;
 
 
     /**
      * @var \RKW\RkwWebcheck\Domain\Repository\GlossaryRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected GlossaryRepository $glossaryRepository;
+    protected ?GlossaryRepository $glossaryRepository = null;
 
 
     /**
      * @var \TYPO3\CMS\Core\Log\Logger|null
      */
-    protected ?Logger $logger;
+    protected ?Logger $logger = null;
+
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
+     */
+    public function injectPersistenceManager(PersistenceManager $persistenceManager)
+    {
+        $this->persistenceManager = $persistenceManager;
+    }
+
+
+    /**
+     * @param \RKW\RkwWebcheck\Domain\Repository\WebcheckRepository $webcheckRepository
+     */
+    public function injectWebcheckRepository(WebcheckRepository $webcheckRepository)
+    {
+        $this->webcheckRepository = $webcheckRepository;
+    }
+
+
+    /**
+     * @param \RKW\RkwWebcheck\Domain\Repository\CheckResultRepository $checkResultRepository
+     */
+    public function injectCheckResultRepository(CheckResultRepository $checkResultRepository)
+    {
+        $this->checkResultRepository = $checkResultRepository;
+    }
+
+
+    /**
+     * @param \RKW\RkwWebcheck\Domain\Repository\QuestionRepository $questionRepository
+     */
+    public function injectQuestionRepository(QuestionRepository $questionRepository)
+    {
+        $this->questionRepository = $questionRepository;
+    }
+
+
+    /**
+     * @param \RKW\RkwWebcheck\Domain\Repository\QuestionResultRepository $questionResultRepository
+     */
+    public function injectQuestionResultRepository(QuestionResultRepository $questionResultRepository)
+    {
+        $this->questionResultRepository = $questionResultRepository;
+    }
+
+
+    /**
+     * @param \RKW\RkwWebcheck\Domain\Repository\TopicRepository $topicRepository
+     */
+    public function injectTopicRepository(TopicRepository $topicRepository)
+    {
+        $this->topicRepository = $topicRepository;
+    }
+
+
+    /**
+     * @param \RKW\RkwWebcheck\Domain\Repository\TopicResultRepository $topicResultRepository
+     */
+    public function injectTopicResultRepository(TopicResultRepository $topicResultRepository)
+    {
+        $this->topicResultRepository = $topicResultRepository;
+    }
+
+
+    /**
+     * @param \RKW\RkwWebcheck\Domain\Repository\FrontendUserRepository $frontendUserRepository
+     */
+    public function injectFrontendUserRepository(FrontendUserRepository $frontendUserRepository)
+    {
+        $this->frontendUserRepository = $frontendUserRepository;
+    }
+
+
+    /**
+     * @param \RKW\RkwWebcheck\Domain\Repository\BackendUserRepository $backendUserRepository
+     */
+    public function injectBackendUserRepository(BackendUserRepository $backendUserRepository)
+    {
+        $this->backendUserRepository = $backendUserRepository;
+    }
+
+
+    /**
+     * @param \RKW\RkwWebcheck\Domain\Repository\GlossaryRepository $glossaryRepository
+     */
+    public function injectGlossaryRepository(GlossaryRepository $glossaryRepository)
+    {
+        $this->glossaryRepository = $glossaryRepository;
+    }
 
 
     /**
@@ -1335,7 +1426,16 @@ class WebcheckController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function errorAction()
     {
-        $this->view->assign('startpage', $GLOBALS['TSFE']->domainStartPage);
+        if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) < 10000000) {
+            // @extensionScannerIgnoreLine
+            $this->view->assign('startpage', $GLOBALS['TSFE']->domainStartPage);
+
+        } else {
+
+            /** @var \TYPO3\CMS\Core\Site\Entity\SiteInterface $currentSite */
+            $currentSite = $GLOBALS['TYPO3_REQUEST']->getAttribute('site');
+            $this->view->assign('startpage', $currentSite->getRootPageId());
+        }
     }
 
 
