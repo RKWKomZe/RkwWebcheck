@@ -17,10 +17,6 @@ return [
         'iconfile'                 => 'EXT:rkw_webcheck/Resources/Public/Icons/tx_rkwwebcheck_domain_model_topic.gif',
         'hideTable'                => true,
     ],
-    'interface' => [
-        // 'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, weight, result_a, result_b, result_c, questions',
-        'showRecordFieldList' => 'hidden, name, description, weight, result_a, result_b, result_c, questions',
-    ],
     'types'     => [
         // '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, weight, result_a, result_b, result_c, questions'],
         '1' => ['showitem' => 'hidden, name, description, weight, result_a, result_b, result_c, questions'],
@@ -46,7 +42,6 @@ return [
         ],
         'l10n_parent'      => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude'     => true,
             'label'       => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config'      => [
                 'type'                => 'select',

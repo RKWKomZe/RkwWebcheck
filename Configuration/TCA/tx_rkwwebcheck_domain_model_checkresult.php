@@ -13,9 +13,6 @@ return [
         'searchFields'             => 'fe_user,sum,completed,send_notification,notification_timestamp,results,last_topic,last_question,webcheck',
         'iconfile'                 => 'EXT:rkw_webcheck/Resources/Public/Icons/tx_rkwwebcheck_domain_model_checkresult.gif',
     ],
-    'interface' => [
-        'showRecordFieldList' => 'fe_user, sum, percentage, completed, send_notification, notification_timestamp, results, last_topic, last_question, webcheck',
-    ],
     'types'     => [
         '1' => ['showitem' => 'fe_user, sum, percentage,completed, send_notification, notification_timestamp, results, last_topic, last_question, webcheck'],
     ],

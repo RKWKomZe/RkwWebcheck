@@ -16,9 +16,6 @@ return [
         'searchFields'             => 'name,description',
         'iconfile'                 => 'EXT:rkw_webcheck/Resources/Public/Icons/tx_rkwwebcheck_domain_model_glossary.gif',
     ],
-    'interface' => [
-         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, webcheck, name, description',
-    ],
     'types'     => [
         '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, webcheck, name, description'],
     ],
@@ -43,7 +40,6 @@ return [
         ],
         'l10n_parent'      => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude'     => true,
             'label'       => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config'      => [
                 'type'                => 'select',

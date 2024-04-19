@@ -13,9 +13,6 @@ return [
         'searchFields'             => 'fe_user,sum,webcheck,topic,results',
         'iconfile'                 => 'EXT:rkw_webcheck/Resources/Public/Icons/tx_rkwwebcheck_domain_model_topicresult.gif',
     ],
-    'interface' => [
-        'showRecordFieldList' => 'sum, percentage, webcheck, topic, results',
-    ],
     'types'     => [
         '1' => ['showitem' => 'sum, percentage, webcheck, topic, results'],
     ],
