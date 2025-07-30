@@ -5,11 +5,24 @@
 
     <f:if condition="{questionResult.question.description}">
         <f:then>
-            <button class="btn btn--small btn--tertiary js-open-mdl mb-1" data-modal="mdl-1">{f:translate(key: 'partials_webcheck_showQuestionResult_modal.descriptionOfQuestion')}</button>
-            <div id="mdl-1" class="mdl">
+            <button
+                class="btn btn--small btn--tertiary js-open-mdl mb-1"
+                data-modal="mdl-1"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                aria-controls="mdl-1"
+            >{f:translate(key: 'partials_webcheck_showQuestionResult_modal.descriptionOfQuestion')}</button>
+            <div
+                id="mdl-1"
+                class="mdl"
+                aria-labelledby="mdl-1-header-id"
+            >
                 <div class="mdl__inner">
                     <header class="mdl__header">
-                        <span class="h4 mdl__headline">
+                        <span
+                            class="h4 mdl__headline"
+                            id="mdl-1-header-id"
+                        >
                             {f:translate(key: 'partials_webcheck_showQuestionResult_modal.descriptionOfQuestion')}
                         </span>
                     </header>
@@ -18,7 +31,10 @@
                         <button class="btn btn--primary js-close-mdl">{f:translate(key: 'partials_webcheck_showQuestionResult_modal.backToQuestion')}</button>
                     </div>
                 </div>
-                <button class="mdl-close js-close-mdl"><svg class="icon icon--48">
+                <button
+                    class="mdl-close js-close-mdl"
+                    aria-label="{f:translate(key:'LLL:EXT:rkw_template/Resources/Private/Language/locallang.xlf:contentElement.Modal.closeButtonAriaLabel')}"
+                ><svg class="icon icon--48">
                     <use xlink:href="#ic-mobile-menu-close" /></svg></button>
             </div>
             <div class="mdl-layer js-mdl-layer"></div>
